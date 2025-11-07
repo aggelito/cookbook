@@ -13,7 +13,7 @@ const recipes = defineCollection({
       name: z.string(),
       amount: z.number(),
       unit: z.string(),
-    })),
+    })).optional(),
     ingredientGroups: z.array(z.object({
       groupName: z.string(),
       ingredients: z.array(z.object({
@@ -24,7 +24,7 @@ const recipes = defineCollection({
     })).optional(),
     steps: z.array(z.object({
       step: z.string(),
-    })),
+    })).optional(),
     stepGroups: z.array(z.object({
       groupName: z.string(),
       steps: z.array(z.object({
