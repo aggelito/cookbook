@@ -87,14 +87,14 @@ const { recipe } = Astro.props;
 
 		<h2>Dietary Information</h2>
 		<ul>
-			<li>Vegetarian: {recipe.data.vegetarian ? 'Yes' : 'No'}</li>
-			<li>Vegan: {recipe.data.vegan ? 'Yes' : 'No'}</li>
-			<li>Gluten Free: {recipe.data.glutenFree ? 'Yes' : 'No'}</li>
-			<li>Dairy Free: {recipe.data.dairyFree ? 'Yes' : 'No'}</li>
-			<li>Nut Free: {recipe.data.nutFree ? 'Yes' : 'No'}</li>
-			<li>Low Carb: {recipe.data.lowCarb ? 'Yes' : 'No'}</li>
+			<li>Vegetarian: {recipe.data.dietaryInfo.vegetarian ? 'Yes' : 'No'}</li>
+			<li>Vegan: {recipe.data.dietaryInfo.vegan ? 'Yes' : 'No'}</li>
+			<li>Gluten Free: {recipe.data.dietaryInfo.glutenFree ? 'Yes' : 'No'}</li>
+			<li>Dairy Free: {recipe.data.dietaryInfo.dairyFree ? 'Yes' : 'No'}</li>
+			<li>Nut Free: {recipe.data.dietaryInfo.nutFree ? 'Yes' : 'No'}</li>
+			<li>Low Carb: {recipe.data.dietaryInfo.lowCarb ? 'Yes' : 'No'}</li>
 		</ul>
 
-		<p><a href="/recipes">← Back to recipes</a></p>
+		<p><a href="/">← Back to recipes</a></p>
 	</body>
 </html>

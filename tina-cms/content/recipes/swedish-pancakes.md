@@ -51,10 +51,11 @@ steps:
     description: "Transfer to a plate and keep warm. Repeat with remaining batter, adding more butter to the pan as needed."
   - title: "Serve"
     description: "Serve warm with your favorite toppings like lingonberry jam, fresh berries, or powdered sugar."
-vegetarian: true
-vegan: false
-glutenFree: false
-dairyFree: false
-nutFree: true
-lowCarb: false
+dietaryInfo:
+  vegetarian: true
+  vegan: false
+  glutenFree: false
+  dairyFree: false
+  nutFree: true
+  lowCarb: false
 ---

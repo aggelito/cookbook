@@ -5,7 +5,7 @@ export default {
   label: "Recipes",
   name: "recipe",
   path: "content/recipes",
-  format: "md",  // Add this line
+  format: "md", // Add this line
   fields: [
     {
       type: "string",
@@ -39,7 +39,10 @@ export default {
       list: true,
       ui: {
         itemProps: (item) => ({
-          label: item.name ? `${item.amount || ''} ${item.unit || ''} ${item.name}`.trim() || 'New ingredient' : 'New ingredient'
+          label: item.name
+            ? `${item.amount || ""} ${item.unit || ""} ${item.name}`.trim() ||
+              "New ingredient"
+            : "New ingredient",
         }),
       },
       fields: [
@@ -67,7 +70,7 @@ export default {
       list: true,
       ui: {
         itemProps: (item) => ({
-          label: item.title ? item.title : 'New step'
+          label: item.title ? item.title : "New step",
         }),
       },
       fields: [
@@ -90,7 +93,9 @@ export default {
       list: true,
       ui: {
         itemProps: (item) => ({
-          label: item.groupName ? `${item.groupName} (${item.ingredients?.length || 0} ingredients)` : 'New ingredient group'
+          label: item.groupName
+            ? `${item.groupName} (${item.ingredients?.length || 0} ingredients)`
+            : "New ingredient group",
         }),
       },
       fields: [
@@ -106,7 +111,11 @@ export default {
           list: true,
           ui: {
             itemProps: (item) => ({
-              label: item.name ? `${item.amount || ''} ${item.unit || ''} ${item.name}`.trim() || 'New ingredient' : 'New ingredient'
+              label: item.name
+                ? `${item.amount || ""} ${item.unit || ""} ${
+                    item.name
+                  }`.trim() || "New ingredient"
+                : "New ingredient",
             }),
           },
           fields: [
@@ -129,7 +138,7 @@ export default {
         },
       ],
     },
-    
+
     {
       type: "object",
       label: "Step Groups",
@@ -137,7 +146,9 @@ export default {
       list: true,
       ui: {
         itemProps: (item) => ({
-          label: item.groupName ? `${item.groupName} (${item.steps?.length || 0} steps)` : 'New step group'
+          label: item.groupName
+            ? `${item.groupName} (${item.steps?.length || 0} steps)`
+            : "New step group",
         }),
       },
       fields: [
@@ -153,7 +164,7 @@ export default {
           list: true,
           ui: {
             itemProps: (item) => ({
-              label: item.title ? item.title : 'New step'
+              label: item.title ? item.title : "New step",
             }),
           },
           fields: [
@@ -172,34 +183,41 @@ export default {
       ],
     },
     {
-      type: "boolean",
-      label: "Vegetarian",
-      name: "vegetarian",
-    },
-    {
-      type: "boolean",
-      label: "Vegan",
-      name: "vegan",
-    },
-    {
-      type: "boolean",
-      label: "Gluten Free",
-      name: "glutenFree",
-    },
-    {
-      type: "boolean",
-      label: "Dairy Free",
-      name: "dairyFree",
-    },
-    {
-      type: "boolean",
-      label: "Nut Free",
-      name: "nutFree",
-    },
-    {
-      type: "boolean",
-      label: "Low Carb",
-      name: "lowCarb",
+      type: "object",
+      name: "dietaryInfo",
+      label: "Dietary Information",
+      fields: [
+        {
+          type: "boolean",
+          label: "Vegetarian",
+          name: "vegetarian",
+        },
+        {
+          type: "boolean",
+          label: "Vegan",
+          name: "vegan",
+        },
+        {
+          type: "boolean",
+          label: "Gluten Free",
+          name: "glutenFree",
+        },
+        {
+          type: "boolean",
+          label: "Dairy Free",
+          name: "dairyFree",
+        },
+        {
+          type: "boolean",
+          label: "Nut Free",
+          name: "nutFree",
+        },
+        {
+          type: "boolean",
+          label: "Low Carb",
+          name: "lowCarb",
+        },
+      ],
     },
   ],
 };

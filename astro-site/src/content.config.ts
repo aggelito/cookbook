@@ -33,12 +33,14 @@ const recipes = defineCollection({
         description: z.string(),
       })),
     })).optional(),
-    vegetarian: z.boolean(),
-    vegan: z.boolean(),
-    glutenFree: z.boolean(),
-    dairyFree: z.boolean(),
-    nutFree: z.boolean(),
-    lowCarb: z.boolean(),
+    dietaryInfo: z.object({
+      vegetarian: z.boolean(),
+      vegan: z.boolean(),
+      glutenFree: z.boolean(),
+      dairyFree: z.boolean(),
+      nutFree: z.boolean(),
+      lowCarb: z.boolean(),
+    }),
   }),
 });
 

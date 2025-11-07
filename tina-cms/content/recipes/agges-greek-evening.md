@@ -123,10 +123,11 @@ stepGroups:
     steps:
       - title: "Plate and serve"
         description: "Plate the patties with potatoes, a generous dollop of tzatziki, and optionally a fresh salad with tomatoes, red onion, olives, and more crumbled feta. Finish with a drizzle of olive oil and sprinkle of oregano."
-vegetarian: false
-vegan: false
-glutenFree: true
-dairyFree: false
-nutFree: true
-lowCarb: false
+dietaryInfo:
+  vegetarian: false
+  vegan: false
+  glutenFree: true
+  dairyFree: false
+  nutFree: true
+  lowCarb: false
 ---
