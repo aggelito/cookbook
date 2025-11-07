@@ -89,44 +89,40 @@ ingredientGroups:
 stepGroups:
   - groupName: Greek Patties with Feta
     steps:
-      - step: >-
-          Mix the ground beef with grated onion, pressed garlic, egg, and all
-          the spices (oregano, parsley, cumin, salt, pepper).
-      - step: >-
-          Gently crumble in the feta cheese and mix carefully (so it doesn't
-          completely mash).
-      - step: Form 8 small or 4 large patties.
-      - step: >-
-          Fry in olive oil for 4-5 minutes per side until cooked through and
-          nicely browned.
-      - step: >-
-          Alternative: Grill in oven at 225°C for about 15-20 minutes,
-          preferably on parchment paper.
+      - title: "Mix ingredients"
+        description: "Mix the ground beef with grated onion, pressed garlic, egg, and all the spices (oregano, parsley, cumin, salt, pepper)."
+      - title: "Add feta"
+        description: "Gently crumble in the feta cheese and mix carefully (so it doesn't completely mash)."
+      - title: "Form patties"
+        description: "Form 8 small or 4 large patties."
+      - title: "Cook patties"
+        description: "Fry in olive oil for 4-5 minutes per side until cooked through and nicely browned."
+      - title: "Alternative cooking"
+        description: "Alternative: Grill in oven at 225°C for about 15-20 minutes, preferably on parchment paper."
   - groupName: Oven-Roasted Potatoes
     steps:
-      - step: Preheat oven to 225°C.
-      - step: Cut potatoes in half (or wedges if large).
-      - step: >-
-          Place on a baking sheet with parchment paper, drizzle with olive oil
-          and sprinkle with salt, pepper, and oregano.
-      - step: Roast in oven for about 25-30 minutes until golden.
-      - step: Squeeze lemon juice over just before serving.
+      - title: "Preheat oven"
+        description: "Preheat oven to 225°C."
+      - title: "Prepare potatoes"
+        description: "Cut potatoes in half (or wedges if large)."
+      - title: "Season and arrange"
+        description: "Place on a baking sheet with parchment paper, drizzle with olive oil and sprinkle with salt, pepper, and oregano."
+      - title: "Roast"
+        description: "Roast in oven for about 25-30 minutes until golden."
+      - title: "Finish with lemon"
+        description: "Squeeze lemon juice over just before serving."
   - groupName: Tzatziki
     steps:
-      - step: >-
-          Grate the cucumber and squeeze out excess liquid (using a sieve or
-          paper towels).
-      - step: >-
-          Mix with yogurt, pressed garlic, olive oil, salt, pepper, and
-          optionally a few drops of lemon.
-      - step: Let chill in refrigerator for at least 15 minutes before serving.
+      - title: "Prepare cucumber"
+        description: "Grate the cucumber and squeeze out excess liquid (using a sieve or paper towels)."
+      - title: "Mix ingredients"
+        description: "Mix with yogurt, pressed garlic, olive oil, salt, pepper, and optionally a few drops of lemon."
+      - title: "Chill"
+        description: "Let chill in refrigerator for at least 15 minutes before serving."
   - groupName: Serving
     steps:
-      - step: >-
-          Plate the patties with potatoes, a generous dollop of tzatziki, and
-          optionally a fresh salad with tomatoes, red onion, olives, and more
-          crumbled feta. Finish with a drizzle of olive oil and sprinkle of
-          oregano.
+      - title: "Plate and serve"
+        description: "Plate the patties with potatoes, a generous dollop of tzatziki, and optionally a fresh salad with tomatoes, red onion, olives, and more crumbled feta. Finish with a drizzle of olive oil and sprinkle of oregano."
 vegetarian: false
 vegan: false
 glutenFree: true
@@ -134,4 +130,3 @@ dairyFree: false
 nutFree: true
 lowCarb: false
 ---
-

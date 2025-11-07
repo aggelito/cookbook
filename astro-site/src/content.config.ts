@@ -23,12 +23,14 @@ const recipes = defineCollection({
       })),
     })).optional(),
     steps: z.array(z.object({
-      step: z.string(),
+      title: z.string(),
+      description: z.string(),
     })).optional(),
     stepGroups: z.array(z.object({
       groupName: z.string(),
       steps: z.array(z.object({
-        step: z.string(),
+        title: z.string(),
+        description: z.string(),
       })),
     })).optional(),
     vegetarian: z.boolean(),

@@ -31,31 +31,26 @@ ingredients:
     amount: 1
     unit: tablespoon
 steps:
-  - step: 'In a large mixing bowl, whisk together the flour, sugar, and salt.'
-  - step: 'In a separate bowl, beat the eggs and then stir in the milk.'
-  - step: >-
-      Gradually add the wet ingredients to the dry ingredients, whisking until
-      you have a smooth batter. If lumps remain, you can strain the batter or
-      use an immersion blender.
-  - step: >-
-      Melt 2 tablespoons of butter and stir it into the batter. Let the batter
-      rest for 10-15 minutes.
-  - step: >-
-      Heat a non-stick skillet or crepe pan over medium heat. Add a small amount
-      of butter for frying.
-  - step: >-
-      Pour about 1/4 cup of batter into the pan, tilting the pan to spread the
-      batter thinly and evenly.
-  - step: >-
-      Cook for 1-2 minutes until the edges start to look dry and the bottom is
-      golden brown.
-  - step: Flip the pancake and cook for another 30 seconds to 1 minute.
-  - step: >-
-      Transfer to a plate and keep warm. Repeat with remaining batter, adding
-      more butter to the pan as needed.
-  - step: >-
-      Serve warm with your favorite toppings like lingonberry jam, fresh
-      berries, or powdered sugar.
+  - title: "Mix dry ingredients"
+    description: "In a large mixing bowl, whisk together the flour, sugar, and salt."
+  - title: "Prepare wet ingredients"
+    description: "In a separate bowl, beat the eggs and then stir in the milk."
+  - title: "Combine ingredients"
+    description: "Gradually add the wet ingredients to the <strong>dry</strong> ingredients, whisking until you have a smooth batter. If lumps remain, you can strain the batter or use an immersion blender."
+  - title: "Add butter and rest"
+    description: "Melt 2 tablespoons of butter and stir it into the batter. Let the batter rest for 10-15 minutes."
+  - title: "Heat the pan"
+    description: "Heat a non-stick skillet or crepe pan over medium heat. Add a small amount of butter for frying."
+  - title: "Cook the pancakes"
+    description: "Pour about 1/4 cup of batter into the pan, tilting the pan to spread the batter thinly and evenly."
+  - title: "First side"
+    description: "Cook for 1-2 minutes until the edges start to look dry and the bottom is golden brown."
+  - title: "Second side"
+    description: "Flip the pancake and cook for another 30 seconds to 1 minute."
+  - title: "Keep warm"
+    description: "Transfer to a plate and keep warm. Repeat with remaining batter, adding more butter to the pan as needed."
+  - title: "Serve"
+    description: "Serve warm with your favorite toppings like lingonberry jam, fresh berries, or powdered sugar."
 vegetarian: true
 vegan: false
 glutenFree: false
@@ -63,4 +58,3 @@ dairyFree: false
 nutFree: true
 lowCarb: false
 ---
-

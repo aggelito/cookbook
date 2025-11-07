@@ -60,11 +60,12 @@ const { recipe } = Astro.props;
 		{recipe.data.steps && recipe.data.steps.length > 0 && (
 			<>
 				<h2>Steps</h2>
-				<ol>
-					{recipe.data.steps.map(step => (
-						<li>{step.step}</li>
-					))}
-				</ol>
+				{recipe.data.steps.map((step, index) => (
+					<div style="margin-bottom: 1rem;">
+						<h3>{index + 1}. {step.title}</h3>
+						<div set:html={step.description}></div>
+					</div>
+				))}
 			</>
 		)}
 
@@ -73,11 +74,12 @@ const { recipe } = Astro.props;
 				{recipe.data.stepGroups.map(group => (
 					<div>
 						<h3>{group.groupName}</h3>
-						<ol>
-							{group.steps.map(step => (
-								<li>{step.step}</li>
-							))}
-						</ol>
+						{group.steps.map((step, index) => (
+							<div style="margin-bottom: 1rem;">
+								<h4>{index + 1}. {step.title}</h4>
+								<div set:html={step.description}></div>
+							</div>
+						))}
 					</div>
 				))}
 			</>

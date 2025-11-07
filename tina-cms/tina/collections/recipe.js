@@ -67,14 +67,19 @@ export default {
       list: true,
       ui: {
         itemProps: (item) => ({
-          label: item.step ? item.step.substring(0, 50) + (item.step.length > 50 ? '...' : '') : 'New step'
+          label: item.title ? item.title : 'New step'
         }),
       },
       fields: [
         {
           type: "string",
-          label: "Step",
-          name: "step",
+          label: "Title",
+          name: "title",
+        },
+        {
+          type: "rich-text",
+          label: "Description",
+          name: "description",
         },
       ],
     },
@@ -148,14 +153,19 @@ export default {
           list: true,
           ui: {
             itemProps: (item) => ({
-              label: item.step ? item.step.substring(0, 50) + (item.step.length > 50 ? '...' : '') : 'New step'
+              label: item.title ? item.title : 'New step'
             }),
           },
           fields: [
             {
               type: "string",
-              label: "Step",
-              name: "step",
+              label: "Title",
+              name: "title",
+            },
+            {
+              type: "rich-text",
+              label: "Description",
+              name: "description",
             },
           ],
         },
