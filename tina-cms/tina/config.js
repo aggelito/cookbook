@@ -16,7 +16,7 @@ export const config = defineConfig({
     // },
     // this is the config for the tina cloud media store
     tina: {
-      publicFolder: "public",
+      publicFolder: "../astro-site/public",
       mediaRoot: "uploads",
     },
   },

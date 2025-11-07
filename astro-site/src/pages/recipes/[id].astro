@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -22,7 +23,7 @@ const { recipe } = Astro.props;
 		<h1>{recipe.data.title}</h1>
 
 		{recipe.data.heroImage && (
-			<img src={recipe.data.heroImage} alt={recipe.data.title} style="max-width: 400px;" />
+			<Image src={ recipe.data.heroImage} alt={recipe.data.title} width={50} height={50}/>
 		)}
 
 		<p><strong>Serves:</strong> {recipe.data.basePortions} people</p>
