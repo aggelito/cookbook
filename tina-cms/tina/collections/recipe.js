@@ -37,6 +37,11 @@ export default {
       label: "Ingredients",
       name: "ingredients",
       list: true,
+      ui: {
+        itemProps: (item) => ({
+          label: item.name ? `${item.amount || ''} ${item.unit || ''} ${item.name}`.trim() || 'New ingredient' : 'New ingredient'
+        }),
+      },
       fields: [
         {
           type: "string",
@@ -60,6 +65,11 @@ export default {
       label: "Steps",
       name: "steps",
       list: true,
+      ui: {
+        itemProps: (item) => ({
+          label: item.step ? item.step.substring(0, 50) + (item.step.length > 50 ? '...' : '') : 'New step'
+        }),
+      },
       fields: [
         {
           type: "string",
@@ -73,6 +83,11 @@ export default {
       label: "Ingredient Groups",
       name: "ingredientGroups",
       list: true,
+      ui: {
+        itemProps: (item) => ({
+          label: item.groupName ? `${item.groupName} (${item.ingredients?.length || 0} ingredients)` : 'New ingredient group'
+        }),
+      },
       fields: [
         {
           type: "string",
@@ -84,6 +99,11 @@ export default {
           label: "Ingredients",
           name: "ingredients",
           list: true,
+          ui: {
+            itemProps: (item) => ({
+              label: item.name ? `${item.amount || ''} ${item.unit || ''} ${item.name}`.trim() || 'New ingredient' : 'New ingredient'
+            }),
+          },
           fields: [
             {
               type: "string",
@@ -110,6 +130,11 @@ export default {
       label: "Step Groups",
       name: "stepGroups",
       list: true,
+      ui: {
+        itemProps: (item) => ({
+          label: item.groupName ? `${item.groupName} (${item.steps?.length || 0} steps)` : 'New step group'
+        }),
+      },
       fields: [
         {
           type: "string",
@@ -121,6 +146,11 @@ export default {
           label: "Steps",
           name: "steps",
           list: true,
+          ui: {
+            itemProps: (item) => ({
+              label: item.step ? item.step.substring(0, 50) + (item.step.length > 50 ? '...' : '') : 'New step'
+            }),
+          },
           fields: [
             {
               type: "string",
