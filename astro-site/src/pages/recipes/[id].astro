@@ -10,7 +10,6 @@ export async function getStaticPaths() {
 }
 
 const { recipe } = Astro.props;
-const { Content } = await render(recipe);
 ---
 
 <html lang="en">
@@ -21,7 +20,71 @@ const { Content } = await render(recipe);
 	</head>
 	<body>
 		<h1>{recipe.data.title}</h1>
-		<Content />
+
+		{recipe.data.heroImage && (
+			<img src={recipe.data.heroImage} alt={recipe.data.title} style="max-width: 400px;" />
+		)}
+
+		<p><strong>Serves:</strong> {recipe.data.basePortions} people</p>
+		<p><strong>Estimated time:</strong> {recipe.data.estimatedTime} minutes</p>
+
+		<h2>Description</h2>
+		<p>{recipe.data.description}</p>
+
+		<h2>Ingredients</h2>
+		<ul>
+			{recipe.data.ingredients.map(ingredient => (
+				<li>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
+			))}
+		</ul>
+
+		{recipe.data.ingredientGroups && recipe.data.ingredientGroups.length > 0 && (
+			<>
+				{recipe.data.ingredientGroups.map(group => (
+					<div>
+						<h3>{group.groupName}</h3>
+						<ul>
+							{group.ingredients.map(ingredient => (
+								<li>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</>
+		)}
+
+		<h2>Steps</h2>
+		<ol>
+			{recipe.data.steps.map(step => (
+				<li>{step.step}</li>
+			))}
+		</ol>
+
+		{recipe.data.stepGroups && recipe.data.stepGroups.length > 0 && (
+			<>
+				{recipe.data.stepGroups.map(group => (
+					<div>
+						<h3>{group.groupName}</h3>
+						<ol>
+							{group.steps.map(step => (
+								<li>{step.step}</li>
+							))}
+						</ol>
+					</div>
+				))}
+			</>
+		)}
+
+		<h2>Dietary Information</h2>
+		<ul>
+			<li>Vegetarian: {recipe.data.vegetarian ? 'Yes' : 'No'}</li>
+			<li>Vegan: {recipe.data.vegan ? 'Yes' : 'No'}</li>
+			<li>Gluten Free: {recipe.data.glutenFree ? 'Yes' : 'No'}</li>
+			<li>Dairy Free: {recipe.data.dairyFree ? 'Yes' : 'No'}</li>
+			<li>Nut Free: {recipe.data.nutFree ? 'Yes' : 'No'}</li>
+			<li>Low Carb: {recipe.data.lowCarb ? 'Yes' : 'No'}</li>
+		</ul>
+
 		<p><a href="/recipes">← Back to recipes</a></p>
 	</body>
 </html>
