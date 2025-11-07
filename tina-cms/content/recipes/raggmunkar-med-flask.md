@@ -4,62 +4,53 @@ basePortions: 4
 estimatedTime: 45
 rating: 5
 description: >
-  Traditional Swedish potato pancakes served with crispy pork. Raggmunkar are
-  grated potato pancakes that are crispy on the outside and tender inside,
-  making them a perfect accompaniment to fried pork for a hearty meal.
+  Klassiska raggmunkar med krispigt fläsk.
 ingredients:
-  - name: Potatoes
+  - name: Potatis
     amount: 1
     unit: kg
-  - name: All-purpose flour
+  - name: Vetemjöl
     amount: 2
     unit: tablespoons
-  - name: Egg
+  - name: Ägg
     amount: 1
     unit: piece
-  - name: Milk
+  - name: Mjölk
     amount: 1
     unit: dl
   - name: Salt
     amount: 1
     unit: teaspoon
-  - name: Pork belly or bacon
+  - name: Sidfläsk eller bacon
     amount: 200
     unit: g
-  - name: Onion (optional)
+  - name: Lök (valfritt)
     amount: 1
     unit: piece
-  - name: Butter or oil for frying
+  - name: Smör eller olja till stekning
     amount: 2
     unit: tablespoons
 steps:
-  - title: Prepare potatoes
+  - title: Förbered potatisen
     description: |
-      Peel the potatoes and grate them using a coarse grater. Place the grated
-      potatoes in a clean kitchen towel and squeeze out as much liquid as
-      possible to ensure crispy raggmunkar.
-  - title: Mix batter
+      Skala och grovriv potatisen. Krama ur vätskan i en kökshandduk.
+  - title: Rör ihop smeten
     description: |
-      In a large bowl, combine the grated potatoes with flour, egg, milk, and
-      salt. If using onion, grate it and add to the mixture. Stir well to form
-      a thick batter.
-  - title: Heat the pan
+      Blanda potatis med mjöl, ägg, mjölk och salt. Tillsätt ev. riven lök.
+      Rör till en tjock smet.
+  - title: Värm pannan
     description: |
-      Heat butter or oil in a large frying pan over medium-high heat.
-  - title: Fry raggmunkar
+      Hetta upp smör/olja i en stor stekpanna på medelhög värme.
+  - title: Stek raggmunkar
     description: |
-      Scoop spoonfuls of the potato batter into the hot pan, flattening them
-      slightly with the back of the spoon. Fry for 3-4 minutes per side until
-      golden brown and crispy. Transfer to a plate lined with paper towels to
-      drain excess oil. Repeat with remaining batter.
-  - title: Fry the pork
+      Klicka i smet och platta till. Stek 3–4 min per sida tills gyllene och
+      krispiga. Låt rinna av på papper. Upprepa.
+  - title: Stek fläsket
     description: |
-      In the same pan (or a separate one), fry the pork belly or bacon until
-      crispy and cooked through, about 5-7 minutes.
-  - title: Serve
+      Stek sidfläsk/bacon tills krispigt, ca 5–7 min.
+  - title: Servera
     description: |
-      Serve the hot raggmunkar topped with the crispy pork. Traditionally
-      served with lingonberry jam on the side.
+      Servera raggmunkar med krispigt fläsk. Traditionellt med lingonsylt.
 dietaryInfo:
   vegetarian: false
   vegan: false

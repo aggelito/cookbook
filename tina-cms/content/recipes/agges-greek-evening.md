@@ -1,128 +1,126 @@
 ---
-title: Greek Evening
+title: Grekisk kväll
 basePortions: 4
 estimatedTime: 60
 description: >
-  A delicious Greek-inspired dinner featuring homemade beef patties with feta
-  cheese, crispy oven-roasted potatoes with herbs, and creamy tzatziki sauce.
-  Perfect for a cozy evening meal with Mediterranean flavors.
+  Grekisk middag med feta-biffar, ugnsrostad potatis och tzatziki.
 heroImage: ''
 ingredientGroups:
-  - groupName: Greek Patties with Feta
+  - groupName: Grekiska biffar med feta
     ingredients:
-      - name: Ground beef (or lamb for more authentic Greek flavor)
+      - name: Nötfärs (eller lammfärs för mer grekisk smak)
         amount: 500
         unit: grams
-      - name: 'Feta cheese, crumbled'
+      - name: Fetaost, smulad
         amount: 150
         unit: grams
-      - name: 'Small yellow onion, grated or finely chopped'
+      - name: Liten gul lök, riven eller finhackad
         amount: 1
         unit: piece
-      - name: 'Garlic cloves, pressed'
+      - name: Vitlöksklyftor, pressade
         amount: 2
         unit: pieces
-      - name: Egg
+      - name: Ägg
         amount: 1
         unit: piece
-      - name: Fresh oregano (or 1 tsp dried)
+      - name: Färsk oregano (eller 1 tsk torkad)
         amount: 1
         unit: tablespoon
-      - name: 'Fresh parsley, chopped (optional but delicious)'
+      - name: Färsk persilja, hackad (valfritt)
         amount: 1
         unit: tablespoon
-      - name: 'Ground cumin (optional, adds depth)'
+      - name: Spiskummin, malen (valfritt)
         amount: 1
         unit: teaspoon
       - name: Salt
         amount: 1
         unit: teaspoon
-      - name: Black pepper
+      - name: Svartpeppar
         amount: 1
         unit: pinch
-      - name: Olive oil for frying
+      - name: Olivolja till stekning
         amount: 2
         unit: tablespoons
-  - groupName: Oven-Roasted Potatoes
+  - groupName: Ugnsrostad potatis
     ingredients:
-      - name: Potatoes (preferably small delicatessen or fresh potatoes)
+      - name: Potatis (gärna små delikatess- eller färskpotatis)
         amount: 800
         unit: grams
-      - name: Olive oil
+      - name: Olivolja
         amount: 2
         unit: tablespoons
       - name: Salt
         amount: 1
         unit: teaspoon
-      - name: Black pepper
+      - name: Svartpeppar
         amount: 1
         unit: pinch
-      - name: Dried oregano
+      - name: Torkad oregano
         amount: 1
         unit: teaspoon
-      - name: 'Lemon, juice'
+      - name: Citron, saft
         amount: 0.5
         unit: piece
   - groupName: Tzatziki
     ingredients:
-      - name: 'Greek yogurt (or Turkish, 10%)'
+      - name: Grekisk yoghurt (eller turkisk, 10 %)
         amount: 2
         unit: deciliters
-      - name: Cucumber
+      - name: Gurka
         amount: 0.5
         unit: piece
-      - name: 'Garlic cloves, pressed'
+      - name: Vitlöksklyfta, pressad
         amount: 1
         unit: piece
-      - name: Olive oil
+      - name: Olivolja
         amount: 1
         unit: teaspoon
       - name: Salt
         amount: 1
         unit: pinch
-      - name: Black pepper
+      - name: Svartpeppar
         amount: 1
         unit: pinch
-      - name: Lemon drops (optional)
+      - name: Några droppar citron (valfritt)
         amount: 1
         unit: few
 stepGroups:
-  - groupName: Greek Patties with Feta
+  - groupName: Grekiska biffar med feta
     steps:
-      - title: "Mix ingredients"
-        description: "Mix the ground beef with grated onion, pressed garlic, egg, and all the spices (oregano, parsley, cumin, salt, pepper)."
-      - title: "Add feta"
-        description: "Gently crumble in the feta cheese and mix carefully (so it doesn't completely mash)."
-      - title: "Form patties"
-        description: "Form 8 small or 4 large patties."
-      - title: "Cook patties"
-        description: "Fry in olive oil for 4-5 minutes per side until cooked through and nicely browned."
-      - title: "Alternative cooking"
-        description: "Alternative: Grill in oven at 225°C for about 15-20 minutes, preferably on parchment paper."
-  - groupName: Oven-Roasted Potatoes
+      - title: Blanda ingredienser
+        description: Blanda färsen med riven lök, pressad vitlök, ägg och kryddor (oregano, persilja, spiskummin, salt, peppar).
+      - title: Tillsätt feta
+        description: Smula i fetaosten och blanda försiktigt.
+      - title: Forma biffar
+        description: Forma 8 små eller 4 stora biffar.
+      - title: Stek biffarna
+        description: Stek i olivolja 4–5 min per sida tills genomstekta och fint brynta.
+      - title: Alternativ tillagning
+        description: Grilla i ugn på 225°C i ca 15–20 min, gärna på bakplåtspapper.
+  - groupName: Ugnsrostad potatis
     steps:
-      - title: "Preheat oven"
-        description: "Preheat oven to 225°C."
-      - title: "Prepare potatoes"
-        description: "Cut potatoes in half (or wedges if large)."
-      - title: "Season and arrange"
-        description: "Place on a baking sheet with parchment paper, drizzle with olive oil and sprinkle with salt, pepper, and oregano."
-      - title: "Roast"
-        description: "Roast in oven for about 25-30 minutes until golden."
-      - title: "Finish with lemon"
-        description: "Squeeze lemon juice over just before serving."
+      - title: Sätt ugnen
+        description: Sätt ugnen på 225°C.
+      - title: Förbered potatisen
+        description: Halvera potatisen (klyfta om de är stora).
+      - title: Krydda och lägg på plåt
+        description: Lägg på plåt med bakplåtspapper, ringla olivolja och krydda med salt, peppar och oregano.
+      - title: Rosta
+        description: Rosta ca 25–30 min tills gyllene.
+      - title: Avsluta med citron
+        description: Pressa citronsaft över precis före servering.
   - groupName: Tzatziki
     steps:
-      - title: "Prepare cucumber"
-        description: "Grate the cucumber and squeeze out excess liquid (using a sieve or paper towels)."
-      - title: "Mix ingredients"
-        description: "Mix with yogurt, pressed garlic, olive oil, salt, pepper, and optionally a few drops of lemon."
-      - title: "Chill"
-        description: "Let chill in refrigerator for at least 15 minutes before serving."
-  - groupName: Serving
+      - title: Förbered gurkan
+        description: Riv gurkan och krama ur vätskan (i sil eller med papper).
+      - title: Blanda
+        description: Blanda med yoghurt, pressad vitlök, olivolja, salt, peppar och ev. några droppar citron.
+      - title: Kyl
+        description: Låt stå i kylen minst 15 minuter.
+  - groupName: Servering
     steps:
-      - title: "Plate and serve"
-        description: "Plate the patties with potatoes, a generous dollop of tzatziki, and optionally a fresh salad with tomatoes, red onion, olives, and more crumbled feta. Finish with a drizzle of olive oil and sprinkle of oregano."
+      - title: Lägg upp och servera
+        description: Servera biffarna med potatis, en rejäl klick tzatziki och ev. sallad med tomat, rödlök, oliver och extra feta. Avsluta med olivolja och oregano.
 dietaryInfo:
   vegetarian: false
   vegan: false
