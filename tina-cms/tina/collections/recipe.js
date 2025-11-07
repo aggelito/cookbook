@@ -4,7 +4,8 @@
 export default {
   label: "Recipes",
   name: "recipe",
-  path: "../astro-site/src/pages/recipes",
+  path: "content/recipes",
+  format: "md",  // Add this line
   fields: [
     {
       type: "string",
@@ -18,9 +19,9 @@ export default {
       isBody: true,
     },
   ],
-  ui: {
-    router: ({ document }) => {
-      return `/recipes/${document._sys.filename}`;
-    },
-  },
+  // ui: {
+  //   router: ({ document }) => {
+  //     return `/recipes/${document._sys.filename}`;
+  //   },
+  // },
 };
