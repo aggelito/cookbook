@@ -7,7 +7,10 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Kokbok',
-			defaultLocale: 'sv',
+			defaultLocale: 'root',
+			locales: {
+				root: { label: 'Svenska', lang: 'sv' },
+			},
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
 			sidebar: [
 				{
