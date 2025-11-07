@@ -2,6 +2,7 @@
 title: Swedish Pancakes
 basePortions: 4
 estimatedTime: 30
+rating: 4
 description: >
   Thin, delicate pancakes traditional in Sweden. These crepe-like pancakes are
   perfect for breakfast or dessert, served with jam, fresh berries, or a
@@ -26,7 +27,7 @@ ingredients:
     unit: teaspoon
   - name: Butter
     amount: 2
-    unit: tablespoons
+    unit: tablespoonsl
   - name: Butter (for frying)
     amount: 1
     unit: tablespoon
@@ -71,7 +72,7 @@ steps:
       berries, or powdered sugar.
 dietaryInfo:
   vegetarian: true
-  vegan: false
+  vegan: true
   glutenFree: false
   dairyFree: false
   nutFree: true

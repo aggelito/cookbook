@@ -23,6 +23,13 @@ export default {
       name: "estimatedTime",
     },
     {
+      type: "number",
+      label: "Rating",
+      name: "rating",
+      min: 0,
+      max: 5,
+    },
+    {
       type: "rich-text",
       label: "Description",
       name: "description",

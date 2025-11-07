@@ -27,6 +27,7 @@ const { recipe } = Astro.props;
 
 		<p><strong>Serves:</strong> {recipe.data.basePortions} people</p>
 		<p><strong>Estimated time:</strong> {recipe.data.estimatedTime} minutes</p>
+		{recipe.data.rating && <p><strong>Rating:</strong> {recipe.data.rating} stars</p>}
 
 		<h2>Description</h2>
 		<p>{recipe.data.description}</p>
