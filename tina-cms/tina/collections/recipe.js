@@ -19,9 +19,4 @@ export default {
       isBody: true,
     },
   ],
-  // ui: {
-  //   router: ({ document }) => {
-  //     return `/recipes/${document._sys.filename}`;
-  //   },
-  // },
 };
