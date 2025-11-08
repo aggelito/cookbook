@@ -5,7 +5,7 @@ estimatedTime: 25
 rating: 0
 description: |
   En klassisk pastarätt med kryddig salsiccia och tomatsås. Perfekt som enkel och smakrik italiensk vardagsmiddag.
-heroImage: ""
+heroImage: "https://www.arla.se/globalassets/receptsida/salsicciapasta-recept-arla.jpg"
 ingredients:
   - name: Salsiccia
     amount: 400
@@ -38,8 +38,8 @@ ingredients:
     amount: 1
     unit: dl
   - name: Riven ost, ev till servering
-    amount: 
-    unit: 
+    amount: 0
+    unit: g
 steps:
   - title: "Förbered salsiccian"
     description: |
