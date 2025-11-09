@@ -12,15 +12,15 @@ const recipes = defineCollection({
     heroImage: z.string().optional(),
     ingredients: z.array(z.object({
       name: z.string(),
-      amount: z.number(),
-      unit: z.string(),
+      amount: z.number().optional(),
+      unit: z.string().optional(),
     })).optional(),
     ingredientGroups: z.array(z.object({
       groupName: z.string(),
       ingredients: z.array(z.object({
         name: z.string(),
-        amount: z.number(),
-        unit: z.string(),
+        amount: z.number().optional(),
+        unit: z.string().optional(),
       })),
     })).optional(),
     steps: z.array(z.object({
