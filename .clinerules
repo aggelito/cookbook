@@ -1,0 +1,26 @@
+# Cookbook Project - LLM Instructions
+
+## Recipe Creation Guidelines
+
+### File Location
+- **ALL recipes MUST be created in**: `tina-cms/content/recipes/`
+- **File format**: Markdown (`.md`)
+- **Filename**: Use lowercase with hyphens (e.g., `pannkakor.md`, `kottbullar-med-graddsas.md`)
+
+### Schema Reference
+- Recipes follow the TinaCMS schema defined in `tina-cms/tina/collections/recipe.js`
+- Review that file for the complete field structure and available options
+- Each recipe is a Markdown file with YAML frontmatter
+
+### Language and Measurements
+- **Language**: ALL recipe content MUST be in Swedish
+- **Measurements**: Use standard Swedish units:
+  - **Weight**: gram (g), kilogram (kg)
+  - **Volume**: milliliter (ml), deciliter (dl), liter (l)
+  - **Spoons**: matsked (msk/tablespoon), tesked (tsk/teaspoon), kryddmått (krm)
+  - **Other**: nypa (pinch), st/styck (pieces), klyfta (clove)
+
+### Notes
+- For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`
+- See existing recipes in `tina-cms/content/recipes/` for more examples
+- Refer to `tina-cms/tina/collections/recipe.js` for all available fields and options
