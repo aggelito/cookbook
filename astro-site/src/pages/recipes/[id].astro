@@ -1,10 +1,11 @@
 ---
-import { getCollection, render } from 'astro:content';
-import t from '../../i18n';
+import { getCollection, render } from "astro:content";
+import t from "../../i18n";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const recipes = await getCollection('recipes');
-  return recipes.map(recipe => ({
+  const recipes = await getCollection("recipes");
+  return recipes.map((recipe) => ({
     params: { id: recipe.id },
     props: { recipe },
   }));
@@ -13,94 +14,149 @@ export async function getStaticPaths() {
 const { recipe } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>{recipe.data.title || t('recipe.untitled')}</title>
-	</head>
-	<body>
-		<h1>{recipe.data.title || t('recipe.untitled')}</h1>
+<BaseLayout title={recipe.data.title || t("recipe.untitled")}>
+  <p><a href="/">{t("common.backToRecipes")}</a></p>
+  <h1>{recipe.data.title}</h1>
 
-		{recipe.data.heroImage && (
-			<img src={recipe.data.heroImage} alt={recipe.data.title} style="max-width: 400px;" />
-		)}
+  {
+    recipe.data.heroImage && (
+      <img
+        src={recipe.data.heroImage}
+        alt={recipe.data.title}
+        style="max-width: 400px;"
+      />
+    )
+  }
 
-		<p><strong>{t('recipe.serves')}</strong> {recipe.data.basePortions || t('common.na')} people</p>
-		<p><strong>{t('recipe.estimatedTime')}</strong> {recipe.data.estimatedTime || t('common.na')} minutes</p>
-		{recipe.data.rating && <p><strong>{t('recipe.rating')}</strong> {recipe.data.rating} {t('recipe.stars')}</p>}
+  <p>
+    <strong>{t("recipe.serves")}</strong>
+    {recipe.data.basePortions || t("common.na")} people
+  </p>
+  <p>
+    <strong>{t("recipe.estimatedTime")}</strong>
+    {recipe.data.estimatedTime || t("common.na")} minutes
+  </p>
+  {
+    recipe.data.rating && (
+      <p>
+        <strong>{t("recipe.rating")}</strong> {recipe.data.rating}{" "}
+        {t("recipe.stars")}
+      </p>
+    )
+  }
 
-		<h2>{t('recipe.description')}</h2>
-		<p>{recipe.data.description || t('recipe.noDescription')}</p>
+  <h2>{t("recipe.description")}</h2>
+  <p>{recipe.data.description || t("recipe.noDescription")}</p>
 
-		{recipe.data.ingredients && recipe.data.ingredients.length > 0 && (
-			<>
-				<h2>{t('recipe.ingredients')}</h2>
-				<ul>
-					{recipe.data.ingredients.map(ingredient => (
-						<li>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
-					))}
-				</ul>
-			</>
-		)}
+  {
+    recipe.data.ingredients && recipe.data.ingredients.length > 0 && (
+      <>
+        <h2>{t("recipe.ingredients")}</h2>
+        <ul>
+          {recipe.data.ingredients.map((ingredient) => (
+            <li>
+              {ingredient.amount} {ingredient.unit} {ingredient.name}
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
 
-		{recipe.data.ingredientGroups && recipe.data.ingredientGroups.length > 0 && (
-			<>
-				{recipe.data.ingredientGroups.map(group => (
-					<div>
-						<h3>{group.groupName}</h3>
-						<ul>
-							{group.ingredients.map(ingredient => (
-								<li>{ingredient.amount} {ingredient.unit} {ingredient.name}</li>
-							))}
-						</ul>
-					</div>
-				))}
-			</>
-		)}
+  {
+    recipe.data.ingredientGroups && recipe.data.ingredientGroups.length > 0 && (
+      <>
+        {recipe.data.ingredientGroups.map((group) => (
+          <div>
+            <h3>{group.groupName}</h3>
+            <ul>
+              {group.ingredients.map((ingredient) => (
+                <li>
+                  {ingredient.amount} {ingredient.unit} {ingredient.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </>
+    )
+  }
 
-		{recipe.data.steps && recipe.data.steps.length > 0 && (
-			<>
-				<h2>{t('recipe.steps')}</h2>
-				{recipe.data.steps.map((step, index) => (
-					<div style="margin-bottom: 1rem;">
-						<h3>{index + 1}. {step.title}</h3>
-						<div set:html={step.description}></div>
-					</div>
-				))}
-			</>
-		)}
+  {
+    recipe.data.steps && recipe.data.steps.length > 0 && (
+      <>
+        <h2>{t("recipe.steps")}</h2>
+        {recipe.data.steps.map((step, index) => (
+          <div style="margin-bottom: 1rem;">
+            <h3>
+              {index + 1}. {step.title}
+            </h3>
+            <div set:html={step.description} />
+          </div>
+        ))}
+      </>
+    )
+  }
 
-		{recipe.data.stepGroups && recipe.data.stepGroups.length > 0 && (
-			<>
-				{recipe.data.stepGroups.map(group => (
-					<div>
-						<h3>{group.groupName}</h3>
-						{group.steps.map((step, index) => (
-							<div style="margin-bottom: 1rem;">
-								<h4>{index + 1}. {step.title}</h4>
-								<div set:html={step.description}></div>
-							</div>
-						))}
-					</div>
-				))}
-			</>
-		)}
+  {
+    recipe.data.stepGroups && recipe.data.stepGroups.length > 0 && (
+      <>
+        {recipe.data.stepGroups.map((group) => (
+          <div>
+            <h3>{group.groupName}</h3>
+            {group.steps.map((step, index) => (
+              <div style="margin-bottom: 1rem;">
+                <h4>
+                  {index + 1}. {step.title}
+                </h4>
+                <div set:html={step.description} />
+              </div>
+            ))}
+          </div>
+        ))}
+      </>
+    )
+  }
 
-		{recipe.data.dietaryInfo && (
-			<>
-				<h2>{t('recipe.dietaryInfo')}</h2>
-				<ul>
-					<li>{t('recipe.vegetarian')} {recipe.data.dietaryInfo.vegetarian ? t('common.yes') : t('common.no')}</li>
-					<li>{t('recipe.vegan')} {recipe.data.dietaryInfo.vegan ? t('common.yes') : t('common.no')}</li>
-					<li>{t('recipe.glutenFree')} {recipe.data.dietaryInfo.glutenFree ? t('common.yes') : t('common.no')}</li>
-					<li>{t('recipe.dairyFree')} {recipe.data.dietaryInfo.dairyFree ? t('common.yes') : t('common.no')}</li>
-					<li>{t('recipe.nutFree')} {recipe.data.dietaryInfo.nutFree ? t('common.yes') : t('common.no')}</li>
-					<li>{t('recipe.lowCarb')} {recipe.data.dietaryInfo.lowCarb ? t('common.yes') : t('common.no')}</li>
-				</ul>
-			</>
-		)}
+  {
+    recipe.data.dietaryInfo && (
+      <>
+        <h2>{t("recipe.dietaryInfo")}</h2>
+        <ul>
+          <li>
+            {t("recipe.vegetarian")}{" "}
+            {recipe.data.dietaryInfo.vegetarian
+              ? t("common.yes")
+              : t("common.no")}
+          </li>
+          <li>
+            {t("recipe.vegan")}{" "}
+            {recipe.data.dietaryInfo.vegan ? t("common.yes") : t("common.no")}
+          </li>
+          <li>
+            {t("recipe.glutenFree")}{" "}
+            {recipe.data.dietaryInfo.glutenFree
+              ? t("common.yes")
+              : t("common.no")}
+          </li>
+          <li>
+            {t("recipe.dairyFree")}{" "}
+            {recipe.data.dietaryInfo.dairyFree
+              ? t("common.yes")
+              : t("common.no")}
+          </li>
+          <li>
+            {t("recipe.nutFree")}{" "}
+            {recipe.data.dietaryInfo.nutFree ? t("common.yes") : t("common.no")}
+          </li>
+          <li>
+            {t("recipe.lowCarb")}{" "}
+            {recipe.data.dietaryInfo.lowCarb ? t("common.yes") : t("common.no")}
+          </li>
+        </ul>
+      </>
+    )
+  }
 
-		<p><a href="/">{t('common.backToRecipes')}</a></p>
-	</body>
-</html>
+  <p><a href="/">{t("common.backToRecipes")}</a></p>
+</BaseLayout>
