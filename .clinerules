@@ -43,6 +43,7 @@
 - Recipes follow the TinaCMS schema defined in `tina-cms/tina/collections/recipe.js`
 - Review that file for the complete field structure and available options
 - Each recipe is a Markdown file with YAML frontmatter
+- If possible and able to do it correctly, add hero image
 
 ### Language and Measurements
 - **Language**: ALL recipe content MUST be in Swedish
@@ -62,7 +63,6 @@
   - "kycklingfilé" (chicken breast)
   - "lök, gul" or "rödlök" (specify onion type)
   - "potatis, fast" or "mjölig potatis" (specify potato type)
-  - "passerade tomater" (not "krossade tomater")
   - "ströbröd" (breadcrumbs)
 - **Avoid overly technical or uncommon terms** - use what Swedish home cooks would find in stores
 
