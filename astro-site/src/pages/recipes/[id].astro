@@ -28,20 +28,20 @@ const { recipe } = Astro.props;
     )
   }
 
-  <p>
+  <span>
     <strong>{t("recipe.portions")}</strong>
     {recipe.data.basePortions || t("common.na")}
-  </p>
-  <p>
+  </span>
+  <span>
     <strong>{t("recipe.estimatedTime")}</strong>
     {recipe.data.estimatedTime || t("common.na")} minutes
-  </p>
+  </span>
   {
     recipe.data.rating && (
-      <p>
+      <span>
         <strong>{t("recipe.rating")}</strong> {recipe.data.rating}{" "}
         {t("recipe.stars")}
-      </p>
+      </span>
     )
   }
 
@@ -55,7 +55,7 @@ const { recipe } = Astro.props;
         <ul>
           {recipe.data.ingredients.map((ingredient) => (
             <li>
-              {ingredient.amount} {ingredient.unit} {ingredient.name}
+              <b>{ingredient.amount}</b> {ingredient.unit} {ingredient.name}
             </li>
           ))}
         </ul>
@@ -88,9 +88,9 @@ const { recipe } = Astro.props;
         <h2>{t("recipe.steps")}</h2>
         {recipe.data.steps.map((step, index) => (
           <div style="margin-bottom: 1rem;">
-            <h3>
+            <h4>
               {index + 1}. {step.title}
-            </h3>
+            </h4>
             <div set:html={step.description} />
           </div>
         ))}

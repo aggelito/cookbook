@@ -2,14 +2,14 @@
 import "../assets/app.css";
 const { title } = Astro.props;
 ---
-<html lang="sv">
+<html lang="sv" class="bg-base-200">
   <head>
     <title>{title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
-    <article class="prose my-12 mx-auto px-2">
+  <body class="py-12">
+    <article class="prose prose-lg py-12 mx-auto px-6 bg-base-100  card card-border border-base-300">
       <slot /> <!-- your content is injected here -->
     </article>
   </body>
