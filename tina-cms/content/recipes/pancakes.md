@@ -8,26 +8,26 @@ description: >
 heroImage: /uploads/Swedish-Pancackes-1-2-Square.jpg
 ingredients:
   - name: Vetemjöl
-    amount: 1
-    unit: cup
+    amount: 2.4
+    unit: dl
   - name: Mjölk
-    amount: 2
-    unit: cups
+    amount: 4.8
+    unit: dl
   - name: Ägg
     amount: 3
-    unit: pieces
+    unit: st
   - name: Strösocker
     amount: 1
-    unit: tablespoon
+    unit: msk
   - name: Salt
     amount: 0.25
-    unit: teaspoon
+    unit: tsk
   - name: Smör
     amount: 2
-    unit: tablespoonsl
+    unit: msk
   - name: Smör (till stekning)
     amount: 1
-    unit: tablespoon
+    unit: msk
 steps:
   - title: Blanda de torra ingredienserna
     description: |
@@ -61,7 +61,7 @@ steps:
       Servera varma med lingonsylt, bär eller florsocker.
 dietaryInfo:
   vegetarian: true
-  vegan: true
+  vegan: false
   glutenFree: false
   dairyFree: false
   nutFree: true
