@@ -1,0 +1,22 @@
+export default {
+  'recipe.untitled': 'Namnlöst recept',
+  'recipe.serves': 'Serverar:',
+  'recipe.estimatedTime': 'Beräknad tid:',
+  'recipe.rating': 'Betyg:',
+  'recipe.stars': 'stjärnor',
+  'recipe.description': 'Beskrivning',
+  'recipe.noDescription': 'Ingen beskrivning tillgänglig',
+  'recipe.ingredients': 'Ingredienser',
+  'recipe.steps': 'Steg',
+  'recipe.dietaryInfo': 'Kostinformation',
+  'recipe.vegetarian': 'Vegetarisk:',
+  'recipe.vegan': 'Vegan:',
+  'recipe.glutenFree': 'Glutenfri:',
+  'recipe.dairyFree': 'Mjölkfri:',
+  'recipe.nutFree': 'Nötfri:',
+  'recipe.lowCarb': 'Lågkolhydrat:',
+  'common.yes': 'Ja',
+  'common.no': 'Nej',
+  'common.na': 'N/A',
+  'common.backToRecipes': '← Tillbaka till recept'
+} as const;
