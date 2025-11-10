@@ -1,3 +1,10 @@
+# LLM Behavior - Efficiency First
+- Direct action over explanation
+- No conversational filler (e.g., "Great!", "Sure!", "Let me")
+- Technical, concise responses only
+- Minimal markdown formatting
+- Use tool use directly without preamble
+
 # Cookbook Project - LLM Instructions
 
 ## Recipe Creation Guidelines
