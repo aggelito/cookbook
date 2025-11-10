@@ -1,6 +1,7 @@
 export default {
   'recipe.untitled': 'Namnlöst recept',
   'recipe.serves': 'Serverar:',
+  'recipe.portions': 'Portioner:',
   'recipe.estimatedTime': 'Beräknad tid:',
   'recipe.rating': 'Betyg:',
   'recipe.stars': 'stjärnor',

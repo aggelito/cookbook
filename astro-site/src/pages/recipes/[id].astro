@@ -29,8 +29,8 @@ const { recipe } = Astro.props;
   }
 
   <p>
-    <strong>{t("recipe.serves")}</strong>
-    {recipe.data.basePortions || t("common.na")} people
+    <strong>{t("recipe.portions")}</strong>
+    {recipe.data.basePortions || t("common.na")}
   </p>
   <p>
     <strong>{t("recipe.estimatedTime")}</strong>
