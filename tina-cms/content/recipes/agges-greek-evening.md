@@ -5,85 +5,84 @@ estimatedTime: 60
 description: >
   Grekisk middag med feta-biffar, ugnsrostad potatis och tzatziki.
 heroImage: ''
+rating: 4
 ingredientGroups:
   - groupName: Grekiska biffar med feta
     ingredients:
       - name: Nötfärs (eller lammfärs för mer grekisk smak)
         amount: 500
-        unit: grams
+        unit: g
       - name: Fetaost, smulad
         amount: 150
-        unit: grams
+        unit: g
       - name: Liten gul lök, riven eller finhackad
         amount: 1
-        unit: piece
+        unit: st
       - name: Vitlöksklyftor, pressade
         amount: 2
-        unit: pieces
+        unit: st
       - name: Ägg
         amount: 1
-        unit: piece
+        unit: st
       - name: Färsk oregano (eller 1 tsk torkad)
         amount: 1
-        unit: tablespoon
+        unit: msk
       - name: Färsk persilja, hackad (valfritt)
         amount: 1
-        unit: tablespoon
+        unit: msk
       - name: Spiskummin, malen (valfritt)
         amount: 1
-        unit: teaspoon
+        unit: tsk
       - name: Salt
         amount: 1
-        unit: teaspoon
+        unit: tsk
       - name: Svartpeppar
         amount: 1
-        unit: pinch
+        unit: nypa
       - name: Olivolja till stekning
         amount: 2
-        unit: tablespoons
+        unit: msk
   - groupName: Ugnsrostad potatis
     ingredients:
       - name: Potatis (gärna små delikatess- eller färskpotatis)
         amount: 800
-        unit: grams
+        unit: g
       - name: Olivolja
         amount: 2
-        unit: tablespoons
+        unit: msk
       - name: Salt
         amount: 1
-        unit: teaspoon
+        unit: tsk
       - name: Svartpeppar
         amount: 1
-        unit: pinch
+        unit: nypa
       - name: Torkad oregano
         amount: 1
-        unit: teaspoon
+        unit: tsk
       - name: Citron, saft
         amount: 0.5
-        unit: piece
+        unit: st
   - groupName: Tzatziki
     ingredients:
       - name: Grekisk yoghurt (eller turkisk, 10 %)
         amount: 2
-        unit: deciliters
+        unit: dl
       - name: Gurka
         amount: 0.5
-        unit: piece
+        unit: st
       - name: Vitlöksklyfta, pressad
         amount: 1
-        unit: piece
+        unit: st
       - name: Olivolja
         amount: 1
-        unit: teaspoon
+        unit: tsk
       - name: Salt
         amount: 1
-        unit: pinch
+        unit: nypa
       - name: Svartpeppar
         amount: 1
-        unit: pinch
+        unit: nypa
       - name: Några droppar citron (valfritt)
-        amount: 1
-        unit: few
 stepGroups:
   - groupName: Grekiska biffar med feta
     steps:
