@@ -16,21 +16,21 @@ const { recipe } = Astro.props;
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<title>{recipe.data.title}</title>
+		<title>{recipe.data.title || 'Untitled Recipe'}</title>
 	</head>
 	<body>
-		<h1>{recipe.data.title}</h1>
+		<h1>{recipe.data.title || 'Untitled Recipe'}</h1>
 
 		{recipe.data.heroImage && (
 			<img src={recipe.data.heroImage} alt={recipe.data.title} style="max-width: 400px;" />
 		)}
 
-		<p><strong>Serves:</strong> {recipe.data.basePortions} people</p>
-		<p><strong>Estimated time:</strong> {recipe.data.estimatedTime} minutes</p>
+		<p><strong>Serves:</strong> {recipe.data.basePortions || 'N/A'} people</p>
+		<p><strong>Estimated time:</strong> {recipe.data.estimatedTime || 'N/A'} minutes</p>
 		{recipe.data.rating && <p><strong>Rating:</strong> {recipe.data.rating} stars</p>}
 
 		<h2>Description</h2>
-		<p>{recipe.data.description}</p>
+		<p>{recipe.data.description || 'No description available'}</p>
 
 		{recipe.data.ingredients && recipe.data.ingredients.length > 0 && (
 			<>
@@ -86,15 +86,19 @@ const { recipe } = Astro.props;
 			</>
 		)}
 
-		<h2>Dietary Information</h2>
-		<ul>
-			<li>Vegetarian: {recipe.data.dietaryInfo.vegetarian ? 'Yes' : 'No'}</li>
-			<li>Vegan: {recipe.data.dietaryInfo.vegan ? 'Yes' : 'No'}</li>
-			<li>Gluten Free: {recipe.data.dietaryInfo.glutenFree ? 'Yes' : 'No'}</li>
-			<li>Dairy Free: {recipe.data.dietaryInfo.dairyFree ? 'Yes' : 'No'}</li>
-			<li>Nut Free: {recipe.data.dietaryInfo.nutFree ? 'Yes' : 'No'}</li>
-			<li>Low Carb: {recipe.data.dietaryInfo.lowCarb ? 'Yes' : 'No'}</li>
-		</ul>
+		{recipe.data.dietaryInfo && (
+			<>
+				<h2>Dietary Information</h2>
+				<ul>
+					<li>Vegetarian: {recipe.data.dietaryInfo.vegetarian ? 'Yes' : 'No'}</li>
+					<li>Vegan: {recipe.data.dietaryInfo.vegan ? 'Yes' : 'No'}</li>
+					<li>Gluten Free: {recipe.data.dietaryInfo.glutenFree ? 'Yes' : 'No'}</li>
+					<li>Dairy Free: {recipe.data.dietaryInfo.dairyFree ? 'Yes' : 'No'}</li>
+					<li>Nut Free: {recipe.data.dietaryInfo.nutFree ? 'Yes' : 'No'}</li>
+					<li>Low Carb: {recipe.data.dietaryInfo.lowCarb ? 'Yes' : 'No'}</li>
+				</ul>
+			</>
+		)}
 
 		<p><a href="/">← Back to recipes</a></p>
 	</body>

@@ -4,11 +4,11 @@ import { glob } from 'astro/loaders';
 const recipes = defineCollection({
   loader: glob({ pattern: '**/*.md', base: '../tina-cms/content/recipes' }),
   schema: z.object({
-    title: z.string(),
-    basePortions: z.number(),
-    estimatedTime: z.number(),
+    title: z.string().optional(),
+    basePortions: z.number().optional(),
+    estimatedTime: z.number().optional(),
     rating: z.number().min(0).max(5).optional(),
-    description: z.string(),
+    description: z.string().optional(),
     heroImage: z.string().optional(),
     ingredients: z.array(z.object({
       name: z.string(),
@@ -41,7 +41,7 @@ const recipes = defineCollection({
       dairyFree: z.boolean(),
       nutFree: z.boolean(),
       lowCarb: z.boolean(),
-    }),
+    }).optional(),
   }),
 });
 
