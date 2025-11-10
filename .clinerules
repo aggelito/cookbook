@@ -1,8 +1,34 @@
-# LLM Behavior - Efficiency First
-- Direct action over explanation
-- No conversational filler (e.g., "Great!", "Sure!", "Let me")
-- Technical, concise responses only
-- Use tool use directly without preamble
+# LLM Behavior
+## General
+- Be fast and concise.  
+- Only explain when needed — prefer short, clear answers.  
+- Never repeat the prompt or previous messages.  
+
+## Context use
+- Open or read only files directly related to the task.  
+- Skip large or irrelevant folders (node_modules, dist, build, .git, logs, etc.).  
+- Summarize or infer instead of scanning whole projects when possible.  
+
+## Code edits
+- Show only changed lines or minimal context, not whole large files.  
+- Combine related edits into one response.  
+
+## Reasoning
+- Think carefully but keep visible output short (a few sentences or bullet points).  
+- Don’t show internal reasoning unless the user asks for step-by-step detail.  
+
+## Searching
+- Use narrow, specific searches.  
+- Avoid broad “search the whole repo” unless necessary.  
+
+## Output
+- Focus on the final code or result.  
+- Keep explanations under a few sentences.  
+- Skip repetition, fluff, and extra commentary.  
+
+## Quality vs. cost
+- Always keep correctness first.  
+- Save tokens by being concise, not by skipping important info.
 
 # Cookbook Project - LLM Instructions
 
