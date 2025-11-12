@@ -16,7 +16,12 @@ const { recipe } = Astro.props;
 
 <BaseLayout title={recipe.data.title || t("recipe.untitled")}>
   <div
-    class="prose prose-lg mx-auto py-12 px-6 bg-base-100 card card-border border-base-300"
+    class="prose
+    prose-lg
+    prose-li:my-0
+    prose-h4:mt-6
+    
+    mx-auto py-12 px-6 bg-base-100 card card-border border-base-300"
   >
     <p><a href="/">{t("common.backToRecipes")}</a></p>
     <h1>{recipe.data.title}</h1>
@@ -44,11 +49,11 @@ const { recipe } = Astro.props;
       recipe.data.rating != null && (
         <span>
           <strong>{t("recipe.rating")}</strong>
-          {recipe.data.rating}{" "}{t("recipe.stars")}
+          {recipe.data.rating} {t("recipe.stars")}
         </span>
       )
     }
-    
+
     <p>{recipe.data.description || t("recipe.noDescription")}</p>
 
     <h2>{t("recipe.ingredients")}</h2>
@@ -76,7 +81,8 @@ const { recipe } = Astro.props;
                 <ul>
                   {group.ingredients.map((ingredient) => (
                     <li>
-                      <b>{ingredient.amount}</b> {ingredient.unit} {ingredient.name}
+                      <b>{ingredient.amount}</b> {ingredient.unit}{" "}
+                      {ingredient.name}
                     </li>
                   ))}
                 </ul>
