@@ -13,5 +13,8 @@ export default defineConfig({
   i18n: {
     defaultLocale: 'sv',
     locales: ['sv']
+  },
+  prefetch: {
+    defaultStrategy: 'viewport',
   }
 });
