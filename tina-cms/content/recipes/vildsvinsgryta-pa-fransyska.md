@@ -10,49 +10,49 @@ heroImage: ''
 ingredients:
   - name: Vildsvinsfransyska
     amount: 1000
-    unit: grams
+    unit: g
   - name: Gula lökar
     amount: 2
-    unit: pieces
+    unit: st
   - name: Morötter
     amount: 2
-    unit: pieces
+    unit: st
   - name: Vitlöksklyftor
     amount: 2
-    unit: pieces
+    unit: st
   - name: Tomatpuré
     amount: 1
-    unit: tablespoons
+    unit: msk
   - name: Rödvin
     amount: 2
-    unit: deciliters
+    unit: dl
   - name: Viltfond eller köttbuljong
     amount: 5
-    unit: deciliters
+    unit: dl
   - name: Torkad timjan
     amount: 1
-    unit: teaspoons
+    unit: tsk
   - name: Lagerblad
     amount: 2
-    unit: pieces
+    unit: st
   - name: Enbär
     amount: 6
-    unit: pieces
+    unit: st
   - name: Smör och/eller olja (till stekning)
     amount: 2
-    unit: tablespoons
+    unit: msk
   - name: Salt
     amount: 1
-    unit: teaspoons
+    unit: tsk
   - name: Svartpeppar
     amount: 0.5
-    unit: teaspoons
+    unit: tsk
   - name: Vinbärsgelé (valfritt)
     amount: 1
-    unit: teaspoons
+    unit: tsk
   - name: Vispgrädde eller messmör (valfritt)
     amount: 2
-    unit: tablespoons
+    unit: msk
 steps:
   - title: Förbered köttet
     description: >-

@@ -10,31 +10,31 @@ heroImage: /uploads/kladdkaka.jpg
 ingredients:
   - name: Smör
     amount: 150
-    unit: grams
+    unit: g
   - name: Ägg
     amount: 2
-    unit: pieces
+    unit: st
   - name: Strösocker
     amount: 3
-    unit: deciliters
+    unit: dl
   - name: Vaniljsocker
     amount: 2
-    unit: teaspoons
+    unit: tsk
   - name: Kakaopulver
     amount: 0.75
-    unit: deciliters
+    unit: dl
   - name: Vetemjöl
     amount: 2
-    unit: deciliters
+    unit: dl
   - name: Salt
     amount: 0.25
-    unit: teaspoons
+    unit: tsk
   - name: Smör (till formen)
     amount: 1
-    unit: tablespoon
+    unit: msk
   - name: Ströbröd (till formen)
     amount: 1
-    unit: tablespoon
+    unit: msk
 steps:
   - title: Förbered ugnen
     description: >-
