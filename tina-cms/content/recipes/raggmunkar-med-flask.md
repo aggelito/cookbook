@@ -3,7 +3,7 @@ title: Raggmunkar med fläsk
 basePortions: 4
 estimatedTime: 45
 rating: 5
-description: >
+description: |
   Klassiska raggmunkar med krispigt fläsk.
 ingredients:
   - name: Potatis
@@ -11,25 +11,25 @@ ingredients:
     unit: kg
   - name: Vetemjöl
     amount: 2
-    unit: tablespoons
+    unit: msk
   - name: Ägg
     amount: 1
-    unit: piece
+    unit: st
   - name: Mjölk
     amount: 1
     unit: dl
   - name: Salt
     amount: 1
-    unit: teaspoon
+    unit: tsk
   - name: Sidfläsk eller bacon
     amount: 200
     unit: g
   - name: Lök (valfritt)
     amount: 1
-    unit: piece
+    unit: st
   - name: Smör eller olja till stekning
     amount: 2
-    unit: tablespoons
+    unit: msk
 steps:
   - title: Förbered potatisen
     description: |

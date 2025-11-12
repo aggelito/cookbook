@@ -16,7 +16,7 @@ const { recipe } = Astro.props;
 
 <BaseLayout title={recipe.data.title || t("recipe.untitled")}>
   <div
-    class="prose prose-lg py-12 mx-auto px-6 bg-base-100 card card-border border-base-300"
+    class="prose prose-lg mx-auto py-12 px-6 bg-base-100 card card-border border-base-300"
   >
     <p><a href="/">{t("common.backToRecipes")}</a></p>
     <h1>{recipe.data.title}</h1>
@@ -84,6 +84,22 @@ const { recipe } = Astro.props;
             ))}
           </>
         )
+    }
+
+    {
+      recipe.data.steps && recipe.data.steps.length > 0 && (
+        <>
+          <h2>{t("recipe.steps")}</h2>
+          {recipe.data.steps.map((step, index) => (
+            <div style="margin-bottom: 1rem;">
+              <h4>
+                {index + 1}. {step.title}
+              </h4>
+              <div set:html={step.description} />
+            </div>
+          ))}
+        </>
+      )
     }
 
     {
