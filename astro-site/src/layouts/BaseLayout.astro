@@ -1,15 +1,17 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../assets/app.css";
 const { title } = Astro.props;
 ---
-<html lang="sv" class="bg-base-200">
+<html lang="sv" class="bg-base-200" transition:name="root" transition:animate="slide">
   <head>
     <title>{title}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <ClientRouter />
   </head>
   <body class="py-12">
-    <article class="prose prose-lg py-12 mx-auto px-6 bg-base-100  card card-border border-base-300">
+    <article class="">
       <slot /> <!-- your content is injected here -->
     </article>
   </body>
