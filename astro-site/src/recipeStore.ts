@@ -65,3 +65,18 @@ export function isStepChecked(recipeId: string, stepId: string): boolean {
   const recipeState = current[recipeId];
   return recipeState?.steps?.includes(stepId) || false;
 }
+
+export function clearIngredients(recipeId: string) {
+  const current = recipeStore.get();
+  const recipeState = current[recipeId];
+  
+  if (recipeState) {
+    recipeStore.set({
+      ...current,
+      [recipeId]: {
+        ...recipeState,
+        ingredients: [],
+      },
+    });
+  }
+}

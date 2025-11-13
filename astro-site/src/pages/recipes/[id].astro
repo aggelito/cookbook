@@ -63,7 +63,10 @@ const { recipe } = Astro.props;
     <div
       class="recipe-ingredients-section prose-ul:list-none prose-ul:pl-0 prose-li:pl-0"
     >
-      <h2>{t("recipe.ingredients")}</h2>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="!mb-0">{t("recipe.ingredients")}</h2>
+        
+      </div>
       {
         recipe.data.ingredients && recipe.data.ingredients.length > 0 && (
           <>
@@ -116,6 +119,13 @@ const { recipe } = Astro.props;
             </>
           )
       }
+      <button
+          id="reset-ingredients-btn"
+          class="btn btn-sm btn-outline"
+          data-recipe-id={recipe.id}
+        >
+          {t("recipe.resetIngredients")}
+        </button>
     </div>
     <div class="recipe-steps-section prose-h4:mb-0">
       {
@@ -209,7 +219,7 @@ const { recipe } = Astro.props;
 </BaseLayout>
 
 <script>
-  import { recipeStore, toggleIngredient, isIngredientChecked } from '../../recipeStore';
+  import { recipeStore, toggleIngredient, isIngredientChecked, clearIngredients } from '../../recipeStore';
 
   function initializeCheckboxes() {
     const checkboxes = document.querySelectorAll('.recipe-checkbox');
@@ -238,13 +248,38 @@ const { recipe } = Astro.props;
     });
   }
 
+  function initializeResetButton() {
+    const resetBtn = document.getElementById('reset-ingredients-btn');
+    if (resetBtn) {
+      const recipeId = resetBtn.dataset.recipeId!;
+      
+      resetBtn.addEventListener('click', () => {
+        // Clear from store
+        clearIngredients(recipeId);
+        
+        // Uncheck all checkboxes in the UI
+        const checkboxes = document.querySelectorAll('.recipe-checkbox[data-type="ingredient"]');
+        checkboxes.forEach((checkbox) => {
+          (checkbox as HTMLInputElement).checked = false;
+        });
+      });
+    }
+  }
+
   // Initialize on page load
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeCheckboxes);
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeCheckboxes();
+      initializeResetButton();
+    });
   } else {
     initializeCheckboxes();
+    initializeResetButton();
   }
   
   // Re-initialize on view transitions (if using Astro view transitions)
-  document.addEventListener('astro:page-load', initializeCheckboxes);
+  document.addEventListener('astro:page-load', () => {
+    initializeCheckboxes();
+    initializeResetButton();
+  });
 </script>

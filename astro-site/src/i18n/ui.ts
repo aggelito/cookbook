@@ -8,6 +8,7 @@ export default {
   'recipe.description': 'Beskrivning',
   'recipe.noDescription': 'Ingen beskrivning tillgänglig',
   'recipe.ingredients': 'Ingredienser',
+  'recipe.resetIngredients': 'Återställ checklista',
   'recipe.steps': 'Gör så här',
   'recipe.dietaryInfo': 'Kostinformation',
   'recipe.vegetarian': 'Vegetarisk:',
