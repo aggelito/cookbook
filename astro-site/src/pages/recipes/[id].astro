@@ -63,10 +63,7 @@ const { recipe } = Astro.props;
     <div
       class="recipe-ingredients-section prose-ul:list-none prose-ul:pl-0 prose-li:pl-0"
     >
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="!mb-0">{t("recipe.ingredients")}</h2>
-        
-      </div>
+      <h2 class="!mb-0">{t("recipe.ingredients")}</h2>
       {
         recipe.data.ingredients && recipe.data.ingredients.length > 0 && (
           <>
@@ -119,13 +116,22 @@ const { recipe } = Astro.props;
             </>
           )
       }
-      <button
-          id="reset-ingredients-btn"
-          class="btn btn-sm btn-outline"
-          data-recipe-id={recipe.id}
-        >
-          {t("recipe.resetIngredients")}
-        </button>
+      <div class="flex gap-2">
+          <button
+            id="copy-shopping-list-btn"
+            class="btn btn-outline"
+            data-recipe-id={recipe.id}
+          >
+            {t("recipe.copyShoppingList")}
+          </button>
+          <button
+            id="reset-ingredients-btn"
+            class="btn btn-outline"
+            data-recipe-id={recipe.id}
+          >
+            {t("recipe.resetIngredients")}
+          </button>
+        </div>
     </div>
     <div class="recipe-steps-section prose-h4:mb-0">
       {
@@ -253,15 +259,76 @@ const { recipe } = Astro.props;
     if (resetBtn) {
       const recipeId = resetBtn.dataset.recipeId!;
       
-      resetBtn.addEventListener('click', () => {
-        // Clear from store
-        clearIngredients(recipeId);
-        
-        // Uncheck all checkboxes in the UI
+      // Clone button to remove any existing listeners
+      const newResetBtn = resetBtn.cloneNode(true) as HTMLButtonElement;
+      resetBtn.parentNode?.replaceChild(newResetBtn, resetBtn);
+      
+      newResetBtn.addEventListener('click', () => {
+        // Show confirmation dialog
+        if (confirm('Är du säker på att du vill återställa alla ingredienser?')) {
+          // Clear from store
+          clearIngredients(recipeId);
+          
+          // Uncheck all checkboxes in the UI
+          const checkboxes = document.querySelectorAll('.recipe-checkbox[data-type="ingredient"]');
+          checkboxes.forEach((checkbox) => {
+            (checkbox as HTMLInputElement).checked = false;
+          });
+        }
+      });
+    }
+  }
+
+  function initializeCopyButton() {
+    const copyBtn = document.getElementById('copy-shopping-list-btn');
+    if (copyBtn) {
+      const recipeId = copyBtn.dataset.recipeId!;
+      
+      // Clone button to remove any existing listeners
+      const newCopyBtn = copyBtn.cloneNode(true) as HTMLButtonElement;
+      copyBtn.parentNode?.replaceChild(newCopyBtn, copyBtn);
+      
+      newCopyBtn.addEventListener('click', async () => {
+        // Collect unchecked ingredients
+        const uncheckedIngredients: string[] = [];
         const checkboxes = document.querySelectorAll('.recipe-checkbox[data-type="ingredient"]');
+        
         checkboxes.forEach((checkbox) => {
-          (checkbox as HTMLInputElement).checked = false;
+          const input = checkbox as HTMLInputElement;
+          if (!input.checked) {
+            // Get the label text and parse it
+            const label = input.parentElement;
+            if (label) {
+              const text = label.textContent?.trim() || '';
+              // Extract ingredient name, amount, and unit
+              // Format: "amount unit name"
+              const parts = text.split(' ').filter(p => p.length > 0);
+              if (parts.length >= 3) {
+                const amount = parts[0];
+                const unit = parts[1];
+                const name = parts.slice(2).join(' ');
+                uncheckedIngredients.push(`${name} - ${amount} ${unit}`);
+              }
+            }
+          }
         });
+        
+        if (uncheckedIngredients.length > 0) {
+          const shoppingList = uncheckedIngredients.join('\n');
+          
+          try {
+            await navigator.clipboard.writeText(shoppingList);
+            
+            // Show feedback
+            const originalText = newCopyBtn.textContent;
+            newCopyBtn.textContent = 'Kopierad!';
+            setTimeout(() => {
+              newCopyBtn.textContent = originalText;
+            }, 2000);
+          } catch (err) {
+            console.error('Failed to copy:', err);
+          }
+        }
       });
     }
   }
@@ -271,15 +338,18 @@ const { recipe } = Astro.props;
     document.addEventListener('DOMContentLoaded', () => {
       initializeCheckboxes();
       initializeResetButton();
+      initializeCopyButton();
     });
   } else {
     initializeCheckboxes();
     initializeResetButton();
+    initializeCopyButton();
   }
   
   // Re-initialize on view transitions (if using Astro view transitions)
   document.addEventListener('astro:page-load', () => {
     initializeCheckboxes();
     initializeResetButton();
+    initializeCopyButton();
   });
 </script>
