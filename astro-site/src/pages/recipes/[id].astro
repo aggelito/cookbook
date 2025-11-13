@@ -68,6 +68,13 @@ const { recipe } = Astro.props;
           >
             +
           </button>
+          <span 
+            id="base-portions-label"
+            class="text-sm text-base-content/60 hidden"
+            data-base-portions={recipe.data.basePortions}
+          >
+            ({t("recipe.basePortions")}: {recipe.data.basePortions})
+          </span>
         </div>
       </div>
       <div>
@@ -319,6 +326,17 @@ const { recipe } = Astro.props;
     });
   }
 
+  function updateBasePortionsLabel(basePortions: number, currentPortions: number) {
+    const label = document.getElementById("base-portions-label");
+    if (label) {
+      if (currentPortions !== basePortions) {
+        label.classList.remove("hidden");
+      } else {
+        label.classList.add("hidden");
+      }
+    }
+  }
+
   function initializePortions() {
     const portionsInput = document.getElementById("portions-input") as HTMLInputElement;
     const decreaseBtn = document.getElementById("decrease-portions-btn");
@@ -338,6 +356,9 @@ const { recipe } = Astro.props;
       updateIngredientAmounts(recipeId, basePortions, savedPortions);
     }
     
+    // Update base portions label visibility
+    updateBasePortionsLabel(basePortions, savedPortions);
+    
     // Clone elements to remove existing listeners
     const newInput = portionsInput.cloneNode(true) as HTMLInputElement;
     const newDecreaseBtn = decreaseBtn.cloneNode(true) as HTMLButtonElement;
@@ -354,6 +375,7 @@ const { recipe } = Astro.props;
       newInput.value = newPortions.toString();
       setPortions(recipeId, newPortions);
       updateIngredientAmounts(recipeId, basePortions, newPortions);
+      updateBasePortionsLabel(basePortions, newPortions);
     };
     
     // Decrease button

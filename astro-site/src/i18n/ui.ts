@@ -15,6 +15,7 @@ export default {
   'recipe.resetSteps': 'Återställ steg',
   'recipe.confirmResetSteps': 'Är du säker på att du vill återställa alla steg?',
   'recipe.adjustPortions': 'Justera portioner',
+  'recipe.basePortions': 'bas',
   'recipe.steps': 'Gör så här',
   'recipe.dietaryInfo': 'Kostinformation',
   'recipe.vegetarian': 'Vegetarisk:',
