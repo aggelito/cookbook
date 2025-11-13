@@ -78,7 +78,8 @@ const { recipe } = Astro.props;
                       data-item-id={`ingredient-${index}`}
                       data-type="ingredient"
                     />
-                    <b>{ingredient.amount}</b> {ingredient.unit} {ingredient.name}
+                    <b>{ingredient.amount}</b> {ingredient.unit}{" "}
+                    {ingredient.name}
                   </label>
                 </li>
               ))}
@@ -118,29 +119,29 @@ const { recipe } = Astro.props;
       }
       <div class="flex gap-2">
         <button
-            id="reset-ingredients-btn"
-            class="btn btn-outline"
-            data-recipe-id={recipe.id}
-            data-confirm-message={t("recipe.confirmReset")}
-          >
-            {t("recipe.resetIngredients")}
-          </button>
-          <button
-            id="copy-shopping-list-btn"
-            class="btn btn-outline"
-            data-recipe-id={recipe.id}
-          >
-            {t("recipe.copyShoppingList")}
-          </button>
-        </div>
+          id="reset-ingredients-btn"
+          class="btn btn-outline"
+          data-recipe-id={recipe.id}
+          data-confirm-message={t("recipe.confirmReset")}
+        >
+          {t("recipe.resetIngredients")}
+        </button>
+        <button
+          id="copy-shopping-list-btn"
+          class="btn btn-outline"
+          data-recipe-id={recipe.id}
+        >
+          {t("recipe.copyShoppingList")}
+        </button>
+      </div>
     </div>
     <div class="recipe-steps-section prose-h4:mb-0">
       {
         recipe.data.steps && recipe.data.steps.length > 0 && (
           <>
-            <h2>{t("recipe.steps")}</h2>
+            <h2 class="!mb-0">{t("recipe.steps")}</h2>
             {recipe.data.steps.map((step, index) => (
-              <div 
+              <div
                 class="recipe-step cursor-pointer transition-all duration-300 ease-in-out"
                 data-recipe-id={recipe.id}
                 data-step-id={`step-${index}`}
@@ -164,7 +165,7 @@ const { recipe } = Astro.props;
               <div>
                 <h3>{group.groupName}</h3>
                 {group.steps.map((step, stepIndex) => (
-                  <div 
+                  <div
                     class="recipe-step cursor-pointer transition-all duration-300 ease-in-out"
                     data-recipe-id={recipe.id}
                     data-step-id={`step-group-${groupIndex}-${stepIndex}`}
@@ -182,6 +183,14 @@ const { recipe } = Astro.props;
           </>
         )
       }
+      <button
+        id="reset-steps-btn"
+        class="btn btn-outline"
+        data-recipe-id={recipe.id}
+        data-confirm-message={t("recipe.confirmResetSteps")}
+      >
+        {t("recipe.resetSteps")}
+      </button>
     </div>
     <div class="dietary-info-section">
       {
@@ -230,7 +239,7 @@ const { recipe } = Astro.props;
         )
       }
     </div>
-    
+
     <div class="recipe-footer-section mt-6">
       <a href="/">{t("common.backToRecipes")}</a>
     </div>
@@ -238,166 +247,242 @@ const { recipe } = Astro.props;
 </BaseLayout>
 
 <script>
-  import { recipeStore, toggleIngredient, isIngredientChecked, clearIngredients, toggleStep, isStepChecked } from '../../recipeStore';
+  import {
+    recipeStore,
+    toggleIngredient,
+    isIngredientChecked,
+    clearIngredients,
+    toggleStep,
+    isStepChecked,
+    clearSteps,
+    hasCheckedIngredients,
+    hasCheckedSteps,
+  } from "../../recipeStore";
+
+  function updateResetButtonState(recipeId: string) {
+    const resetBtn = document.getElementById("reset-ingredients-btn") as HTMLButtonElement;
+    if (resetBtn) {
+      resetBtn.disabled = !hasCheckedIngredients(recipeId);
+    }
+  }
+
+  function updateResetStepsButtonState(recipeId: string) {
+    const resetStepsBtn = document.getElementById("reset-steps-btn") as HTMLButtonElement;
+    if (resetStepsBtn) {
+      resetStepsBtn.disabled = !hasCheckedSteps(recipeId);
+    }
+  }
 
   function initializeCheckboxes() {
-    const checkboxes = document.querySelectorAll('.recipe-checkbox');
-    
+    const checkboxes = document.querySelectorAll(".recipe-checkbox");
+
     checkboxes.forEach((checkbox) => {
       const input = checkbox as HTMLInputElement;
       const recipeId = input.dataset.recipeId!;
       const itemId = input.dataset.itemId!;
-      const type = input.dataset.type as 'ingredient' | 'step';
-      
+      const type = input.dataset.type as "ingredient" | "step";
+
       // Remove any existing listeners to prevent duplicates
       const newInput = input.cloneNode(true) as HTMLInputElement;
       input.parentNode?.replaceChild(newInput, input);
-      
+
       // Set initial state from store
-      if (type === 'ingredient') {
+      if (type === "ingredient") {
         newInput.checked = isIngredientChecked(recipeId, itemId);
       }
-      
+
       // Add change listener
-      newInput.addEventListener('change', () => {
-        if (type === 'ingredient') {
+      newInput.addEventListener("change", () => {
+        if (type === "ingredient") {
           toggleIngredient(recipeId, itemId);
+          // Update reset button state
+          updateResetButtonState(recipeId);
         }
       });
     });
   }
 
   function initializeResetButton() {
-    const resetBtn = document.getElementById('reset-ingredients-btn');
+    const resetBtn = document.getElementById("reset-ingredients-btn");
     if (resetBtn) {
       const recipeId = resetBtn.dataset.recipeId!;
       const confirmMessage = resetBtn.dataset.confirmMessage!;
-      
+
       // Clone button to remove any existing listeners
       const newResetBtn = resetBtn.cloneNode(true) as HTMLButtonElement;
       resetBtn.parentNode?.replaceChild(newResetBtn, resetBtn);
       
-      newResetBtn.addEventListener('click', () => {
+      // Set initial disabled state
+      newResetBtn.disabled = !hasCheckedIngredients(recipeId);
+
+      newResetBtn.addEventListener("click", () => {
         // Show confirmation dialog with translated message
         if (confirm(confirmMessage)) {
           // Clear from store
           clearIngredients(recipeId);
-          
+
           // Uncheck all checkboxes in the UI
-          const checkboxes = document.querySelectorAll('.recipe-checkbox[data-type="ingredient"]');
+          const checkboxes = document.querySelectorAll(
+            '.recipe-checkbox[data-type="ingredient"]'
+          );
           checkboxes.forEach((checkbox) => {
             (checkbox as HTMLInputElement).checked = false;
           });
+          
+          // Update button state after clearing
+          updateResetButtonState(recipeId);
         }
       });
     }
   }
 
   function initializeSteps() {
-    const steps = document.querySelectorAll('.recipe-step');
-    
+    const steps = document.querySelectorAll(".recipe-step");
+
     steps.forEach((step) => {
       const stepDiv = step as HTMLDivElement;
       const recipeId = stepDiv.dataset.recipeId!;
       const stepId = stepDiv.dataset.stepId!;
-      
+
       // Clone to remove existing listeners
       const newStepDiv = stepDiv.cloneNode(true) as HTMLDivElement;
       stepDiv.parentNode?.replaceChild(newStepDiv, stepDiv);
-      
+
       // Set initial state from store
       if (isStepChecked(recipeId, stepId)) {
-        newStepDiv.classList.add('line-through');
+        newStepDiv.classList.add("line-through");
       }
-      
+
       // Add click listener
-      newStepDiv.addEventListener('click', () => {
+      newStepDiv.addEventListener("click", () => {
         toggleStep(recipeId, stepId);
-        
+
         // Toggle line-through class
-        if (newStepDiv.classList.contains('line-through')) {
-          newStepDiv.classList.remove('line-through');
+        if (newStepDiv.classList.contains("line-through")) {
+          newStepDiv.classList.remove("line-through");
         } else {
-          newStepDiv.classList.add('line-through');
+          newStepDiv.classList.add("line-through");
         }
+        
+        // Update reset steps button state
+        updateResetStepsButtonState(recipeId);
       });
     });
   }
 
   function initializeCopyButton() {
-    const copyBtn = document.getElementById('copy-shopping-list-btn');
+    const copyBtn = document.getElementById("copy-shopping-list-btn");
     if (copyBtn) {
       const recipeId = copyBtn.dataset.recipeId!;
-      
+
       // Clone button to remove any existing listeners
       const newCopyBtn = copyBtn.cloneNode(true) as HTMLButtonElement;
       copyBtn.parentNode?.replaceChild(newCopyBtn, copyBtn);
-      
-      newCopyBtn.addEventListener('click', async () => {
+
+      newCopyBtn.addEventListener("click", async () => {
         // Collect unchecked ingredients
         const uncheckedIngredients: string[] = [];
-        const checkboxes = document.querySelectorAll('.recipe-checkbox[data-type="ingredient"]');
-        
+        const checkboxes = document.querySelectorAll(
+          '.recipe-checkbox[data-type="ingredient"]'
+        );
+
         checkboxes.forEach((checkbox) => {
           const input = checkbox as HTMLInputElement;
           if (!input.checked) {
             // Get the label text and parse it
             const label = input.parentElement;
             if (label) {
-              const text = label.textContent?.trim() || '';
+              const text = label.textContent?.trim() || "";
               // Extract ingredient name, amount, and unit
               // Format: "amount unit name"
-              const parts = text.split(' ').filter(p => p.length > 0);
+              const parts = text.split(" ").filter((p) => p.length > 0);
               if (parts.length >= 3) {
                 const amount = parts[0];
                 const unit = parts[1];
-                const name = parts.slice(2).join(' ');
+                const name = parts.slice(2).join(" ");
                 uncheckedIngredients.push(`${name} - ${amount} ${unit}`);
               }
             }
           }
         });
-        
+
         if (uncheckedIngredients.length > 0) {
-          const shoppingList = uncheckedIngredients.join('\n');
-          
+          const shoppingList = uncheckedIngredients.join("\n");
+
           try {
             await navigator.clipboard.writeText(shoppingList);
-            
+
             // Show feedback
             const originalText = newCopyBtn.textContent;
-            newCopyBtn.textContent = 'Kopierad!';
+            newCopyBtn.textContent = "Kopierad!";
             setTimeout(() => {
               newCopyBtn.textContent = originalText;
             }, 2000);
           } catch (err) {
-            console.error('Failed to copy:', err);
+            console.error("Failed to copy:", err);
           }
         }
       });
     }
   }
 
+  function initializeResetStepsButton() {
+    const resetStepsBtn = document.getElementById("reset-steps-btn");
+    if (resetStepsBtn) {
+      const recipeId = resetStepsBtn.dataset.recipeId!;
+      const confirmMessage = resetStepsBtn.dataset.confirmMessage!;
+
+      // Clone button to remove any existing listeners
+      const newResetStepsBtn = resetStepsBtn.cloneNode(
+        true
+      ) as HTMLButtonElement;
+      resetStepsBtn.parentNode?.replaceChild(newResetStepsBtn, resetStepsBtn);
+      
+      // Set initial disabled state
+      newResetStepsBtn.disabled = !hasCheckedSteps(recipeId);
+
+      newResetStepsBtn.addEventListener("click", () => {
+        // Show confirmation dialog with translated message
+        if (confirm(confirmMessage)) {
+          // Clear from store
+          clearSteps(recipeId);
+
+          // Remove line-through from all steps in the UI
+          const steps = document.querySelectorAll(".recipe-step");
+          steps.forEach((step) => {
+            step.classList.remove("line-through");
+          });
+          
+          // Update button state after clearing
+          updateResetStepsButtonState(recipeId);
+        }
+      });
+    }
+  }
+
   // Initialize on page load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
       initializeCheckboxes();
       initializeSteps();
       initializeResetButton();
+      initializeResetStepsButton();
       initializeCopyButton();
     });
   } else {
     initializeCheckboxes();
     initializeSteps();
     initializeResetButton();
+    initializeResetStepsButton();
     initializeCopyButton();
   }
-  
+
   // Re-initialize on view transitions (if using Astro view transitions)
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener("astro:page-load", () => {
     initializeCheckboxes();
     initializeSteps();
     initializeResetButton();
+    initializeResetStepsButton();
     initializeCopyButton();
   });
 </script>

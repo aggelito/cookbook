@@ -12,6 +12,8 @@ export default {
   'recipe.copied': 'Kopierad!',
   'recipe.resetIngredients': 'Återställ',
   'recipe.confirmReset': 'Är du säker på att du vill återställa alla ingredienser?',
+  'recipe.resetSteps': 'Återställ steg',
+  'recipe.confirmResetSteps': 'Är du säker på att du vill återställa alla steg?',
   'recipe.steps': 'Gör så här',
   'recipe.dietaryInfo': 'Kostinformation',
   'recipe.vegetarian': 'Vegetarisk:',

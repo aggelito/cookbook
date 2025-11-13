@@ -80,3 +80,30 @@ export function clearIngredients(recipeId: string) {
     });
   }
 }
+
+export function clearSteps(recipeId: string) {
+  const current = recipeStore.get();
+  const recipeState = current[recipeId];
+  
+  if (recipeState) {
+    recipeStore.set({
+      ...current,
+      [recipeId]: {
+        ...recipeState,
+        steps: [],
+      },
+    });
+  }
+}
+
+export function hasCheckedIngredients(recipeId: string): boolean {
+  const current = recipeStore.get();
+  const recipeState = current[recipeId];
+  return recipeState?.ingredients?.length > 0 || false;
+}
+
+export function hasCheckedSteps(recipeId: string): boolean {
+  const current = recipeStore.get();
+  const recipeState = current[recipeId];
+  return recipeState?.steps?.length > 0 || false;
+}
