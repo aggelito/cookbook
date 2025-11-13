@@ -68,13 +68,14 @@ const { recipe } = Astro.props;
           >
             +
           </button>
-          <span 
+          <button 
             id="base-portions-label"
-            class="text-sm text-base-content/60 hidden"
+            class="text-sm text-base-content/60 hidden hover:underline cursor-pointer"
             data-base-portions={recipe.data.basePortions}
+            type="button"
           >
             ({t("recipe.basePortions")}: {recipe.data.basePortions})
-          </span>
+          </button>
         </div>
       </div>
       <div>
@@ -341,6 +342,7 @@ const { recipe } = Astro.props;
     const portionsInput = document.getElementById("portions-input") as HTMLInputElement;
     const decreaseBtn = document.getElementById("decrease-portions-btn");
     const increaseBtn = document.getElementById("increase-portions-btn");
+    const basePortionsLabel = document.getElementById("base-portions-label");
     
     if (!portionsInput || !decreaseBtn || !increaseBtn) return;
     
@@ -363,10 +365,14 @@ const { recipe } = Astro.props;
     const newInput = portionsInput.cloneNode(true) as HTMLInputElement;
     const newDecreaseBtn = decreaseBtn.cloneNode(true) as HTMLButtonElement;
     const newIncreaseBtn = increaseBtn.cloneNode(true) as HTMLButtonElement;
+    const newBasePortionsLabel = basePortionsLabel ? basePortionsLabel.cloneNode(true) as HTMLButtonElement : null;
     
     portionsInput.parentNode?.replaceChild(newInput, portionsInput);
     decreaseBtn.parentNode?.replaceChild(newDecreaseBtn, decreaseBtn);
     increaseBtn.parentNode?.replaceChild(newIncreaseBtn, increaseBtn);
+    if (basePortionsLabel && newBasePortionsLabel) {
+      basePortionsLabel.parentNode?.replaceChild(newBasePortionsLabel, basePortionsLabel);
+    }
     
     // Function to update portions
     const updatePortions = (newPortions: number) => {
@@ -399,6 +405,13 @@ const { recipe } = Astro.props;
         newInput.value = getPortions(recipeId, basePortions).toString();
       }
     });
+    
+    // Base portions label click - reset to base
+    if (newBasePortionsLabel) {
+      newBasePortionsLabel.addEventListener("click", () => {
+        updatePortions(basePortions);
+      });
+    }
   }
 
   function initializeCheckboxes() {
