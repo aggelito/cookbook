@@ -63,14 +63,14 @@ const { recipe } = Astro.props;
     <div
       class="recipe-ingredients-section prose-ul:list-none prose-ul:pl-0 prose-li:pl-0"
     >
-      <h2 class="!mb-0">{t("recipe.ingredients")}</h2>
+      <h2>{t("recipe.ingredients")}</h2>
       {
         recipe.data.ingredients && recipe.data.ingredients.length > 0 && (
           <>
             <ul>
               {recipe.data.ingredients.map((ingredient, index) => (
                 <li>
-                  <label>
+                  <label class="cursor-pointer">
                     <input
                       type="checkbox"
                       class="checkbox checkbox-primary mr-1 recipe-checkbox"
@@ -98,7 +98,7 @@ const { recipe } = Astro.props;
                   <ul>
                     {group.ingredients.map((ingredient, ingredientIndex) => (
                       <li>
-                        <label>
+                        <label class="cursor-pointer">
                           <input
                             type="checkbox"
                             class="checkbox checkbox-primary mr-1 recipe-checkbox"
@@ -139,7 +139,7 @@ const { recipe } = Astro.props;
       {
         recipe.data.steps && recipe.data.steps.length > 0 && (
           <>
-            <h2 class="!mb-0">{t("recipe.steps")}</h2>
+            <h2>{t("recipe.steps")}</h2>
             {recipe.data.steps.map((step, index) => (
               <div
                 class="recipe-step cursor-pointer transition-all duration-300 ease-in-out"
