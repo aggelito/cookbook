@@ -40,9 +40,35 @@ const { recipe } = Astro.props;
         )
       }
 
-      <div>
+      <div class="flex items-center gap-2">
         <strong>{t("recipe.portions")}</strong>
-        {recipe.data.basePortions || t("common.na")}
+        <div class="flex items-center gap-1">
+          <button
+            id="decrease-portions-btn"
+            class="btn btn-sm btn-circle btn-outline"
+            data-recipe-id={recipe.id}
+            data-base-portions={recipe.data.basePortions}
+          >
+            −
+          </button>
+          <input
+            type="number"
+            id="portions-input"
+            class="input input-sm input-bordered w-16 text-center"
+            min="1"
+            data-recipe-id={recipe.id}
+            data-base-portions={recipe.data.basePortions}
+            value={recipe.data.basePortions}
+          />
+          <button
+            id="increase-portions-btn"
+            class="btn btn-sm btn-circle btn-outline"
+            data-recipe-id={recipe.id}
+            data-base-portions={recipe.data.basePortions}
+          >
+            +
+          </button>
+        </div>
       </div>
       <div>
         <strong>{t("recipe.estimatedTime")}</strong>
@@ -78,7 +104,10 @@ const { recipe } = Astro.props;
                       data-item-id={`ingredient-${index}`}
                       data-type="ingredient"
                     />
-                    <b>{ingredient.amount}</b> {ingredient.unit}{" "}
+                    <b 
+                      class="ingredient-amount"
+                      data-original-amount={ingredient.amount}
+                    >{ingredient.amount}</b> {ingredient.unit}{" "}
                     {ingredient.name}
                   </label>
                 </li>
@@ -106,7 +135,10 @@ const { recipe } = Astro.props;
                             data-item-id={`ingredient-group-${groupIndex}-${ingredientIndex}`}
                             data-type="ingredient"
                           />
-                          <b>{ingredient.amount}</b> {ingredient.unit}{" "}
+                          <b 
+                            class="ingredient-amount"
+                            data-original-amount={ingredient.amount}
+                          >{ingredient.amount}</b> {ingredient.unit}{" "}
                           {ingredient.name}
                         </label>
                       </li>
@@ -257,6 +289,9 @@ const { recipe } = Astro.props;
     clearSteps,
     hasCheckedIngredients,
     hasCheckedSteps,
+    setPortions,
+    getPortions,
+    scaleAmount,
   } from "../../recipeStore";
 
   function updateResetButtonState(recipeId: string) {
@@ -271,6 +306,77 @@ const { recipe } = Astro.props;
     if (resetStepsBtn) {
       resetStepsBtn.disabled = !hasCheckedSteps(recipeId);
     }
+  }
+
+  function updateIngredientAmounts(recipeId: string, basePortions: number, currentPortions: number) {
+    const amounts = document.querySelectorAll(".ingredient-amount");
+    amounts.forEach((amountEl) => {
+      const originalAmount = amountEl.getAttribute("data-original-amount");
+      if (originalAmount) {
+        const scaledAmount = scaleAmount(originalAmount, basePortions, currentPortions);
+        amountEl.textContent = scaledAmount;
+      }
+    });
+  }
+
+  function initializePortions() {
+    const portionsInput = document.getElementById("portions-input") as HTMLInputElement;
+    const decreaseBtn = document.getElementById("decrease-portions-btn");
+    const increaseBtn = document.getElementById("increase-portions-btn");
+    
+    if (!portionsInput || !decreaseBtn || !increaseBtn) return;
+    
+    const recipeId = portionsInput.dataset.recipeId!;
+    const basePortions = parseInt(portionsInput.dataset.basePortions || "4");
+    
+    // Load saved portions from store
+    const savedPortions = getPortions(recipeId, basePortions);
+    portionsInput.value = savedPortions.toString();
+    
+    // Update amounts if portions were previously adjusted
+    if (savedPortions !== basePortions) {
+      updateIngredientAmounts(recipeId, basePortions, savedPortions);
+    }
+    
+    // Clone elements to remove existing listeners
+    const newInput = portionsInput.cloneNode(true) as HTMLInputElement;
+    const newDecreaseBtn = decreaseBtn.cloneNode(true) as HTMLButtonElement;
+    const newIncreaseBtn = increaseBtn.cloneNode(true) as HTMLButtonElement;
+    
+    portionsInput.parentNode?.replaceChild(newInput, portionsInput);
+    decreaseBtn.parentNode?.replaceChild(newDecreaseBtn, decreaseBtn);
+    increaseBtn.parentNode?.replaceChild(newIncreaseBtn, increaseBtn);
+    
+    // Function to update portions
+    const updatePortions = (newPortions: number) => {
+      if (newPortions < 1) return;
+      
+      newInput.value = newPortions.toString();
+      setPortions(recipeId, newPortions);
+      updateIngredientAmounts(recipeId, basePortions, newPortions);
+    };
+    
+    // Decrease button
+    newDecreaseBtn.addEventListener("click", () => {
+      const current = parseInt(newInput.value);
+      updatePortions(current - 1);
+    });
+    
+    // Increase button
+    newIncreaseBtn.addEventListener("click", () => {
+      const current = parseInt(newInput.value);
+      updatePortions(current + 1);
+    });
+    
+    // Input change
+    newInput.addEventListener("change", () => {
+      const newValue = parseInt(newInput.value);
+      if (!isNaN(newValue) && newValue >= 1) {
+        updatePortions(newValue);
+      } else {
+        newInput.value = getPortions(recipeId, basePortions).toString();
+      }
+    });
   }
 
   function initializeCheckboxes() {
@@ -463,6 +569,7 @@ const { recipe } = Astro.props;
   // Initialize on page load
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
+      initializePortions();
       initializeCheckboxes();
       initializeSteps();
       initializeResetButton();
@@ -470,15 +577,17 @@ const { recipe } = Astro.props;
       initializeCopyButton();
     });
   } else {
+    initializePortions();
     initializeCheckboxes();
     initializeSteps();
     initializeResetButton();
     initializeResetStepsButton();
     initializeCopyButton();
   }
-
+  
   // Re-initialize on view transitions (if using Astro view transitions)
   document.addEventListener("astro:page-load", () => {
+    initializePortions();
     initializeCheckboxes();
     initializeSteps();
     initializeResetButton();

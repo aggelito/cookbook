@@ -3,6 +3,7 @@ import { persistentAtom } from '@nanostores/persistent';
 export interface RecipeState {
   ingredients: string[];
   steps: string[];
+  portions?: number;
 }
 
 export type RecipeStoreData = Record<string, RecipeState>;
@@ -106,4 +107,47 @@ export function hasCheckedSteps(recipeId: string): boolean {
   const current = recipeStore.get();
   const recipeState = current[recipeId];
   return recipeState?.steps?.length > 0 || false;
+}
+
+export function setPortions(recipeId: string, portions: number) {
+  const current = recipeStore.get();
+  const recipeState = current[recipeId] || { ingredients: [], steps: [] };
+  
+  recipeStore.set({
+    ...current,
+    [recipeId]: {
+      ...recipeState,
+      portions,
+    },
+  });
+}
+
+export function getPortions(recipeId: string, basePortions: number): number {
+  const current = recipeStore.get();
+  const recipeState = current[recipeId];
+  return recipeState?.portions ?? basePortions;
+}
+
+export function scaleAmount(amount: string, basePortions: number, currentPortions: number): string {
+  if (!amount || basePortions === currentPortions) {
+    return amount;
+  }
+  
+  const scaleFactor = currentPortions / basePortions;
+  
+  // Try to parse the amount as a number
+  const numMatch = amount.match(/^(\d+(?:[.,]\d+)?)/);
+  if (numMatch) {
+    const num = parseFloat(numMatch[1].replace(',', '.'));
+    const scaled = num * scaleFactor;
+    
+    // Round to 2 decimal places and remove trailing zeros
+    const rounded = Math.round(scaled * 100) / 100;
+    const formatted = rounded.toString().replace('.', ',');
+    
+    // Replace the number in the original string
+    return amount.replace(numMatch[1], formatted);
+  }
+  
+  return amount;
 }
