@@ -70,11 +70,13 @@ const { recipe } = Astro.props;
             <ul>
               {recipe.data.ingredients.map((ingredient) => (
                 <li>
-                  <input
-                    type="checkbox"
-                    class="checkbox checkbox-primary mr-1"
-                  />
-                  <b>{ingredient.amount}</b> {ingredient.unit} {ingredient.name}
+                  <label>
+                    <input
+                      type="checkbox"
+                      class="checkbox checkbox-primary mr-1"
+                    />
+                    <b>{ingredient.amount}</b> {ingredient.unit} {ingredient.name}
+                  </label>
                 </li>
               ))}
             </ul>
@@ -92,12 +94,14 @@ const { recipe } = Astro.props;
                   <ul>
                     {group.ingredients.map((ingredient) => (
                       <li>
-                        <input
-                          type="checkbox"
-                          class="checkbox checkbox-primary mr-1"
-                        />
-                        <b>{ingredient.amount}</b> {ingredient.unit}{" "}
-                        {ingredient.name}
+                        <label>
+                          <input
+                            type="checkbox"
+                            class="checkbox checkbox-primary mr-1"
+                          />
+                          <b>{ingredient.amount}</b> {ingredient.unit}{" "}
+                          {ingredient.name}
+                        </label>
                       </li>
                     ))}
                   </ul>
