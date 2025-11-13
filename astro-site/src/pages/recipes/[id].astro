@@ -117,19 +117,20 @@ const { recipe } = Astro.props;
           )
       }
       <div class="flex gap-2">
+        <button
+            id="reset-ingredients-btn"
+            class="btn btn-outline"
+            data-recipe-id={recipe.id}
+            data-confirm-message={t("recipe.confirmReset")}
+          >
+            {t("recipe.resetIngredients")}
+          </button>
           <button
             id="copy-shopping-list-btn"
             class="btn btn-outline"
             data-recipe-id={recipe.id}
           >
             {t("recipe.copyShoppingList")}
-          </button>
-          <button
-            id="reset-ingredients-btn"
-            class="btn btn-outline"
-            data-recipe-id={recipe.id}
-          >
-            {t("recipe.resetIngredients")}
           </button>
         </div>
     </div>
@@ -139,7 +140,13 @@ const { recipe } = Astro.props;
           <>
             <h2>{t("recipe.steps")}</h2>
             {recipe.data.steps.map((step, index) => (
-              <div style="margin-bottom: 1rem;">
+              <div 
+                class="recipe-step cursor-pointer transition-all duration-300 ease-in-out"
+                data-recipe-id={recipe.id}
+                data-step-id={`step-${index}`}
+                data-type="step"
+                style="margin-bottom: 1rem;"
+              >
                 <h4>
                   {index + 1}. {step.title}
                 </h4>
@@ -153,13 +160,19 @@ const { recipe } = Astro.props;
       {
         recipe.data.stepGroups && recipe.data.stepGroups.length > 0 && (
           <>
-            {recipe.data.stepGroups.map((group) => (
+            {recipe.data.stepGroups.map((group, groupIndex) => (
               <div>
                 <h3>{group.groupName}</h3>
-                {group.steps.map((step, index) => (
-                  <div style="margin-bottom: 1rem;">
+                {group.steps.map((step, stepIndex) => (
+                  <div 
+                    class="recipe-step cursor-pointer transition-all duration-300 ease-in-out"
+                    data-recipe-id={recipe.id}
+                    data-step-id={`step-group-${groupIndex}-${stepIndex}`}
+                    data-type="step"
+                    style="margin-bottom: 1rem;"
+                  >
                     <h4>
-                      {index + 1}. {step.title}
+                      {stepIndex + 1}. {step.title}
                     </h4>
                     <div set:html={step.description} />
                   </div>
@@ -225,7 +238,7 @@ const { recipe } = Astro.props;
 </BaseLayout>
 
 <script>
-  import { recipeStore, toggleIngredient, isIngredientChecked, clearIngredients } from '../../recipeStore';
+  import { recipeStore, toggleIngredient, isIngredientChecked, clearIngredients, toggleStep, isStepChecked } from '../../recipeStore';
 
   function initializeCheckboxes() {
     const checkboxes = document.querySelectorAll('.recipe-checkbox');
@@ -258,14 +271,15 @@ const { recipe } = Astro.props;
     const resetBtn = document.getElementById('reset-ingredients-btn');
     if (resetBtn) {
       const recipeId = resetBtn.dataset.recipeId!;
+      const confirmMessage = resetBtn.dataset.confirmMessage!;
       
       // Clone button to remove any existing listeners
       const newResetBtn = resetBtn.cloneNode(true) as HTMLButtonElement;
       resetBtn.parentNode?.replaceChild(newResetBtn, resetBtn);
       
       newResetBtn.addEventListener('click', () => {
-        // Show confirmation dialog
-        if (confirm('Är du säker på att du vill återställa alla ingredienser?')) {
+        // Show confirmation dialog with translated message
+        if (confirm(confirmMessage)) {
           // Clear from store
           clearIngredients(recipeId);
           
@@ -277,6 +291,37 @@ const { recipe } = Astro.props;
         }
       });
     }
+  }
+
+  function initializeSteps() {
+    const steps = document.querySelectorAll('.recipe-step');
+    
+    steps.forEach((step) => {
+      const stepDiv = step as HTMLDivElement;
+      const recipeId = stepDiv.dataset.recipeId!;
+      const stepId = stepDiv.dataset.stepId!;
+      
+      // Clone to remove existing listeners
+      const newStepDiv = stepDiv.cloneNode(true) as HTMLDivElement;
+      stepDiv.parentNode?.replaceChild(newStepDiv, stepDiv);
+      
+      // Set initial state from store
+      if (isStepChecked(recipeId, stepId)) {
+        newStepDiv.classList.add('line-through');
+      }
+      
+      // Add click listener
+      newStepDiv.addEventListener('click', () => {
+        toggleStep(recipeId, stepId);
+        
+        // Toggle line-through class
+        if (newStepDiv.classList.contains('line-through')) {
+          newStepDiv.classList.remove('line-through');
+        } else {
+          newStepDiv.classList.add('line-through');
+        }
+      });
+    });
   }
 
   function initializeCopyButton() {
@@ -337,11 +382,13 @@ const { recipe } = Astro.props;
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initializeCheckboxes();
+      initializeSteps();
       initializeResetButton();
       initializeCopyButton();
     });
   } else {
     initializeCheckboxes();
+    initializeSteps();
     initializeResetButton();
     initializeCopyButton();
   }
@@ -349,6 +396,7 @@ const { recipe } = Astro.props;
   // Re-initialize on view transitions (if using Astro view transitions)
   document.addEventListener('astro:page-load', () => {
     initializeCheckboxes();
+    initializeSteps();
     initializeResetButton();
     initializeCopyButton();
   });
