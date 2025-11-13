@@ -68,12 +68,15 @@ const { recipe } = Astro.props;
         recipe.data.ingredients && recipe.data.ingredients.length > 0 && (
           <>
             <ul>
-              {recipe.data.ingredients.map((ingredient) => (
+              {recipe.data.ingredients.map((ingredient, index) => (
                 <li>
                   <label>
                     <input
                       type="checkbox"
-                      class="checkbox checkbox-primary mr-1"
+                      class="checkbox checkbox-primary mr-1 recipe-checkbox"
+                      data-recipe-id={recipe.id}
+                      data-item-id={`ingredient-${index}`}
+                      data-type="ingredient"
                     />
                     <b>{ingredient.amount}</b> {ingredient.unit} {ingredient.name}
                   </label>
@@ -88,16 +91,19 @@ const { recipe } = Astro.props;
         recipe.data.ingredientGroups &&
           recipe.data.ingredientGroups.length > 0 && (
             <>
-              {recipe.data.ingredientGroups.map((group) => (
+              {recipe.data.ingredientGroups.map((group, groupIndex) => (
                 <div>
                   <h4>{group.groupName}</h4>
                   <ul>
-                    {group.ingredients.map((ingredient) => (
+                    {group.ingredients.map((ingredient, ingredientIndex) => (
                       <li>
                         <label>
                           <input
                             type="checkbox"
-                            class="checkbox checkbox-primary mr-1"
+                            class="checkbox checkbox-primary mr-1 recipe-checkbox"
+                            data-recipe-id={recipe.id}
+                            data-item-id={`ingredient-group-${groupIndex}-${ingredientIndex}`}
+                            data-type="ingredient"
                           />
                           <b>{ingredient.amount}</b> {ingredient.unit}{" "}
                           {ingredient.name}
@@ -201,3 +207,44 @@ const { recipe } = Astro.props;
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  import { recipeStore, toggleIngredient, isIngredientChecked } from '../../recipeStore';
+
+  function initializeCheckboxes() {
+    const checkboxes = document.querySelectorAll('.recipe-checkbox');
+    
+    checkboxes.forEach((checkbox) => {
+      const input = checkbox as HTMLInputElement;
+      const recipeId = input.dataset.recipeId!;
+      const itemId = input.dataset.itemId!;
+      const type = input.dataset.type as 'ingredient' | 'step';
+      
+      // Remove any existing listeners to prevent duplicates
+      const newInput = input.cloneNode(true) as HTMLInputElement;
+      input.parentNode?.replaceChild(newInput, input);
+      
+      // Set initial state from store
+      if (type === 'ingredient') {
+        newInput.checked = isIngredientChecked(recipeId, itemId);
+      }
+      
+      // Add change listener
+      newInput.addEventListener('change', () => {
+        if (type === 'ingredient') {
+          toggleIngredient(recipeId, itemId);
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeCheckboxes);
+  } else {
+    initializeCheckboxes();
+  }
+  
+  // Re-initialize on view transitions (if using Astro view transitions)
+  document.addEventListener('astro:page-load', initializeCheckboxes);
+</script>
