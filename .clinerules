@@ -56,6 +56,7 @@
 ### Ingredient Naming
 - **Use Swedish grocery store terminology** that shoppers recognize at ICA, Coop, Willys, etc.
 - **Avoid overly technical or uncommon terms** - use what Swedish home cooks would find in stores
+- **Avoid details if not necessary** - in list, avoid specifying how it should be prepared, unless necessary
 
 ### Notes
 - For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`

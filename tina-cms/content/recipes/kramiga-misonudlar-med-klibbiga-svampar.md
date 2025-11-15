@@ -8,19 +8,19 @@ description: |
 ingredientGroups:
   - groupName: "Ägg (valfri marinad)"
     ingredients:
-      - name: Ägg, kokta till önskad konsistens, skalade
+      - name: Ägg
         amount: 2
         unit: st
       - name: Ljus soja
         amount: 50
-        unit: g
+        unit: ml
       - name: Mörk soja
         amount: 50
-        unit: g
+        unit: ml
       - name: Mirin
         amount: 150
-        unit: g
-      - name: Vitlöksklyfta, riven
+        unit: ml
+      - name: Vitlöksklyfta
         amount: 1
         unit: st
   - groupName: "Svamp"
@@ -28,8 +28,12 @@ ingredientGroups:
       - name: Ostronskivling
         amount: 300
         unit: g
-      - name: Soja, till stekning
-      - name: Honung eller lönnsirap/agave (veganskt)
+      - name: Soja
+        amount: 2
+        unit: msk
+      - name: Honung eller lönnsirap
+        amount: 1
+        unit: msk
   - groupName: "Buljong"
     ingredients:
       - name: Grönsaksbuljong
@@ -38,19 +42,19 @@ ingredientGroups:
       - name: Silkestofu
         amount: 300
         unit: g
-      - name: Salladslök, tunt skivad (vitt och grönt separat)
+      - name: Salladslök
         amount: 1
         unit: knippe
-      - name: Vitlöksklyftor, rivna
+      - name: Vitlöksklyftor
         amount: 3
         unit: st
-      - name: Ingefära, tumstor bit, riven
+      - name: Ingefära
+        amount: 30
+        unit: g
+      - name: Röd chili
         amount: 1
         unit: st
-      - name: Röd chili, fint hackad eller skivad
-        amount: 1
-        unit: st
-      - name: Misopasta (svart miso använd här)
+      - name: Misopasta
         amount: 1.5
         unit: msk
       - name: Soja
@@ -59,15 +63,26 @@ ingredientGroups:
       - name: Risvinäger
         amount: 2
         unit: tsk
-      - name: Socker, en nypa
+      - name: Socker
+        amount: 1
+        unit: nypa
   - groupName: "Till servering"
     ingredients:
-      - name: Nudlar, valfri sort
+      - name: Nudlar
         amount: 2
         unit: portioner
-      - name: Salladslök, gröna delar (topping)
+      - name: Salladslök (topping)
+        amount: 2
+        unit: msk
       - name: Togarashi
-      - name: Havssalt och svartpeppar
+        amount: 1
+        unit: tsk
+      - name: Havssalt
+        amount: 1
+        unit: nypa
+      - name: Svartpeppar
+        amount: 1
+        unit: nypa
 stepGroups:
   - groupName: "Förbered äggen"
     steps:

@@ -7,22 +7,32 @@ description: >
   Perfekt när du har gårdagens ris.
 ingredients:
   - name: Kokt ris (gärna kallt som värms upp)
+    amount: 4
+    unit: dl
   - name: Ägg
     amount: 2
     unit: st
-  - name: Morot, strimlad eller hyvlad
+  - name: Morot
     amount: 1
     unit: st
-  - name: Gurka, tunt skivad
+  - name: Gurka
     amount: 0.5
     unit: st
   - name: Spenat eller sallad
+    amount: 2
+    unit: nävar
   - name: Edamame eller majs (valfritt)
+    amount: 1
+    unit: dl
   - name: Kimchi-mayo
     amount: 3
     unit: msk
-  - name: Soja (en skvätt)
-  - name: Sesamfrön eller rostad lök (topping)
+  - name: Soja
+    amount: 1
+    unit: msk
+  - name: Sesamfrön eller rostad lök
+    amount: 1
+    unit: msk
 steps:
   - title: Förbered basen
     description: >

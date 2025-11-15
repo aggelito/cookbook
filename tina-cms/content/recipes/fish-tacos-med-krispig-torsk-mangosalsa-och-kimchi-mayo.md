@@ -14,7 +14,7 @@ ingredientGroups:
       - name: Vetemjöl
         amount: 0.5
         unit: dl
-      - name: Ägg, uppvispade
+      - name: Ägg
         amount: 2
         unit: st
       - name: Panko
@@ -29,36 +29,49 @@ ingredientGroups:
       - name: Paprikapulver
         amount: 0.5
         unit: tsk
-      - name: Smör + neutral olja till stekning
-      - name: Limeklyftor till servering
-  - groupName: Mangosalsa
-    ingredients:
-      - name: Mango, tärnad
+      - name: Smör
+        amount: 1
+        unit: msk
+      - name: Neutral olja till stekning
+        amount: 1
+        unit: dl
+      - name: Lime till servering
         amount: 1
         unit: st
-      - name: Rödlök, finhackad
+  - groupName: Mangosalsa
+    ingredients:
+      - name: Mango
+        amount: 1
+        unit: st
+      - name: Rödlök
         amount: 0.5
         unit: st
-      - name: Färsk koriander, grovhackad
-      - name: Lime, saften
+      - name: Färsk koriander
+        amount: 0.5
+        unit: dl
+      - name: Lime
         amount: 0.5
         unit: st
       - name: Salt
         amount: 1
         unit: nypa
-      - name: Färsk chili, finhackad (valfritt)
+      - name: Färsk chili (valfritt)
+        amount: 0.5
+        unit: st
   - groupName: Kimchi-mayo
     ingredients:
       - name: Majonnäs
         amount: 3
         unit: msk
-      - name: Kimchi, finhackad (eller kimchijuice)
+      - name: Kimchi
         amount: 1
         unit: msk
       - name: Sesamolja
         amount: 0.5
         unit: tsk
-      - name: Limejuice (några droppar)
+      - name: Lime
+        amount: 0.25
+        unit: st
       - name: Socker eller honung (valfritt)
         amount: 0.5
         unit: tsk
@@ -67,9 +80,21 @@ ingredientGroups:
         unit: nypa
   - groupName: Servering
     ingredients:
-      - name: Små tortillabröd (värmda)
-      - name: Strimlad sallad eller kål
-      - name: Extra koriander, chili och limeklyftor
+      - name: Små tortillabröd
+        amount: 8
+        unit: st
+      - name: Sallad eller kål
+        amount: 2
+        unit: dl
+      - name: Färsk koriander (topping)
+        amount: 0.25
+        unit: dl
+      - name: Färsk chili (topping, valfritt)
+        amount: 0.5
+        unit: st
+      - name: Lime (topping)
+        amount: 1
+        unit: st
 stepGroups:
   - groupName: Krispig torsk
     steps:

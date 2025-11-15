@@ -9,16 +9,16 @@ rating: 4
 ingredientGroups:
   - groupName: Grekiska biffar med feta
     ingredients:
-      - name: Nötfärs (eller lammfärs för mer grekisk smak)
+      - name: Nötfärs eller lammfärs
         amount: 500
         unit: g
-      - name: Fetaost, smulad
+      - name: Fetaost
         amount: 150
         unit: g
-      - name: Liten gul lök, riven eller finhackad
+      - name: Gul lök
         amount: 1
         unit: st
-      - name: Vitlöksklyftor, pressade
+      - name: Vitlöksklyftor
         amount: 2
         unit: st
       - name: Ägg
@@ -27,10 +27,10 @@ ingredientGroups:
       - name: Färsk oregano (eller 1 tsk torkad)
         amount: 1
         unit: msk
-      - name: Färsk persilja, hackad (valfritt)
+      - name: Färsk persilja (valfritt)
         amount: 1
         unit: msk
-      - name: Spiskummin, malen (valfritt)
+      - name: Spiskummin (valfritt)
         amount: 1
         unit: tsk
       - name: Salt
@@ -59,18 +59,18 @@ ingredientGroups:
       - name: Torkad oregano
         amount: 1
         unit: tsk
-      - name: Citron, saft
+      - name: Citron
         amount: 0.5
         unit: st
   - groupName: Tzatziki
     ingredients:
-      - name: Grekisk yoghurt (eller turkisk, 10 %)
+      - name: Grekisk yoghurt (10%)
         amount: 2
         unit: dl
       - name: Gurka
         amount: 0.5
         unit: st
-      - name: Vitlöksklyfta, pressad
+      - name: Vitlöksklyfta
         amount: 1
         unit: st
       - name: Olivolja
@@ -82,7 +82,9 @@ ingredientGroups:
       - name: Svartpeppar
         amount: 1
         unit: nypa
-      - name: Några droppar citron (valfritt)
+      - name: Citron (valfritt)
+        amount: 0.25
+        unit: st
 stepGroups:
   - groupName: Grekiska biffar med feta
     steps:
