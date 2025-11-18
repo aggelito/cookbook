@@ -112,11 +112,11 @@ const { recipe } = Astro.props;
                       data-item-id={`ingredient-${index}`}
                       data-type="ingredient"
                     />
+                    <span class="ingredient-name lowercase">{ingredient.name}</span>,
                     <b 
                       class="ingredient-amount"
                       data-original-amount={ingredient.amount}
-                    >{ingredient.amount}</b> {ingredient.unit}{" "}
-                    {ingredient.name}
+                    >{ingredient.amount}</b> <b class="ingredient-unit">{ingredient.unit}</b>
                   </label>
                 </li>
               ))}
@@ -143,11 +143,11 @@ const { recipe } = Astro.props;
                             data-item-id={`ingredient-group-${groupIndex}-${ingredientIndex}`}
                             data-type="ingredient"
                           />
+                          <span class="ingredient-name  lowercase">{ingredient.name}</span>,
                           <b 
                             class="ingredient-amount"
                             data-original-amount={ingredient.amount}
-                          >{ingredient.amount}</b> {ingredient.unit}{" "}
-                          {ingredient.name}
+                          >{ingredient.amount}</b> <b class="ingredient-unit">{ingredient.unit}</b>
                         </label>
                       </li>
                     ))}
@@ -530,17 +530,16 @@ const { recipe } = Astro.props;
         checkboxes.forEach((checkbox) => {
           const input = checkbox as HTMLInputElement;
           if (!input.checked) {
-            // Get the label text and parse it
+            // Get the label and extract from class names
             const label = input.parentElement;
             if (label) {
-              const text = label.textContent?.trim() || "";
-              // Extract ingredient name, amount, and unit
-              // Format: "amount unit name"
-              const parts = text.split(" ").filter((p) => p.length > 0);
-              if (parts.length >= 3) {
-                const amount = parts[0];
-                const unit = parts[1];
-                const name = parts.slice(2).join(" ");
+              const nameEl = label.querySelector('.ingredient-name');
+              const amountEl = label.querySelector('.ingredient-amount');
+              const unitEl = label.querySelector('.ingredient-unit');
+              if (nameEl && amountEl && unitEl) {
+                const name = nameEl.textContent?.trim() || "";
+                const amount = amountEl.textContent?.trim() || "";
+                const unit = unitEl.textContent?.trim() || "";
                 uncheckedIngredients.push(`${name} - ${amount} ${unit}`);
               }
             }
