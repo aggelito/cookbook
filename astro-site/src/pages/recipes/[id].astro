@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import t from "../../i18n";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { capitalizeFirstLetter } from "../../utils";
 
 export async function getStaticPaths() {
   const recipes = await getCollection("recipes");
@@ -112,7 +113,7 @@ const { recipe } = Astro.props;
                       data-item-id={`ingredient-${index}`}
                       data-type="ingredient"
                     />
-                    <span class="ingredient-name lowercase">{ingredient.name}</span>,
+                    <span class="ingredient-name">{capitalizeFirstLetter(ingredient.name)}</span>,
                     <b 
                       class="ingredient-amount"
                       data-original-amount={ingredient.amount}
@@ -143,7 +144,7 @@ const { recipe } = Astro.props;
                             data-item-id={`ingredient-group-${groupIndex}-${ingredientIndex}`}
                             data-type="ingredient"
                           />
-                          <span class="ingredient-name  lowercase">{ingredient.name}</span>,
+                          <span class="ingredient-name">{capitalizeFirstLetter(ingredient.name)}</span>,
                           <b 
                             class="ingredient-amount"
                             data-original-amount={ingredient.amount}
