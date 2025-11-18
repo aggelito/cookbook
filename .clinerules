@@ -41,6 +41,7 @@
 
 ### Schema Reference
 - Recipes follow the TinaCMS schema defined in `tina-cms/tina/collections/recipe.js`
+- Also verify with the recipes schema configure in `astro-site/src/content.config.ts`
 - Review that file for the complete field structure and available options
 - Each recipe is a Markdown file with YAML frontmatter
 - If possible and able to do it correctly, add hero image
@@ -56,7 +57,7 @@
 ### Ingredient Naming
 - **Use Swedish grocery store terminology** that shoppers recognize at ICA, Coop, Willys, etc.
 - **Avoid overly technical or uncommon terms** - use what Swedish home cooks would find in stores
-- **Avoid details if not necessary** - in list, avoid specifying how it should be prepared, unless necessary
+- **Avoid details if not necessary** - in ingredients lists, avoid specifying how it should be prepared, unless necessary
 
 ### Notes
 - For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`
