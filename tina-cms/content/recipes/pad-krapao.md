@@ -1,5 +1,5 @@
 ---
-title: "Pad Krapao – Svensk version"
+title: "Pad Krapao"
 basePortions: 3
 estimatedTime: 30
 rating: 4
