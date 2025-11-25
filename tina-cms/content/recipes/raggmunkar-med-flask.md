@@ -24,6 +24,12 @@ ingredients:
   - name: Sidfläsk eller bacon
     amount: 200
     unit: g
+  - name: Lingon (frysta eller färska)
+    amount: 2
+    unit: dl
+  - name: Strösocker
+    amount: 0.5
+    unit: dl
   - name: Lök (valfritt)
     amount: 1
     unit: st
@@ -41,16 +47,23 @@ steps:
   - title: Värm pannan
     description: |
       Hetta upp smör/olja i en stor stekpanna på medelhög värme.
+  - title: Förbered rårörda lingon
+    description: |
+      Blanda lingon och strösocker i en skål. Rör om då och då tills sockret lösts upp
+      och bären släppt lite saft. Låt stå medan du gör raggmunkarna.
   - title: Stek raggmunkar
     description: |
       Klicka i smet och platta till. Stek 3–4 min per sida tills gyllene och
       krispiga. Låt rinna av på papper. Upprepa.
   - title: Stek fläsket
     description: |
-      Stek sidfläsk/bacon tills krispigt, ca 5–7 min.
+      Stek sidfläsk/bacon i stekpanna tills krispigt, ca 5–7 min.
+      För mindre stekos kan du istället tillaga fläsket i ugnen:
+      Lägg skivorna på en plåt med bakplåtspapper och tillaga i 225°C (200°C varmluft)
+      i ca 10–15 minuter tills fläsket är gyllene och krispigt.
   - title: Servera
     description: |
-      Servera raggmunkar med krispigt fläsk. Traditionellt med lingonsylt.
+      Servera raggmunkar med krispigt fläsk och rårörda lingon.
 dietaryInfo:
   vegetarian: false
   vegan: false
