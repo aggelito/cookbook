@@ -1,16 +1,16 @@
 ---
-title: Autentisk jamaicansk jerkkyckling (Jerk Chicken)
+title: Autentisk jamaicansk jerkkyckling (Slow-Roast Edition)
 basePortions: 4
-estimatedTime: 120
+estimatedTime: 150
 rating: 5
 description: >-
-  Ett traditionellt recept på jamaicansk jerkkyckling med autentiska
-  ingredienser som Scotch Bonnet-peppar och kryddpeppar (pimento). Detta ger den
-  signifikanta rökiga, kryddiga och aromatiska smaken som finns i jamaicanska
-  jerk pits.
+  Denna version av Jerk Chicken fokuserar på maximal mörhet genom "low & slow"
+  tillagning. Genom att sänka temperaturen och förlänga tiden blir kycklingen
+  så mör att köttet faller av benen, samtidigt som den får den klassiska
+  karibiska svedda finishen.
 heroImage: ''
 ingredients:
-  - name: Kycklinglår och ben (gärna med skinn)
+  - name: Kycklinglår och ben (viktigt med ben för mörhet)
     amount: 1.5
     unit: kg
   - name: Scotch Bonnet-peppar (eller Habanero)
@@ -59,37 +59,36 @@ ingredients:
     amount: 1
     unit: tsk
 steps:
-  - title: Mise en Place & Förberedelser
+  - title: Mise en Place & Kryddrostning
     description: >-
-      Torka av kycklingen med hushållspapper. Rosta gärna kryddpeppar, kanel och
-      muskot snabbt i en torr panna för att frigöra aromerna. Dela Scotch
-      Bonnet-pepparn och ta bort kärnorna om du vill reglera hettan (använd
-      handskar!).
-  - title: Mixa jerk-marinaden
+      Torka av kycklingen noga. För att maxa smaken, rosta de torra kryddorna
+      snabbt i en panna tills de doftar. Finhacka chilin (behåll kärnorna om du
+      vill ha äkta jamaicansk hetta, men var försiktig!).
+  - title: Mixa jerk-pastan
     description: >-
-      Lägg Scotch Bonnet, lök, salladslök, ingefära, vitlök och alla torra
-      kryddor i en mixer. Tillsätt soja, limejuice och olja. Mixa till en grov,
-      doftrik pasta.
-  - title: Marinera för djup smak
+      Kör Scotch Bonnet, lök, salladslök, ingefära, vitlök, kryddor, soja, lime
+      och olja i en mixer till en grov pasta. Doften ska vara intensiv och kryddig.
+  - title: Långtidsmarinering
     description: >-
-      Gör några små snitt i kycklingen så att marinaden tränger in. Gnid in
-      kycklingen ordentligt med pastan i en skål eller plastpåse. Låt vila i
-      kylen i minst 4 timmar, men helst över natten för maximal effekt.
-  - title: Tillagning - Grill ( Chef's choice)
+      Gör djupa snitt i kycklingen och massera in marinaden ordentligt, även
+      under skinnet. Låt dra i kylen i minst 6 timmar, helst upp till 24 timmar
+      för att syran i limen ska hinna möra köttet.
+  - title: Low & Slow tillagning
     description: >-
-      Förbered grillen för indirekt grillning (ca 175°C). Grilla kycklingen med
-      skinnsidan uppåt under lock i 35–45 minuter. Flytta kycklingen till direkt
-      värme de sista minuterna för att få ett krispigt, lätt sotat skinn. Måltemp: 74°C.
-  - title: Tillagning - Ugn (Alternativ)
+      Sätt ugnen eller grillen på 150°C (indirekt värme). Placera kycklingen på
+      ett galler. Tillaga långsamt under lock/folie i ca 75–90 minuter. Detta
+      bryter ner bindväven så att köttet blir extremt mört.
+  - title: Krispig finish & Glaze
     description: >-
-      Sätt ugnen på 200°C. Placera kycklingen på ett galler över en ugnsform (för
-      bättre luftcirkulation). Tillaga i 40–50 minuter. Avsluta med grill-läge i
-      5 minuter för färg.
+      Höj värmen till 225°C eller flytta till direkt grillvärme. Pensla
+      kycklingen med överbliven marinad (som du kokat upp först!) och griljara i
+      5–10 minuter tills skinnet är bubbligt, krispigt och har de klassiska
+      mörka "jerk-fläckarna".
   - title: Vila & Servera
     description: >-
-      Låt kycklingen vila i 10 minuter så att köttsafterna sätter sig. Koka upp
-      eventuell kvarvarande marinad i en kastrull i 5 minuter (viktigt!) och
-      använd som extra sås vid servering. Servera med rice and peas.
+      Låt kycklingen vila 10 minuter under lös folie. Krossa gärna kycklingen
+      lätt med baksidan av en kniv innan servering så att den delar sig naturligt.
+      Servera med rice and peas och en kall Red Stripe.
 dietaryInfo:
   vegetarian: false
   vegan: false
