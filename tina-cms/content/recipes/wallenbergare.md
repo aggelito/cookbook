@@ -1,7 +1,4 @@
 ---
-pubDate: "2026-04-20T17:59:06+02:00"
-updated: "2026-04-20T18:07:56+02:00"
-
 title: Klassiska Wallenbergare
 basePortions: 4
 estimatedTime: 45
