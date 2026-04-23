@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const recipes = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: '../tina-cms/content/recipes' }),
+  loader: glob({ pattern: '**/*.md', base: './recipes' }),
   schema: z.object({
     title: z.string().optional(),
     pubDate: z.coerce.date().optional(),

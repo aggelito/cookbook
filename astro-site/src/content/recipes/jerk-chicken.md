@@ -1,40 +1,42 @@
 ---
+pubDate: "2026-04-19T18:08:45Z"
+updated: "2026-04-19T18:18:16Z"
+
 title: Autentisk jamaicansk jerkkyckling (Slow-Roast Edition)
 basePortions: 4
 estimatedTime: 150
 rating: 5
-description: >-
+description: >
   Denna version av Jerk Chicken fokuserar på maximal mörhet genom "low & slow"
   tillagning. Genom att sänka temperaturen och förlänga tiden blir kycklingen
   så mör att köttet faller av benen, samtidigt som den får den klassiska
   karibiska svedda finishen.
-heroImage: ''
 ingredients:
   - name: Kycklinglår och ben (viktigt med ben för mörhet)
     amount: 1.5
     unit: kg
-  - name: Scotch Bonnet-peppar (eller Habanero)
+  - name: Scotch Bonnet-peppar (urkärnade för mindre hetta)
     amount: 3
     unit: st
   - name: Salladslök
     amount: 6
     unit: st
-  - name: Gul lök (grovt hackad)
+  - name: Gul lök (hackad)
     amount: 1
     unit: st
-  - name: Färsk ingefära (riven)
+  - name: Färsk ingefära (skalad och hackad)
     amount: 3
     unit: cm
-  - name: Vitlöksklyftor (krossade)
+  - name: Vitlöksklyftor
     amount: 4
     unit: st
-  - name: Mald kryddpeppar (Pimento)
+  - name: Mald kryddpeppar
     amount: 2
     unit: msk
-  - name: Färsk timjan (plockad)
+  - name: Färsk timjan (eller 1 msk torkad)
     amount: 2
     unit: msk
-  - name: Brunt socker (muscovadosocker)
+  - name: Brunt socker (muscovadosocker eller farinsocker)
     amount: 2
     unit: msk
   - name: Japansk soja
@@ -46,16 +48,10 @@ ingredients:
   - name: Rapsolja
     amount: 2
     unit: msk
-  - name: Mald kanel
-    amount: 0.5
-    unit: tsk
-  - name: Mald muskot
-    amount: 0.5
-    unit: tsk
   - name: Salt
     amount: 1
     unit: tsk
-  - name: Svartpeppar (grovmalen)
+  - name: Svartpeppar
     amount: 1
     unit: tsk
 steps:
