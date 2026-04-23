@@ -59,9 +59,6 @@
 - **Avoid details if not necessary** - in ingredients lists, avoid specifying how it should be prepared, unless necessary
 
 ### Notes
-- For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`
-- See existing recipes in `content/recipes/` for more examples
-<<<<<<< HEAD
-- **Before pushing**: Run `npm install && npx astro build` to verify Astro builds successfully (requires Node.js >= 20.3.0)
-=======
->>>>>>> 95147a4 (Remove TinaCMS and migrate recipes to content/recipes/)
+|- For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`
+|- See existing recipes in `content/recipes/` for more examples
+|- **Before pushing**: Run `npm install && npx astro build` to verify Astro builds successfully (requires Node.js >= 20.3.0)
