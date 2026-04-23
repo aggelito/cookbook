@@ -2,14 +2,17 @@
 pubDate: "2026-04-19T18:08:45Z"
 updated: "2026-04-19T18:18:16Z"
 
-title: Autentisk jamaicansk jerkkyckling (Jerk Chicken)
+title: Autentisk jamaicansk jerkkyckling (Slow-Roast Edition)
 basePortions: 4
-estimatedTime: 120
+estimatedTime: 150
 rating: 5
 description: >
-  Ett traditionellt recept på jamaicansk jerkkyckling med autentiska ingredienser som Scotch Bonnet-peppar och kryddpeppar (pimento). Detta ger den signifikanta rökiga, kryddiga och aromatiska smaken som finns i jamaicanska jerk pits.
+  Denna version av Jerk Chicken fokuserar på maximal mörhet genom "low & slow"
+  tillagning. Genom att sänka temperaturen och förlänga tiden blir kycklingen
+  så mör att köttet faller av benen, samtidigt som den får den klassiska
+  karibiska svedda finishen.
 ingredients:
-  - name: Kycklinglår och ben
+  - name: Kycklinglår och ben (viktigt med ben för mörhet)
     amount: 1.5
     unit: kg
   - name: Scotch Bonnet-peppar (urkärnade för mindre hetta)
@@ -52,16 +55,36 @@ ingredients:
     amount: 1
     unit: tsk
 steps:
-  - title: Förbered marinaden
-    description: Lägg Scotch Bonnet, salladslök, gul lök, ingefära, vitlök, kryddpeppar, timjan, socker, soja, limejuice, olja, salt och peppar i en matberedare eller mixer. Mixa till en grov pasta.
-  - title: Marinera kycklingen
-    description: Lägg kycklingbitarna i en stor skål eller plastpåse. Häll över marinaden och se till att alla bitar är täckta. Låt marinera i kylen i minst 4 timmar, helst över natten.
-  - title: Tillagning - Grill (rekommenderas)
-    description: Förbered grillen för indirekt grillning på medelhög värme (ca 175-200°C). Grilla kycklingen i 35-45 minuter, vänd då och då, tills huden är krispig och kycklingen har en innertemperatur på 74°C. Pensla gärna med överbliven marinad under de första 20 minuterna.
-  - title: Tillagning - Ugn (alternativ)
-    description: Sätt ugnen på 200°C. Lägg kycklingbitarna i en ugnsform. Tillaga i mitten av ugnen i 40-50 minuter tills kycklingen är genomstekt och har fått fin färg. Öka gärna värmen till grill-läge de sista 5 minuterna för extra krispigt skinn.
-  - title: Vila och servera
-    description: Ta ut kycklingen och låt den vila i 5-10 minuter. Servera med rice and peas och stekta kokbananer (plantains).
+  - title: Mise en Place & Kryddrostning
+    description: >-
+      Torka av kycklingen noga. För att maxa smaken, rosta de torra kryddorna
+      snabbt i en panna tills de doftar. Finhacka chilin (behåll kärnorna om du
+      vill ha äkta jamaicansk hetta, men var försiktig!).
+  - title: Mixa jerk-pastan
+    description: >-
+      Kör Scotch Bonnet, lök, salladslök, ingefära, vitlök, kryddor, soja, lime
+      och olja i en mixer till en grov pasta. Doften ska vara intensiv och kryddig.
+  - title: Långtidsmarinering
+    description: >-
+      Gör djupa snitt i kycklingen och massera in marinaden ordentligt, även
+      under skinnet. Låt dra i kylen i minst 6 timmar, helst upp till 24 timmar
+      för att syran i limen ska hinna möra köttet.
+  - title: Low & Slow tillagning
+    description: >-
+      Sätt ugnen eller grillen på 150°C (indirekt värme). Placera kycklingen på
+      ett galler. Tillaga långsamt under lock/folie i ca 75–90 minuter. Detta
+      bryter ner bindväven så att köttet blir extremt mört.
+  - title: Krispig finish & Glaze
+    description: >-
+      Höj värmen till 225°C eller flytta till direkt grillvärme. Pensla
+      kycklingen med överbliven marinad (som du kokat upp först!) och griljara i
+      5–10 minuter tills skinnet är bubbligt, krispigt och har de klassiska
+      mörka "jerk-fläckarna".
+  - title: Vila & Servera
+    description: >-
+      Låt kycklingen vila 10 minuter under lös folie. Krossa gärna kycklingen
+      lätt med baksidan av en kniv innan servering så att den delar sig naturligt.
+      Servera med rice and peas och en kall Red Stripe.
 dietaryInfo:
   vegetarian: false
   vegan: false
