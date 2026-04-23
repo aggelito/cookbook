@@ -8,7 +8,6 @@ estimatedTime: 30
 rating: 4
 description: >
   Tunna pannkakor. Serveras med sylt, bär eller florsocker.
-heroImage: /uploads/Swedish-Pancackes-1-2-Square.jpg
 ingredients:
   - name: Vetemjöl
     amount: 2.4

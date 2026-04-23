@@ -61,3 +61,4 @@
 ### Notes
 - For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`
 - See existing recipes in `content/recipes/` for more examples
+- **Before pushing**: Run `npm install && npx astro build` to verify Astro builds successfully (requires Node.js >= 20.3.0)
