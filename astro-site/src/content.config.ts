@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import glob from '@astrojs/glob';
+import { glob } from 'astro/loaders';
 
 const recipes = defineCollection({
   loader: glob({ pattern: '**/*.md', base: '../content/recipes' }),
