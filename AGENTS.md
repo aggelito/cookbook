@@ -59,6 +59,17 @@
 - **Avoid details if not necessary** - in ingredients lists, avoid specifying how it should be prepared, unless necessary
 
 ### Notes
-|- For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`
-|- See existing recipes in `content/recipes/` for more examples
-|- **Before pushing**: Run `npm install && npx astro build` to verify Astro builds successfully (requires Node.js >= 20.3.0)
+- For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`
+- See existing recipes in `tina-cms/content/recipes/` for more examples
+- Refer to `tina-cms/tina/collections/recipe.js` for all available fields and options
+
+### UI Components - DaisyUI
+- **ALWAYS use DaisyUI components** where possible (buttons, cards, navbars, etc.)
+- Example pattern: `<button class="btn btn-primary bg-emerald-600 hover:bg-emerald-700">`
+- Import DaisyUI styles: `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@4.12.2/dist/full.min.css" />`
+- Use Tailwind + DaisyUI together for consistent, accessible UI
+
+### Quality Control - UI Patterns
+- Prefer DaisyUI components over raw HTML classes
+- Use consistent color schemes (emerald for primary actions)
+- Ensure responsive design with proper spacing and padding

@@ -1,0 +1,17 @@
+### Problem
+
+1. RSS länken gick till `/feed.xml` istället för `/rss.xml`
+2. Ingen DaisyUI-komponent användes på RSS-knappen
+3. Ikonet var inte en riktig RSS-ikon
+
+### Lösning
+
+✅ Ändrad länk från `/feed.xml` till `/rss.xml`
+✅ Lägg till DaisyUI-bakgrund med korrekt ikon (SVG enligt spec)
+✅ Förbättrad layout med navbar och responsive design
+
+### Övriga förbättringar
+
+- Lade till navbar med logo
+- Responsive RSS-knappar (text synlig på större skärmar)
+- Hover-effekter för bättre UX
