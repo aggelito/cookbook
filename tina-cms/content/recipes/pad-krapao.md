@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-19T08:14:09+01:00"
+updated: "2025-11-19T08:15:00+01:00"
+
 title: "Pad Krapao"
 basePortions: 3
 estimatedTime: 30

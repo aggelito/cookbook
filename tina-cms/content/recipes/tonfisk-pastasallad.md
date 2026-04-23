@@ -1,5 +1,7 @@
-
 ---
+pubDate: "2026-02-22T11:35:56+01:00"
+updated: "2026-02-22T11:35:56+01:00"
+
 title: Tonfisk Pastasallad
 description: En enkel och god tonfisk pastasallad, perfekt för lunch eller middag.
 basePortions: 3

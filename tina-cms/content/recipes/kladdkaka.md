@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-07T22:19:58+01:00"
+updated: "2025-11-12T19:33:50+01:00"
+
 title: Klassisk kladdkaka
 basePortions: 8
 estimatedTime: 40

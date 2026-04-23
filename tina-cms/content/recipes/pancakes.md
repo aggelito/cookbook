@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-07T21:13:57+01:00"
+updated: "2025-11-10T22:41:59+01:00"
+
 title: Svenska pannkakor
 basePortions: 4
 estimatedTime: 30

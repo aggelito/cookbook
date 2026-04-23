@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-07T14:13:31+01:00"
+updated: "2025-11-15T21:14:41+01:00"
+
 title: Grekisk kväll
 basePortions: 4
 estimatedTime: 60

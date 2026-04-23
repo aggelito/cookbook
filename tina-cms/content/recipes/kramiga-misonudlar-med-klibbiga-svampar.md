@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-10T16:41:14+01:00"
+updated: "2025-11-15T21:14:41+01:00"
+
 title: "Krämiga misonudlar med klibbiga svampar"
 basePortions: 2
 estimatedTime: 30

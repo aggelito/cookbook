@@ -1,4 +1,7 @@
 ---
+pubDate: "2026-04-20T09:32:11+02:00"
+updated: "2026-04-20T09:38:38+02:00"
+
 title: Boeuf Bourguignon
 basePortions: 6
 estimatedTime: 180

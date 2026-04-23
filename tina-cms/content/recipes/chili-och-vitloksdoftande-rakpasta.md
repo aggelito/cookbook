@@ -1,4 +1,7 @@
 ---
+pubDate: "2026-04-20T12:15:41+02:00"
+updated: "2026-04-20T12:15:41+02:00"
+
 title: Chili- och vitlöksdoftande räkpasta
 basePortions: 4
 estimatedTime: 20

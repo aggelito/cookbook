@@ -1,4 +1,7 @@
 ---
+pubDate: "2026-04-19T17:51:47Z"
+updated: "2026-04-19T17:51:47Z"
+
 title: Kycklingsoppa
 basePortions: 4
 estimatedTime: 30

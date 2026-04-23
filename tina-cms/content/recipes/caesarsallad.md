@@ -1,4 +1,7 @@
 ---
+pubDate: "2026-04-22T17:12:09+02:00"
+updated: "2026-04-22T18:05:30+02:00"
+
 title: Caesarsallad
 basePortions: 4
 estimatedTime: 35
