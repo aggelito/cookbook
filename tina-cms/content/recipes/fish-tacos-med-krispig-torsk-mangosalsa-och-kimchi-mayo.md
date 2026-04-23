@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-09T21:35:00+01:00"
+updated: "2025-11-15T21:14:41+01:00"
+
 title: Fish tacos med krispig torsk, mangosalsa & kimchi-mayo
 basePortions: 4
 estimatedTime: 40

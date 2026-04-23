@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-23T13:04:06+01:00"
+updated: "2025-11-23T13:04:06+01:00"
+
 title: Klassisk pasta bolognese
 basePortions: 4
 estimatedTime: 120

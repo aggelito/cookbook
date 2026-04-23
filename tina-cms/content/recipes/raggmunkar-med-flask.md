@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-07T17:56:24+01:00"
+updated: "2025-11-25T12:19:48+01:00"
+
 title: Raggmunkar med fläsk
 basePortions: 4
 estimatedTime: 45

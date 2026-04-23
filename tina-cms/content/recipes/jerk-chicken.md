@@ -1,4 +1,7 @@
 ---
+pubDate: "2026-04-19T18:08:45Z"
+updated: "2026-04-19T18:18:16Z"
+
 title: Autentisk jamaicansk jerkkyckling (Jerk Chicken)
 basePortions: 4
 estimatedTime: 120

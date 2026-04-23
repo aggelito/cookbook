@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-09T21:35:00+01:00"
+updated: "2025-11-15T21:14:41+01:00"
+
 title: Kimchi-mayo bowl med ris, ägg & grönsaker
 basePortions: 2
 estimatedTime: 15

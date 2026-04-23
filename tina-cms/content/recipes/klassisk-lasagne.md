@@ -1,4 +1,7 @@
 ---
+pubDate: "2026-04-22T17:00:19+02:00"
+updated: "2026-04-22T17:00:19+02:00"
+
 title: Klassisk lasagne
 basePortions: 6
 estimatedTime: 90

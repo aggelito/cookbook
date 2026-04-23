@@ -1,4 +1,7 @@
 ---
+pubDate: "2025-11-16T17:59:20+01:00"
+updated: "2025-11-16T17:59:20+01:00"
+
 title: Krämig pasta med ostronskivling
 basePortions: 4
 estimatedTime: 25

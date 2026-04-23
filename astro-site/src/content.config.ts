@@ -5,6 +5,8 @@ const recipes = defineCollection({
   loader: glob({ pattern: '**/*.md', base: '../tina-cms/content/recipes' }),
   schema: z.object({
     title: z.string().optional(),
+    pubDate: z.coerce.date().optional(),
+    updated: z.coerce.date().optional(),
     basePortions: z.number().optional(),
     estimatedTime: z.number().optional(),
     rating: z.number().min(0).max(5).optional(),
