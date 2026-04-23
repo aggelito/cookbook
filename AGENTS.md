@@ -15,11 +15,11 @@
 
 ## Reasoning
 - Think carefully but keep visible output short (a few sentences or bullet points).  
-- Don’t show internal reasoning unless the user asks for step-by-step detail.  
+- Don't show internal reasoning unless the user asks for step-by-step detail.  
 
 ## Searching
 - Use narrow, specific searches.  
-- Avoid broad “search the whole repo” unless necessary.  
+- Avoid broad "search the whole repo" unless necessary.  
 
 ## Output
 - Focus on the final code or result.  
@@ -35,13 +35,12 @@
 ## Recipe Creation Guidelines
 
 ### File Location
-- **ALL recipes MUST be created in**: `tina-cms/content/recipes/`
+- **ALL recipes MUST be created in**: `content/recipes/`
 - **File format**: Markdown (`.md`)
 - **Filename**: Use lowercase with hyphens (e.g., `pannkakor.md`, `kottbullar-med-graddsas.md`)
 
 ### Schema Reference
-- Recipes follow the TinaCMS schema defined in `tina-cms/tina/collections/recipe.js`
-- Also verify with the recipes schema configure in `astro-site/src/content.config.ts`
+- Recipes follow the schema defined in `astro-site/src/content.config.ts`
 - Review that file for the complete field structure and available options
 - Each recipe is a Markdown file with YAML frontmatter
 - If possible and able to do it correctly, add hero image
@@ -61,5 +60,5 @@
 
 ### Notes
 - For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`
-- See existing recipes in `tina-cms/content/recipes/` for more examples
-- Refer to `tina-cms/tina/collections/recipe.js` for all available fields and options
+- See existing recipes in `content/recipes/` for more examples
+- **Before pushing**: Run `npm install && npx astro build` to verify Astro builds successfully (requires Node.js >= 20.3.0)
