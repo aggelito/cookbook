@@ -9,11 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
     "@nanostores/persistent": "^1.2.0",
     "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.16.4",
+    "astro": "^6.2.1",
     "daisyui": "^5.4.7",
     "nanostores": "^1.0.1",
     "tailwindcss": "^4.1.17"
