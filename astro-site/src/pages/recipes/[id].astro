@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 import t from "../../i18n";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { capitalizeFirstLetter } from "../../utils";
@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const { recipe } = Astro.props;
 ---
 
-<BaseLayout title={recipe.data.title || t("recipe.untitled")}>
+<BaseLayout title={recipe.data.title}>
   <div
     class="prose
     prose-lg
@@ -81,7 +81,7 @@ const { recipe } = Astro.props;
       </div>
       <div>
         <strong>{t("recipe.estimatedTime")}</strong>
-        {recipe.data.estimatedTime || t("common.na")} minutes
+        {recipe.data.estimatedTime} minutes
       </div>
 
       {
@@ -193,6 +193,7 @@ const { recipe } = Astro.props;
           id="copy-shopping-list-btn"
           class="btn btn-outline"
           data-recipe-id={recipe.id}
+          data-copied-label={t("recipe.copied")}
         >
           {t("recipe.copyShoppingList")}
         </button>
@@ -206,14 +207,14 @@ const { recipe } = Astro.props;
             {recipe.data.steps.map((step, index) => (
               <div
                 class="recipe-step cursor-pointer transition-all duration-300 ease-in-out"
-                  data-recipe-id={recipe.id}
-                  data-step-id={`step-${index}`}
-                  data-type="step"
-                  role="button"
-                  tabindex="0"
-                  aria-pressed="false"
-                  style="margin-bottom: 1rem;"
-                >
+                data-recipe-id={recipe.id}
+                data-step-id={`step-${index}`}
+                data-type="step"
+                role="button"
+                tabindex="0"
+                aria-pressed="false"
+                style="margin-bottom: 1rem;"
+              >
                 <h4>
                   {index + 1}. {step.title}
                 </h4>
@@ -317,7 +318,6 @@ const { recipe } = Astro.props;
 
 <script>
   import {
-    recipeStore,
     toggleIngredient,
     isIngredientChecked,
     clearIngredients,
@@ -331,15 +331,25 @@ const { recipe } = Astro.props;
     scaleAmount,
   } from "../../recipeStore";
 
+  function getElement<T extends HTMLElement>(selector: string) {
+    return document.querySelector<T>(selector);
+  }
+
+  function replaceWithClone<T extends HTMLElement>(element: T) {
+    const clone = element.cloneNode(true) as T;
+    element.parentNode?.replaceChild(clone, element);
+    return clone;
+  }
+
   function updateResetButtonState(recipeId: string) {
-    const resetBtn = document.getElementById("reset-ingredients-btn") as HTMLButtonElement;
+    const resetBtn = getElement<HTMLButtonElement>("#reset-ingredients-btn");
     if (resetBtn) {
       resetBtn.disabled = !hasCheckedIngredients(recipeId);
     }
   }
 
   function updateResetStepsButtonState(recipeId: string) {
-    const resetStepsBtn = document.getElementById("reset-steps-btn") as HTMLButtonElement;
+    const resetStepsBtn = getElement<HTMLButtonElement>("#reset-steps-btn");
     if (resetStepsBtn) {
       resetStepsBtn.disabled = !hasCheckedSteps(recipeId);
     }
@@ -357,7 +367,7 @@ const { recipe } = Astro.props;
   }
 
   function updateBasePortionsLabel(basePortions: number, currentPortions: number) {
-    const label = document.getElementById("base-portions-label");
+    const label = getElement<HTMLButtonElement>("#base-portions-label");
     if (label) {
       if (currentPortions !== basePortions) {
         label.classList.remove("hidden");
@@ -367,11 +377,16 @@ const { recipe } = Astro.props;
     }
   }
 
+  function setStepCompleted(step: HTMLElement, completed: boolean) {
+    step.classList.toggle("line-through", completed);
+    step.setAttribute("aria-pressed", completed ? "true" : "false");
+  }
+
   function initializePortions() {
-    const portionsInput = document.getElementById("portions-input") as HTMLInputElement;
-    const decreaseBtn = document.getElementById("decrease-portions-btn");
-    const increaseBtn = document.getElementById("increase-portions-btn");
-    const basePortionsLabel = document.getElementById("base-portions-label");
+    const portionsInput = getElement<HTMLInputElement>("#portions-input");
+    const decreaseBtn = getElement<HTMLButtonElement>("#decrease-portions-btn");
+    const increaseBtn = getElement<HTMLButtonElement>("#increase-portions-btn");
+    const basePortionsLabel = getElement<HTMLButtonElement>("#base-portions-label");
     
     if (!portionsInput || !decreaseBtn || !increaseBtn) return;
     
@@ -391,17 +406,10 @@ const { recipe } = Astro.props;
     updateBasePortionsLabel(basePortions, savedPortions);
     
     // Clone elements to remove existing listeners
-    const newInput = portionsInput.cloneNode(true) as HTMLInputElement;
-    const newDecreaseBtn = decreaseBtn.cloneNode(true) as HTMLButtonElement;
-    const newIncreaseBtn = increaseBtn.cloneNode(true) as HTMLButtonElement;
-    const newBasePortionsLabel = basePortionsLabel ? basePortionsLabel.cloneNode(true) as HTMLButtonElement : null;
-    
-    portionsInput.parentNode?.replaceChild(newInput, portionsInput);
-    decreaseBtn.parentNode?.replaceChild(newDecreaseBtn, decreaseBtn);
-    increaseBtn.parentNode?.replaceChild(newIncreaseBtn, increaseBtn);
-    if (basePortionsLabel && newBasePortionsLabel) {
-      basePortionsLabel.parentNode?.replaceChild(newBasePortionsLabel, basePortionsLabel);
-    }
+    const newInput = replaceWithClone(portionsInput);
+    const newDecreaseBtn = replaceWithClone(decreaseBtn);
+    const newIncreaseBtn = replaceWithClone(increaseBtn);
+    const newBasePortionsLabel = basePortionsLabel ? replaceWithClone(basePortionsLabel) : null;
     
     // Function to update portions
     const updatePortions = (newPortions: number) => {
@@ -453,8 +461,7 @@ const { recipe } = Astro.props;
       const type = input.dataset.type as "ingredient" | "step";
 
       // Remove any existing listeners to prevent duplicates
-      const newInput = input.cloneNode(true) as HTMLInputElement;
-      input.parentNode?.replaceChild(newInput, input);
+      const newInput = replaceWithClone(input);
 
       // Set initial state from store
       if (type === "ingredient") {
@@ -473,14 +480,13 @@ const { recipe } = Astro.props;
   }
 
   function initializeResetButton() {
-    const resetBtn = document.getElementById("reset-ingredients-btn");
+    const resetBtn = getElement<HTMLButtonElement>("#reset-ingredients-btn");
     if (resetBtn) {
       const recipeId = resetBtn.dataset.recipeId!;
       const confirmMessage = resetBtn.dataset.confirmMessage!;
 
       // Clone button to remove any existing listeners
-      const newResetBtn = resetBtn.cloneNode(true) as HTMLButtonElement;
-      resetBtn.parentNode?.replaceChild(newResetBtn, resetBtn);
+      const newResetBtn = replaceWithClone(resetBtn);
       
       // Set initial disabled state
       newResetBtn.disabled = !hasCheckedIngredients(recipeId);
@@ -515,26 +521,14 @@ const { recipe } = Astro.props;
       const stepId = stepDiv.dataset.stepId!;
 
       // Clone to remove existing listeners
-      const newStepDiv = stepDiv.cloneNode(true) as HTMLDivElement;
-      stepDiv.parentNode?.replaceChild(newStepDiv, stepDiv);
+      const newStepDiv = replaceWithClone(stepDiv);
 
       // Set initial state from store
-      if (isStepChecked(recipeId, stepId)) {
-        newStepDiv.classList.add("line-through");
-        newStepDiv.setAttribute("aria-pressed", "true");
-      }
+      setStepCompleted(newStepDiv, isStepChecked(recipeId, stepId));
 
       const toggleStepState = () => {
         toggleStep(recipeId, stepId);
-
-        // Toggle line-through class
-        if (newStepDiv.classList.contains("line-through")) {
-          newStepDiv.classList.remove("line-through");
-          newStepDiv.setAttribute("aria-pressed", "false");
-        } else {
-          newStepDiv.classList.add("line-through");
-          newStepDiv.setAttribute("aria-pressed", "true");
-        }
+        setStepCompleted(newStepDiv, !newStepDiv.classList.contains("line-through"));
         
         // Update reset steps button state
         updateResetStepsButtonState(recipeId);
@@ -552,13 +546,13 @@ const { recipe } = Astro.props;
   }
 
   function initializeCopyButton() {
-    const copyBtn = document.getElementById("copy-shopping-list-btn");
+    const copyBtn = getElement<HTMLButtonElement>("#copy-shopping-list-btn");
     if (copyBtn) {
-      const recipeId = copyBtn.dataset.recipeId!;
+      const copiedLabel = copyBtn.dataset.copiedLabel || "Kopierad!";
+      const originalLabel = copyBtn.textContent;
 
       // Clone button to remove any existing listeners
-      const newCopyBtn = copyBtn.cloneNode(true) as HTMLButtonElement;
-      copyBtn.parentNode?.replaceChild(newCopyBtn, copyBtn);
+      const newCopyBtn = replaceWithClone(copyBtn);
 
       newCopyBtn.addEventListener("click", async () => {
         // Collect unchecked ingredients
@@ -594,13 +588,15 @@ const { recipe } = Astro.props;
             await navigator.clipboard.writeText(shoppingList);
 
             // Show feedback
-            const originalText = newCopyBtn.textContent;
-            newCopyBtn.textContent = "Kopierad!";
+            newCopyBtn.textContent = copiedLabel;
             setTimeout(() => {
-              newCopyBtn.textContent = originalText;
+              newCopyBtn.textContent = originalLabel;
             }, 2000);
           } catch (err) {
-            console.error("Failed to copy:", err);
+            newCopyBtn.textContent = "Kunde inte kopiera";
+            setTimeout(() => {
+              newCopyBtn.textContent = originalLabel;
+            }, 2000);
           }
         }
       });
@@ -608,16 +604,13 @@ const { recipe } = Astro.props;
   }
 
   function initializeResetStepsButton() {
-    const resetStepsBtn = document.getElementById("reset-steps-btn");
+    const resetStepsBtn = getElement<HTMLButtonElement>("#reset-steps-btn");
     if (resetStepsBtn) {
       const recipeId = resetStepsBtn.dataset.recipeId!;
       const confirmMessage = resetStepsBtn.dataset.confirmMessage!;
 
       // Clone button to remove any existing listeners
-      const newResetStepsBtn = resetStepsBtn.cloneNode(
-        true
-      ) as HTMLButtonElement;
-      resetStepsBtn.parentNode?.replaceChild(newResetStepsBtn, resetStepsBtn);
+      const newResetStepsBtn = replaceWithClone(resetStepsBtn);
       
       // Set initial disabled state
       newResetStepsBtn.disabled = !hasCheckedSteps(recipeId);
@@ -631,7 +624,7 @@ const { recipe } = Astro.props;
           // Remove line-through from all steps in the UI
           const steps = document.querySelectorAll(".recipe-step");
           steps.forEach((step) => {
-            step.classList.remove("line-through");
+            setStepCompleted(step as HTMLElement, false);
           });
           
           // Update button state after clearing
@@ -641,17 +634,7 @@ const { recipe } = Astro.props;
     }
   }
 
-  // Initialize on page load
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      initializePortions();
-      initializeCheckboxes();
-      initializeSteps();
-      initializeResetButton();
-      initializeResetStepsButton();
-      initializeCopyButton();
-    });
-  } else {
+  function initializeRecipePage() {
     initializePortions();
     initializeCheckboxes();
     initializeSteps();
@@ -659,14 +642,14 @@ const { recipe } = Astro.props;
     initializeResetStepsButton();
     initializeCopyButton();
   }
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeRecipePage);
+  } else {
+    initializeRecipePage();
+  }
   
   // Re-initialize on view transitions (if using Astro view transitions)
-  document.addEventListener("astro:page-load", () => {
-    initializePortions();
-    initializeCheckboxes();
-    initializeSteps();
-    initializeResetButton();
-    initializeResetStepsButton();
-    initializeCopyButton();
-  });
+  document.addEventListener("astro:page-load", initializeRecipePage);
 </script>

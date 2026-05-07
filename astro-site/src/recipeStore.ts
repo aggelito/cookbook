@@ -7,125 +7,114 @@ export interface RecipeState {
 }
 
 export type RecipeStoreData = Record<string, RecipeState>;
+type ChecklistKey = 'ingredients' | 'steps';
+
+const emptyRecipeState: RecipeState = { ingredients: [], steps: [] };
+
+function decodeRecipeStore(value: string): RecipeStoreData {
+  try {
+    return JSON.parse(value) as RecipeStoreData;
+  } catch {
+    return {};
+  }
+}
 
 // Create a persistent store that saves to localStorage
 export const recipeStore = persistentAtom<RecipeStoreData>('recipes', {}, {
   encode: JSON.stringify,
-  decode: JSON.parse,
+  decode: decodeRecipeStore,
 });
+
+function getRecipeState(recipeId: string): RecipeState {
+  return recipeStore.get()[recipeId] ?? emptyRecipeState;
+}
+
+function updateRecipeState(recipeId: string, update: (state: RecipeState) => RecipeState) {
+  const current = recipeStore.get();
+  const recipeState = current[recipeId] ?? emptyRecipeState;
+
+  recipeStore.set({
+    ...current,
+    [recipeId]: update(recipeState),
+  });
+}
+
+function toggleChecklistItem(recipeId: string, key: ChecklistKey, itemId: string) {
+  updateRecipeState(recipeId, (recipeState) => {
+    const items = new Set(recipeState[key]);
+    if (items.has(itemId)) {
+      items.delete(itemId);
+    } else {
+      items.add(itemId);
+    }
+
+    return {
+      ...recipeState,
+      [key]: Array.from(items),
+    };
+  });
+}
+
+function clearChecklist(recipeId: string, key: ChecklistKey) {
+  const recipeState = recipeStore.get()[recipeId];
+  if (!recipeState) return;
+
+  updateRecipeState(recipeId, (state) => ({
+    ...state,
+    [key]: [],
+  }));
+}
+
+function isChecklistItemChecked(recipeId: string, key: ChecklistKey, itemId: string): boolean {
+  return getRecipeState(recipeId)[key].includes(itemId);
+}
+
+function hasCheckedItems(recipeId: string, key: ChecklistKey): boolean {
+  return getRecipeState(recipeId)[key].length > 0;
+}
 
 // Helper functions
 export function toggleIngredient(recipeId: string, ingredientId: string) {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId] || { ingredients: [], steps: [] };
-  
-  const ingredients = new Set(recipeState.ingredients);
-  if (ingredients.has(ingredientId)) {
-    ingredients.delete(ingredientId);
-  } else {
-    ingredients.add(ingredientId);
-  }
-  
-  recipeStore.set({
-    ...current,
-    [recipeId]: {
-      ...recipeState,
-      ingredients: Array.from(ingredients),
-    },
-  });
+  toggleChecklistItem(recipeId, 'ingredients', ingredientId);
 }
 
 export function toggleStep(recipeId: string, stepId: string) {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId] || { ingredients: [], steps: [] };
-  
-  const steps = new Set(recipeState.steps);
-  if (steps.has(stepId)) {
-    steps.delete(stepId);
-  } else {
-    steps.add(stepId);
-  }
-  
-  recipeStore.set({
-    ...current,
-    [recipeId]: {
-      ...recipeState,
-      steps: Array.from(steps),
-    },
-  });
+  toggleChecklistItem(recipeId, 'steps', stepId);
 }
 
 export function isIngredientChecked(recipeId: string, ingredientId: string): boolean {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId];
-  return recipeState?.ingredients?.includes(ingredientId) || false;
+  return isChecklistItemChecked(recipeId, 'ingredients', ingredientId);
 }
 
 export function isStepChecked(recipeId: string, stepId: string): boolean {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId];
-  return recipeState?.steps?.includes(stepId) || false;
+  return isChecklistItemChecked(recipeId, 'steps', stepId);
 }
 
 export function clearIngredients(recipeId: string) {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId];
-  
-  if (recipeState) {
-    recipeStore.set({
-      ...current,
-      [recipeId]: {
-        ...recipeState,
-        ingredients: [],
-      },
-    });
-  }
+  clearChecklist(recipeId, 'ingredients');
 }
 
 export function clearSteps(recipeId: string) {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId];
-  
-  if (recipeState) {
-    recipeStore.set({
-      ...current,
-      [recipeId]: {
-        ...recipeState,
-        steps: [],
-      },
-    });
-  }
+  clearChecklist(recipeId, 'steps');
 }
 
 export function hasCheckedIngredients(recipeId: string): boolean {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId];
-  return recipeState?.ingredients?.length > 0 || false;
+  return hasCheckedItems(recipeId, 'ingredients');
 }
 
 export function hasCheckedSteps(recipeId: string): boolean {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId];
-  return recipeState?.steps?.length > 0 || false;
+  return hasCheckedItems(recipeId, 'steps');
 }
 
 export function setPortions(recipeId: string, portions: number) {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId] || { ingredients: [], steps: [] };
-  
-  recipeStore.set({
-    ...current,
-    [recipeId]: {
-      ...recipeState,
-      portions,
-    },
-  });
+  updateRecipeState(recipeId, (recipeState) => ({
+    ...recipeState,
+    portions,
+  }));
 }
 
 export function getPortions(recipeId: string, basePortions: number): number {
-  const current = recipeStore.get();
-  const recipeState = current[recipeId];
-  return recipeState?.portions ?? basePortions;
+  return getRecipeState(recipeId).portions ?? basePortions;
 }
 
 export function scaleAmount(amount: string, basePortions: number, currentPortions: number): string {
