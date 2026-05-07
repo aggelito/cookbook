@@ -17,5 +17,5 @@ jobs:
         uses: withastro/action@v3
         with:
           path: ./astro-site
-          node-version: 20
-          # We use the astro action to ensure environment consistency
+          node-version: 22
+          # Astro 6 requires Node >=22.12; use Node 22 in CI for parity with local verification.

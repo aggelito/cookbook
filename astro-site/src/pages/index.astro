@@ -2,27 +2,93 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const recipes = await getCollection("recipes");
+const recipes = (await getCollection("recipes")).sort((a, b) => {
+  const aTitle = a.data.title ?? a.id;
+  const bTitle = b.data.title ?? b.id;
+  return aTitle.localeCompare(bTitle, "sv");
+});
 ---
 
 <BaseLayout title="Recept">
-  <div class="flex justify-end p-4">
-    <a href="/rss.xml" class="btn btn-ghost btn-xs text-base-content/50 hover:text-emerald-600" title="RSS Feed" aria-label="RSS Feed">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 19.5v-.75a7.5 7.5 0 0 0-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 1 1-1.5 0 .75.75.75 0 0 1 1.5 0Z" />
-      </svg>
-    </a>
-  </div>
-  
-  <div class="prose mx-auto py-8 px-6 bg-base-100 card card-border border-base-300">
-    <ul>
+  <section class="mx-auto w-full max-w-6xl px-4 sm:px-6">
+    <div class="mb-6 flex items-center justify-between gap-4">
+      <div>
+        <h1 class="text-3xl font-semibold text-base-content sm:text-4xl">Recept</h1>
+        <p class="mt-2 text-sm text-base-content/70 sm:text-base">
+          {recipes.length} recept samlade på ett ställe.
+        </p>
+      </div>
+
+      <a
+        href="/rss.xml"
+        class="btn btn-ghost btn-sm text-base-content/60 hover:text-emerald-600"
+        title="RSS Feed"
+        aria-label="RSS Feed"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-4 w-4"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12.75 19.5v-.75a7.5 7.5 0 0 0-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 1 1-1.5 0 .75.75.75 0 0 1 1.5 0Z"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <ul class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {
         recipes.map((recipe) => (
-          <li class="flex items-center gap-4 p-3 hover:bg-base-200 rounded-lg transition-colors group">
-            <a href={`/recipes/${recipe.id}`} class="group-hover:text-emerald-600 transition-colors no-underline">{recipe.data.title}</a>
+          <li class="list-none">
+            <a
+              href={`/recipes/${recipe.id}`}
+              class="card h-full border border-base-300 bg-base-100 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-base-200"
+            >
+              <div class="card-body gap-4 p-5">
+                <div class="space-y-2">
+                  <h2 class="card-title text-lg leading-snug text-base-content">
+                    {recipe.data.title ?? recipe.id}
+                  </h2>
+
+                  {
+                    recipe.data.description && (
+                      <p class="line-clamp-3 text-sm leading-6 text-base-content/75">
+                        {recipe.data.description}
+                      </p>
+                    )
+                  }
+                </div>
+
+                <div class="mt-auto flex flex-wrap gap-2 text-sm text-base-content/80">
+                  {
+                    recipe.data.estimatedTime != null && (
+                      <span class="badge badge-outline badge-sm gap-1 py-3">
+                        <span aria-hidden="true">⏱️</span>
+                        {recipe.data.estimatedTime} min
+                      </span>
+                    )
+                  }
+
+                  {
+                    recipe.data.rating != null && (
+                      <span class="badge badge-outline badge-sm gap-1 py-3">
+                        <span aria-hidden="true">★</span>
+                        {recipe.data.rating}/5
+                      </span>
+                    )
+                  }
+                </div>
+              </div>
+            </a>
           </li>
         ))
       }
     </ul>
-  </div>
+  </section>
 </BaseLayout>
