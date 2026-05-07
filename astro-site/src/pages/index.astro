@@ -152,11 +152,11 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
 
     const normalize = (value: string) => value.toLocaleLowerCase("sv").trim();
 
-    const getSearchIndex = async () => {
+    const getSearchIndex = async (): Promise<SearchItem[]> => {
       if (searchIndex) return searchIndex;
 
       const response = await fetch("/search-index.json");
-      searchIndex = await response.json();
+      searchIndex = (await response.json()) as SearchItem[];
       return searchIndex;
     };
 
