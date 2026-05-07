@@ -1,5 +1,11 @@
 ---
 import t from "../../i18n";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
 ---
 
-<a href="/">{t("common.backToRecipes")}</a>
+<a href="/" class={className}>{t("common.backToRecipes")}</a>

@@ -9,22 +9,34 @@ interface Props {
 }
 
 const { dietaryInfo } = Astro.props;
+
+const items = dietaryInfo ? [
+  [t("recipe.vegetarian"), dietaryInfo.vegetarian],
+  [t("recipe.vegan"), dietaryInfo.vegan],
+  [t("recipe.glutenFree"), dietaryInfo.glutenFree],
+  [t("recipe.dairyFree"), dietaryInfo.dairyFree],
+  [t("recipe.nutFree"), dietaryInfo.nutFree],
+  [t("recipe.lowCarb"), dietaryInfo.lowCarb],
+] as const : [];
 ---
 
-<div class="dietary-info-section">
+<section class="dietary-info-section mt-6">
   {
     dietaryInfo && (
-      <>
-        <h2>{t("recipe.dietaryInfo")}</h2>
-        <ul>
-          <li>{t("recipe.vegetarian")} {dietaryInfo.vegetarian ? t("common.yes") : t("common.no")}</li>
-          <li>{t("recipe.vegan")} {dietaryInfo.vegan ? t("common.yes") : t("common.no")}</li>
-          <li>{t("recipe.glutenFree")} {dietaryInfo.glutenFree ? t("common.yes") : t("common.no")}</li>
-          <li>{t("recipe.dairyFree")} {dietaryInfo.dairyFree ? t("common.yes") : t("common.no")}</li>
-          <li>{t("recipe.nutFree")} {dietaryInfo.nutFree ? t("common.yes") : t("common.no")}</li>
-          <li>{t("recipe.lowCarb")} {dietaryInfo.lowCarb ? t("common.yes") : t("common.no")}</li>
-        </ul>
-      </>
+      <div class="card border border-base-300 bg-base-100 shadow-sm">
+        <div class="card-body gap-4 p-5 sm:p-6">
+          <h2 class="m-0 text-xl font-semibold text-base-content">{t("recipe.dietaryInfo")}</h2>
+          <ul class="m-0 flex flex-wrap gap-2 p-0">
+            {items.map(([label, enabled]) => (
+              <li class="list-none">
+                <span class:list={["badge py-3", enabled ? "badge-success" : "badge-outline text-base-content/60"]}>
+                  {label} {enabled ? t("common.yes") : t("common.no")}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     )
   }
-</div>
+</section>

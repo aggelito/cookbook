@@ -14,29 +14,30 @@ interface Props {
 const { ingredient, itemId, recipeId } = Astro.props;
 ---
 
-<li>
-  <label class="cursor-pointer">
+<li class="rounded-box transition-colors hover:bg-base-200/70">
+  <label class="flex cursor-pointer items-center gap-3 px-3 py-2 leading-6">
     <input
       type="checkbox"
-      class="checkbox checkbox-primary mr-1 recipe-checkbox"
+      class="checkbox checkbox-primary recipe-checkbox"
       data-recipe-id={recipeId}
       data-item-id={itemId}
       data-type="ingredient"
     />
-    <span class="ingredient-name">{capitalizeFirstLetter(ingredient.name)}</span>
-    {
-      (ingredient.amount != null || ingredient.unit) && (
-        <>
-          {", "}
-          {ingredient.amount != null && (
-            <b class="ingredient-amount" data-original-amount={ingredient.amount}>
-              {ingredient.amount}
-            </b>
-          )}
-          {ingredient.amount != null && ingredient.unit && " "}
-          {ingredient.unit && <b class="ingredient-unit">{ingredient.unit}</b>}
-        </>
-      )
-    }
+    <span class="min-w-0 flex-1">
+      <span class="ingredient-name text-base-content">{capitalizeFirstLetter(ingredient.name)}</span>
+      {
+        (ingredient.amount != null || ingredient.unit) && (
+          <span class="ml-1 whitespace-nowrap text-base-content/65">
+            {ingredient.amount != null && (
+              <b class="ingredient-amount font-semibold" data-original-amount={ingredient.amount}>
+                {ingredient.amount}
+              </b>
+            )}
+            {ingredient.amount != null && ingredient.unit && " "}
+            {ingredient.unit && <b class="ingredient-unit font-semibold">{ingredient.unit}</b>}
+          </span>
+        )
+      }
+    </span>
   </label>
 </li>

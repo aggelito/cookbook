@@ -12,24 +12,29 @@ interface Props {
 const { recipe } = Astro.props;
 ---
 
-<div class="recipe-steps-section prose-h4:mb-0">
+<section class="recipe-steps-section">
   {
     recipe.data.steps && recipe.data.steps.length > 0 && (
-      <>
-        <h2>{t("recipe.steps")}</h2>
+      <div class="space-y-4">
+        <div>
+          <h2 class="m-0 text-3xl font-semibold text-base-content">{t("recipe.steps")}</h2>
+        </div>
         {recipe.data.steps.map((step, index) => (
           <StepBlock step={step} stepId={`step-${index}`} recipeId={recipe.id} index={index} />
         ))}
-      </>
+      </div>
     )
   }
 
   {
     recipe.data.stepGroups && recipe.data.stepGroups.length > 0 && (
-      <>
+      <div class="space-y-6">
+        <div>
+          <h2 class="m-0 text-3xl font-semibold text-base-content">{t("recipe.steps")}</h2>
+        </div>
         {recipe.data.stepGroups.map((group, groupIndex) => (
-          <div>
-            <h3>{group.groupName}</h3>
+          <section class="space-y-4">
+            <h3 class="m-0 py-3 text-xl font-semibold text-base-content/80">{group.groupName}</h3>
             {group.steps.map((step, stepIndex) => (
               <StepBlock
                 step={step}
@@ -38,18 +43,18 @@ const { recipe } = Astro.props;
                 index={stepIndex}
               />
             ))}
-          </div>
+          </section>
         ))}
-      </>
+      </div>
     )
   }
 
   <button
     id="reset-steps-btn"
-    class="btn btn-outline"
+    class="btn btn-outline mt-5"
     data-recipe-id={recipe.id}
     data-confirm-message={t("recipe.confirmResetSteps")}
   >
     {t("recipe.resetSteps")}
   </button>
-</div>
+</section>

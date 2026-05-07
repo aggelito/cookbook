@@ -11,66 +11,96 @@ interface Props {
 const { recipe } = Astro.props;
 ---
 
-<div class="recipe-overview-section">
-  <h1>{recipe.data.title}</h1>
+<section class="recipe-overview-section card overflow-hidden border border-base-300 bg-base-100 shadow-sm">
+  <div class="grid gap-0 lg:grid-cols-[1.4fr_0.9fr]">
+    <div class="card-body gap-6 p-6 sm:p-8">
+      <div class="space-y-4">
+        <div class="flex flex-wrap gap-2">
+          <span class="badge badge-outline gap-1 py-3 text-base-content/75">
+            <span aria-hidden="true">⏱</span>
+            {recipe.data.estimatedTime} min
+          </span>
+          <span class="badge badge-outline gap-1 py-3 text-base-content/75">
+            {recipe.data.basePortions} portioner
+          </span>
+          {
+            recipe.data.rating != null && (
+              <span class="badge badge-outline gap-1 py-3 text-base-content/75">
+                <span aria-hidden="true">★</span>
+                {recipe.data.rating}/5
+              </span>
+            )
+          }
+        </div>
 
-  {
-    recipe.data.heroImage && (
-      <img src={recipe.data.heroImage} alt={recipe.data.title} style="max-width: 400px;" />
-    )
-  }
-
-  <div class="flex items-center gap-2">
-    <strong>{t("recipe.portions")}</strong>
-    <div class="flex items-center gap-1">
-      <button
-        id="decrease-portions-btn"
-        class="btn btn-sm btn-circle btn-outline"
-        data-recipe-id={recipe.id}
-        data-base-portions={recipe.data.basePortions}
-      >
-        −
-      </button>
-      <input
-        type="number"
-        id="portions-input"
-        class="input input-sm input-bordered w-16 text-center"
-        min="1"
-        data-recipe-id={recipe.id}
-        data-base-portions={recipe.data.basePortions}
-        value={recipe.data.basePortions}
-      />
-      <button
-        id="increase-portions-btn"
-        class="btn btn-sm btn-circle btn-outline"
-        data-recipe-id={recipe.id}
-        data-base-portions={recipe.data.basePortions}
-      >
-        +
-      </button>
-      <button
-        id="base-portions-label"
-        class="text-sm text-base-content/60 hidden hover:underline cursor-pointer"
-        data-base-portions={recipe.data.basePortions}
-        type="button"
-      >
-        ({t("recipe.basePortions")}: {recipe.data.basePortions})
-      </button>
-    </div>
-  </div>
-  <div>
-    <strong>{t("recipe.estimatedTime")}</strong>
-    {recipe.data.estimatedTime} minutes
-  </div>
-
-  {
-    recipe.data.rating != null && (
-      <div>
-        <strong>{t("recipe.rating")}</strong>
-        {recipe.data.rating} {t("recipe.stars")}
+        <div>
+          <h1 class="m-0 text-4xl font-semibold tracking-tight text-base-content sm:text-5xl">
+            {recipe.data.title}
+          </h1>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-base-content/75">
+            {recipe.data.description || t("recipe.noDescription")}
+          </p>
+        </div>
       </div>
-    )
-  }
 
-  <p>{recipe.data.description || t("recipe.noDescription")}</p>
-</div>
+      <div>
+        <div class="mb-3 text-sm font-semibold uppercase tracking-wide text-base-content/60">
+          {t("recipe.portions")}
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="join">
+            <button
+              id="decrease-portions-btn"
+              class="btn btn-outline join-item"
+              data-recipe-id={recipe.id}
+              data-base-portions={recipe.data.basePortions}
+              aria-label="Minska portioner"
+            >
+              −
+            </button>
+            <input
+              type="number"
+              id="portions-input"
+              class="input input-bordered join-item w-20 text-center font-semibold"
+              min="1"
+              data-recipe-id={recipe.id}
+              data-base-portions={recipe.data.basePortions}
+              value={recipe.data.basePortions}
+              aria-label="Antal portioner"
+            />
+            <button
+              id="increase-portions-btn"
+              class="btn btn-outline join-item"
+              data-recipe-id={recipe.id}
+              data-base-portions={recipe.data.basePortions}
+              aria-label="Öka portioner"
+            >
+              +
+            </button>
+          </div>
+          <button
+            id="base-portions-label"
+            class="btn btn-ghost btn-sm hidden text-base-content/60"
+            data-base-portions={recipe.data.basePortions}
+            type="button"
+          >
+            {t("recipe.basePortions")}: {recipe.data.basePortions}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {
+      recipe.data.heroImage && (
+        <figure class="min-h-64 bg-base-200 lg:min-h-full">
+          <img
+            src={recipe.data.heroImage}
+            alt={recipe.data.title}
+            class="h-full w-full object-cover"
+          />
+        </figure>
+      )
+    }
+
+  </div>
+</section>
