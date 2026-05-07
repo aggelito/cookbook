@@ -123,3 +123,19 @@ No test framework is configured in this project. The Astro site uses static cont
 - Use consistent color schemes (emerald/green for primary actions)
 - Ensure responsive design with proper spacing and padding
 
+## Recipe Chef Review
+
+Whenever an AI agent creates or edits a recipe in `content/recipes/*.md`, it MUST review
+the recipe as a chef before finishing.
+
+The review must check:
+- Taste balance and seasoning
+- Reasonable ingredient amounts and portion size
+- Cooking technique and order of steps
+- Accurate Swedish grocery-store ingredient names
+- Swedish units and clear measurements
+- Estimated time and practical feasibility
+- Clear, cookable instructions
+
+The agent must fix concrete recipe issues found during this review before the final
+response.
