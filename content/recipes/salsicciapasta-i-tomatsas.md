@@ -7,11 +7,15 @@ basePortions: 4
 estimatedTime: 35
 rating: 0
 description: |
-  En mustig och rustik italiensk pastarätt med smulad salsiccia, tomatsås och en touch av chili och fänkål. Fänkålen bygger på såsens djup medan chilin ger värme som balanserar korvens fyllighet. Perfekt vardagslyx och redo på 35 minuter.
+  En mustig och rustik italiensk pastarätt med smulad salsiccia, tomatsås,
+  chili och fänkål. Perfekt vardagslyx som är klar på cirka 35 minuter.
 ingredientGroups:
   - groupName: Pasta och sås
     ingredients:
-      - name: Salsiccia (italiensk färskskorva)
+      - name: Salsicciafärs eller färsk salsiccia
+        amount: 400
+        unit: g
+      - name: Pasta, gärna rigatoni eller penne
         amount: 400
         unit: g
       - name: Gul lök
@@ -32,9 +36,9 @@ ingredientGroups:
       - name: Rött vin
         amount: 1
         unit: dl
-      - name: Torkad fänkål
+      - name: Fänkålsfrön
         amount: 1
-        unit: krm
+        unit: tsk
       - name: Torkad oregano
         amount: 1
         unit: tsk
@@ -51,9 +55,9 @@ ingredientGroups:
 stepGroups:
   - groupName: Salsiccia
     steps:
-      - title: Fräsa ut salsiccian ur skinnet
+      - title: Stek salsiccian
         description: |
-          Riv eller kläm upp salsicciaskinnen och bryt ner fyllningen i en stor gjutjärnsgryta med olivoljan. Stek på medelvärme under omrörning tills köttet är finfördelat och fått fin färg, ca 6–8 minuter.
+          Om du använder korvar: ta bort skinnet och bryt ner fyllningen i en stor gryta med olivoljan. Stek på medelvärme tills köttet är finfördelat och fått fin färg, ca 6–8 minuter.
       - title: Svetta lök och vitlök
         description: |
           Skär ner löken i grytan och låt den mjukna 3–4 minuter. Tillsätt pressad vitlök och fräs 30 sekunder tills det doftar gott.
@@ -61,20 +65,20 @@ stepGroups:
     steps:
       - title: Deglacera med vin
         description: |
-          Höj värmen och häll i rödvinet. Skrapa loss stekskor från bottnen och låt reducera 2–3 minuter tills vätskan nästan kokat bort.
+          Höj värmen och häll i rödvinet. Skrapa loss stekrester från bottnen och låt reducera 2–3 minuter tills vätskan nästan kokat bort.
       - title: Bygg upp tomatsåsen
         description: |
-          Rör ner tomatpurén och fräs 1 minut. Tillsätt krossade tomater, fänkål, oregano och chiliflakes. Rör om, sänk värmen och låt såsen puttra utan lock i 15–20 minuter under omrörning då och då. Smaka av med salt, svartpeppar och eventuellt mer chili.
+          Rör ner tomatpurén och fräs 1 minut. Tillsätt krossade tomater, lätt krossade fänkålsfrön, oregano och chiliflakes. Rör om, sänk värmen och låt såsen puttra utan lock i 15–20 minuter under omrörning då och då. Smaka av med salt, svartpeppar och eventuellt mer chili.
   - groupName: Pasta
     steps:
       - title: Koka pastan
         description: |
-          Medans såsen puttrar, koka penne eller rigatoni i väl saltat vatten enligt förpackningens anvisningar. Spara 1 dl pastavatten innan du häller av.
+          Medan såsen puttrar, koka pastan i väl saltat vatten enligt förpackningens anvisningar. Spara 1 dl pastavatten innan du häller av.
   - groupName: Hopslagning
     steps:
-      - title: Vend pasta i såsen
+      - title: Vänd pastan i såsen
         description: |
-          Tillsätt den avrunna pastan direkt i såsen med lite av pastavattnet. Vend försiktigt så att all pasta täcks av den krämiga såsen — pastavattnet aktiverar stärkelsen och binder ihop allt.
+          Tillsätt den avrunna pastan direkt i såsen med lite av pastavattnet. Vänd försiktigt så att all pasta täcks av såsen. Pastavattnet gör såsen blankare och hjälper den att fastna på pastan.
       - title: Servera
         description: |
           Dra grytan från värmen. Riv över färsk basilika och servera direkt. Riven parmesan till den som vill.

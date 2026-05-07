@@ -37,8 +37,7 @@ ingredients:
     unit: efter smak
   - name: Svartpeppar
     unit: efter smak
-  - name: Persilja, citronzest eller parmesan
-    unit: valfritt
+  - name: Persilja, citronzest eller parmesan (valfritt)
 steps:
   - title: Koka pastan
     description: |

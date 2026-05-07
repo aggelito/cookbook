@@ -7,7 +7,8 @@ basePortions: 6
 estimatedTime: 90
 rating: 0
 description: |
-  En autentisk italiensk lasagne med hemlagad bolognese, krämig béchamel och lasagneplattor. Lagad med omsorg för balanserade smicker och perfekt textur — från Emilia-Romagna, rakt in i ditt kök.
+  En klassisk lasagne med långkokt bolognese, krämig béchamel och tydliga lager
+  av pasta och ost. Mustig, mättande och bäst när den får vila före servering.
 ingredientGroups:
   - groupName: Bolognese
     ingredients:
@@ -76,7 +77,7 @@ ingredientGroups:
       - name: Riven parmesan
         amount: 100
         unit: g
-      - name: Rivet mozzarella
+      - name: Riven mozzarella
         amount: 150
         unit: g
 stepGroups:
@@ -95,7 +96,7 @@ stepGroups:
           Höj värmen och lägg i nötfärsen. Bryn under omrörning tills den är finfördelad och genomstekt, ca 5–7 minuter. Salta och peppra lätt.
       - title: Deglacera med vin
         description: |
-          Rör ner tomatpurén och fräs 1–2 minuter. Häll i rödvinet och skrapa loss stekskor från bottnen. Låt reducera 2–3 minuter tills vätskan nästan kokat bort.
+          Rör ner tomatpurén och fräs 1–2 minuter. Häll i rödvinet och skrapa loss stekrester från bottnen. Låt reducera 2–3 minuter tills vätskan nästan kokat bort.
       - title: Bygg såsen
         description: |
           Tillsätt krossade tomater, oregano och basilika. Rör om. Sänk värmen och låt puttra utan lock i minst 45 minuter under omrörning då och då.
@@ -107,7 +108,7 @@ stepGroups:
       - title: Gör redning
         description: |
           Smält smöret i en kastrull på medelvärme. När det slutat puttra, vispa ner vetemjölet och låt det fräs med under konstant omrörning i 1–2 minuter utan att ta färg (roux).
-      - title: Spara mjölken gradvis
+      - title: Späd med mjölken gradvis
         description: |
           Häll i mjölken i en tunn stråle under ständig vispning för att undvika klumpar. Fortsätt vispa tills såsen tjocknar och börjar koka.
       - title: Smaka av
@@ -120,7 +121,7 @@ stepGroups:
           Sätt ugnen på 200°C varmluft.
       - title: Varva ingredienserna
         description: |
-          I en smord ugnsform (ca 30×20 cm): Bred ut ett tunt lager bolognese i botten. Lägg ett lager lasagneplattor. Följ med bolognese, en sil på béchamel, riven parmesan och mozzarella. Upprepa skikten 3–4 gånger. Avsluta med ett generöst lager béchamel och ost ovanpå.
+          I en smord ugnsform (ca 30×20 cm): bred ut ett tunt lager bolognese i botten. Lägg ett lager lasagneplattor ovanpå. Fortsätt med bolognese, ett lager béchamel, riven parmesan och mozzarella. Upprepa 3–4 gånger och avsluta med béchamel och ost.
       - title: Grädda
         description: |
           Grädda mitt i ugnen i 30–35 minuter tills ytan är gyllenbrun och bubblar.

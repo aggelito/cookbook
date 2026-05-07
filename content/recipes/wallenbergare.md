@@ -7,9 +7,8 @@ basePortions: 4
 estimatedTime: 45
 rating: 5
 description: >-
-  En svensk lyxklassiker. Wallenbergare är en luftig färsbiff gjord på finmalen
-  kalvfärs, vispgrädde och äggulor, vänd i ströbröd och stekt till gyllene
-  perfektion.
+  En svensk lyxklassiker. Wallenbergare är luftiga färsbiffar gjorda på finmalen
+  kalvfärs, kall vispgrädde och äggulor, vända i ströbröd och stekta gyllene.
 heroImage: ''
 ingredients:
   - name: Kalvfärs (finmalen)
@@ -24,7 +23,7 @@ ingredients:
   - name: Salt
     amount: 1.5
     unit: tsk
-  - name: Vitpeppar (nimalen)
+  - name: Vitpeppar
     amount: 1
     unit: krm
   - name: Ströbröd (gärna panko eller ljust bröd)
@@ -33,9 +32,9 @@ ingredients:
   - name: Smör (till stekning)
     amount: 50
     unit: g
-  - name: Potatismos (till servering)
-    amount: 1
-    unit: st
+  - name: Potatis till mos
+    amount: 800
+    unit: g
   - name: Gröna ärter (till servering)
     amount: 200
     unit: g
@@ -56,12 +55,13 @@ steps:
       mycket så att den blir varm eller tappar sin luftighet.
   - title: Forma biffarna
     description: >-
-      Forma färsen till åtta stora, runda biffar. Vänd dem försiktigt i ströbröd
+      Forma färsen till åtta små eller fyra stora, runda biffar. Vänd dem försiktigt i ströbröd
       på en tallrik.
   - title: Stek wallenbergarna
     description: >-
       Hetta upp smör i en stekpanna på medelvärme. Stek biffarna cirka 3–4 minuter
-      per sida tills de är gyllenbruna och genomstekta men fortfarande saftiga.
+      per sida tills de är gyllenbruna och precis genomstekta. Sänk värmen om
+      ströbrödet får färg för snabbt.
   - title: Servera
     description: >-
       Servera genast med nylagat potatismos, kokta gröna ärter, rårörda lingon och

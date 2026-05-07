@@ -2,8 +2,8 @@
 pubDate: "2026-02-22T11:35:56+01:00"
 updated: "2026-02-22T11:35:56+01:00"
 
-title: Tonfisk Pastasallad
-description: En enkel och god tonfisk pastasallad, perfekt för lunch eller middag.
+title: Tonfiskpastasallad
+description: En enkel och krämig tonfiskpastasallad, perfekt för lunch, matlåda eller snabb middag.
 basePortions: 3
 estimatedTime: 35
 rating: 4
@@ -11,44 +11,44 @@ rating: 4
 ingredientGroups:
   - groupName: Bas
     ingredients:
-      - name: pasta (t.ex. fusilli eller penne)
+      - name: Pasta, gärna fusilli eller penne
         amount: 250
         unit: g
-      - name: tonfisk i vatten, avrunnen
+      - name: Tonfisk i vatten
         amount: 2
         unit: burkar
-      - name: kokta ägg, hackade
+      - name: Ägg
         amount: 2
         unit: st
-      - name: majonnäs
+      - name: Majonnäs
         amount: 3
         unit: msk
-      - name: pickles, finhackade
+      - name: Smörgåsgurka eller pickles
         amount: 2.5
         unit: msk
-      - name: liten rödlök, finhackad
+      - name: Rödlök
         amount: 0.5
         unit: st
-      - name: olivolja
+      - name: Olivolja
         amount: 1
         unit: msk
   - groupName: Smakförstärkare
     ingredients:
-      - name: kapris, grovhackade
+      - name: Kapris
         amount: 2
         unit: msk
-      - name: finriven parmesan
+      - name: Finriven parmesan
         amount: 2
         unit: msk
-      - name: stjälk selleri, finhackad
+      - name: Stjälkselleri
         amount: 1
         unit: st
   - groupName: Smaksättning
     ingredients:
-      - name: dijonsenap
+      - name: Dijonsenap
         amount: 1
         unit: tsk
-      - name: citronjuice eller lite pickle-lag
+      - name: Citronsaft eller lite lag från smörgåsgurka
         amount: 1.5
         unit: msk
       - name: Salt
@@ -68,7 +68,7 @@ stepGroups:
       - title: Blanda såsen
         description: Blanda majonnäs, dijonsenap och citronjuice i en stor skål.
       - title: Tillsätt ingredienser
-        description: Tillsätt tonfisk, hackade ägg, pickles, rödlök, selleri och kapris.
+        description: Låt tonfisken rinna av. Hacka ägg, smörgåsgurka, rödlök, selleri och kapris och blanda ner.
       - title: Rör ner parmesan
         description: Rör ner parmesan.
       - title: Vänd ner pastan
@@ -85,6 +85,6 @@ dietaryInfo:
   vegan: false
   glutenFree: false
   dairyFree: false
-  nutFree: false
+  nutFree: true
   lowCarb: false
 ---

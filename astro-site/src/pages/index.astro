@@ -42,7 +42,51 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
       </a>
     </div>
 
-    <ul class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    <div class="mb-8 rounded-box border border-base-300 bg-base-100 p-4 shadow-sm sm:p-5">
+      <label class="input input-bordered flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-5 w-5 text-base-content/50"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+          />
+        </svg>
+        <input
+          id="site-search"
+          type="search"
+          class="grow"
+          placeholder="Sök recept, ingredienser eller tid..."
+          autocomplete="off"
+          aria-describedby="search-help"
+        />
+      </label>
+      <p id="search-help" class="mt-2 text-sm text-base-content/60">
+        Sökningen använder ett statiskt index och kan senare inkludera fler sidor.
+      </p>
+    </div>
+
+    <section id="search-section" class="mb-8 hidden" aria-live="polite">
+      <div class="mb-3 flex items-center justify-between gap-4">
+        <h2 class="text-xl font-semibold text-base-content">Sökresultat</h2>
+        <p id="search-count" class="text-sm text-base-content/60"></p>
+      </div>
+
+      <div id="search-empty" class="hidden rounded-box border border-base-300 bg-base-100 p-5 text-base-content/70">
+        Inga recept matchar sökningen.
+      </div>
+
+      <ul id="search-results" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"></ul>
+    </section>
+
+    <ul id="recipe-grid" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {
         recipes.map((recipe) => (
           <li class="list-none">
@@ -91,4 +135,111 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
       }
     </ul>
   </section>
+
+  <script>
+    type SearchItem = {
+      type: string;
+      title: string;
+      description: string;
+      url: string;
+      content: string;
+      estimatedTime?: number;
+      rating?: number;
+      basePortions?: number;
+    };
+
+    const searchInput = document.querySelector<HTMLInputElement>("#site-search");
+    const searchSection = document.querySelector<HTMLElement>("#search-section");
+    const searchResults = document.querySelector<HTMLUListElement>("#search-results");
+    const searchEmpty = document.querySelector<HTMLElement>("#search-empty");
+    const searchCount = document.querySelector<HTMLElement>("#search-count");
+    const recipeGrid = document.querySelector<HTMLElement>("#recipe-grid");
+    let searchIndex: SearchItem[] | null = null;
+
+    const normalize = (value: string) => value.toLocaleLowerCase("sv").trim();
+
+    const getSearchIndex = async () => {
+      if (searchIndex) return searchIndex;
+
+      const response = await fetch("/search-index.json");
+      searchIndex = await response.json();
+      return searchIndex;
+    };
+
+    const formatMeta = (item: SearchItem) => {
+      const meta = [item.type === "recipe" ? "Recept" : item.type];
+
+      if (item.estimatedTime != null) meta.push(`${item.estimatedTime} min`);
+      if (item.basePortions != null) meta.push(`${item.basePortions} portioner`);
+      if (item.rating != null) meta.push(`${item.rating}/5`);
+
+      return meta.join(" · ");
+    };
+
+    const renderResults = (items: SearchItem[]) => {
+      if (!searchResults || !searchEmpty || !searchCount) return;
+
+      searchResults.replaceChildren(
+        ...items.map((item) => {
+          const listItem = document.createElement("li");
+          listItem.className = "list-none";
+
+          const link = document.createElement("a");
+          link.href = item.url;
+          link.className =
+            "card h-full border border-base-300 bg-base-100 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-base-200";
+
+          const body = document.createElement("div");
+          body.className = "card-body gap-3 p-5";
+
+          const title = document.createElement("h3");
+          title.className = "card-title text-lg leading-snug text-base-content";
+          title.textContent = item.title;
+
+          const description = document.createElement("p");
+          description.className = "line-clamp-3 text-sm leading-6 text-base-content/75";
+          description.textContent = item.description || "Ingen beskrivning.";
+
+          const meta = document.createElement("p");
+          meta.className = "text-sm text-base-content/60";
+          meta.textContent = formatMeta(item);
+
+          body.append(title, description, meta);
+          link.append(body);
+          listItem.append(link);
+
+          return listItem;
+        }),
+      );
+
+      searchEmpty.classList.toggle("hidden", items.length > 0);
+      searchResults.classList.toggle("hidden", items.length === 0);
+      searchCount.textContent = `${items.length} träff${items.length === 1 ? "" : "ar"}`;
+    };
+
+    const runSearch = async () => {
+      if (!searchInput || !searchSection || !recipeGrid) return;
+
+      const query = normalize(searchInput.value);
+      const isSearching = query.length > 0;
+
+      searchSection.classList.toggle("hidden", !isSearching);
+      recipeGrid.classList.toggle("hidden", isSearching);
+
+      if (!isSearching) return;
+
+      const terms = query.split(/\s+/).filter(Boolean);
+      const items = await getSearchIndex();
+      const matches = items.filter((item) => {
+        const searchableText = normalize(item.content);
+        return terms.every((term) => searchableText.includes(term));
+      });
+
+      renderResults(matches);
+    };
+
+    searchInput?.addEventListener("input", () => {
+      void runSearch();
+    });
+  </script>
 </BaseLayout>

@@ -5,6 +5,7 @@ updated: "2026-04-19T21:21:40+02:00"
 title: Räkcocktail med chili, lime och koriander
 basePortions: 4
 estimatedTime: 20
+rating: 4.5
 description: >
   En fräsch och modern räkcocktail med mexikanska influenser. Chili, lime och koriander ger hetta och syra som balanserar räkornas sötma.
 ingredientGroups:

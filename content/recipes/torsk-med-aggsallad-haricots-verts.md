@@ -92,4 +92,11 @@ stepGroups:
     steps:
       - title: Servera
         description: Lägg upp torsken, toppa med en rejäl klick äggsallad och servera med de krispiga haricots verts. Du kan även lägga till kokt potatis eller pressad potatis om du vill ha något mer mättande.
+dietaryInfo:
+  vegetarian: false
+  vegan: false
+  glutenFree: true
+  dairyFree: false
+  nutFree: true
+  lowCarb: true
 ---

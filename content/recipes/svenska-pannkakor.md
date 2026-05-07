@@ -7,7 +7,8 @@ basePortions: 4
 estimatedTime: 30
 rating: 4
 description: >
-  Tunna pannkakor. Serveras med sylt, bär eller florsocker.
+  Tunna svenska pannkakor med mild sötma och frasiga kanter. Servera med sylt,
+  bär eller florsocker.
 ingredients:
   - name: Vetemjöl
     amount: 2.4

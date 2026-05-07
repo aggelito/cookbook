@@ -5,9 +5,10 @@ updated: "2025-11-15T21:14:41+01:00"
 title: Kimchi-mayo bowl med ris, ägg & grönsaker
 basePortions: 2
 estimatedTime: 15
+rating: 4
 description: >
   Snabb och mättande bowl med ris, krispiga grönsaker, ägg och kimchi-mayo.
-  Perfekt när du har gårdagens ris.
+  Perfekt när du har kokt ris över och vill ha något med sälta, hetta och crunch.
 ingredients:
   - name: Kokt ris (gärna kallt som värms upp)
     amount: 4
@@ -30,6 +31,9 @@ ingredients:
   - name: Kimchi-mayo
     amount: 3
     unit: msk
+  - name: Kimchi
+    amount: 1
+    unit: dl
   - name: Soja
     amount: 1
     unit: msk
@@ -39,16 +43,16 @@ ingredients:
 steps:
   - title: Förbered basen
     description: >
-      Lägg ris i botten av en skål.
+      Värm riset om det är kallt och lägg det i botten av två skålar.
   - title: Lägg på grönsaker
     description: >
-      Lägg morot, gurka och spenat/sallad i små högar. Tillsätt ev. edamame eller majs.
+      Strimla moroten och skiva gurkan. Lägg morot, gurka och spenat eller sallad i små högar. Tillsätt ev. edamame eller majs.
   - title: Tillaga äggen
     description: >
-      Stek eller pochera äggen och lägg ovanpå.
+      Stek eller pochera äggen och lägg ett ägg på varje skål.
   - title: Toppa och servera
     description: >
-      Toppa med kimchi-mayo, ringla över lite soja och strö sesamfrön eller rostad lök. Servera direkt.
+      Toppa med kimchi, kimchi-mayo, lite soja och sesamfrön eller rostad lök. Servera direkt medan riset är varmt och grönsakerna är krispiga.
 dietaryInfo:
   vegetarian: true
   vegan: false

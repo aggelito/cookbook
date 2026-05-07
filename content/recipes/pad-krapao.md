@@ -6,59 +6,64 @@ title: "Pad Krapao"
 basePortions: 3
 estimatedTime: 30
 rating: 4
+description: >
+  Thailändsk färswok med chili, vitlök, basilika och krispigt stekt ägg.
+  Serveras med jasminris och ska vara het, salt, söt och aromatisk.
 ingredientGroups:
   - groupName: "Såsblandning"
     ingredients:
-      - name: "ljus soja"
+      - name: "Ljus soja"
         amount: 1
         unit: "msk"
-      - name: "mörk soja"
+      - name: "Mörk soja"
         amount: 0.5
         unit: "tsk"
-      - name: "fisksås"
+      - name: "Fisksås"
         amount: 1
         unit: "msk"
-      - name: "oystersås"
+      - name: "Ostronsås"
         amount: 1
         unit: "msk"
-      - name: "palmsocker"
+      - name: "Palmsocker eller farinsocker"
         amount: 1.5
         unit: "msk"
   - groupName: "Wok & övrigt"
     ingredients:
-      - name: "vitlöksklyftor"
+      - name: "Vitlöksklyftor"
         amount: 6
         unit: "st"
-      - name: "röda thai-chili"
+      - name: "Röd thai-chili"
         amount: 5
         unit: "st"
-      - name: "neutral olja"
-        amount: 1.8
+      - name: "Neutral olja"
+        amount: 0.75
         unit: "dl"
-      - name: "ägg"
+      - name: "Ägg"
         amount: 3
         unit: "st"
-      - name: "färs (fläskfärs, kycklingfärs eller nötfärs)"
+      - name: "Fläskfärs, kycklingfärs eller nötfärs"
         amount: 450
         unit: "g"
-      - name: "långbönor"
+      - name: "Långbönor eller haricots verts"
         amount: 200
         unit: "g"
-      - name: "thai basilika eller helig basilika"
+      - name: "Thaibasilika eller helig basilika"
         amount: 2
         unit: "nävar"
       - name: "Nykokt jasminris"
+        amount: 3
+        unit: "portioner"
 stepGroups:
   - groupName: "Instruktioner"
     steps:
       - title: "Blanda såsen"
-        description: "Rör ihop ljus soja, mörk soja, fisksås, oystersås och palmsocker/farinsocker."
+        description: "Rör ihop ljus soja, mörk soja, fisksås, ostronsås och palmsocker eller farinsocker."
       - title: "Mortla chili & vitlök"
         description: "Mortla till en grov pasta. (Eller hacka fint om du inte har mortel.)"
       - title: "Stek äggen"
-        description: "Hetta upp rikligt med olja i en wok eller stekpanna. Knäck i äggen och stek dem på hög värme tills kanterna blir krispiga och gulan fortfarande rinnig. Ta upp äggen och häll bort ungefär hälften av oljan."
+        description: "Hetta upp oljan i en wok eller stekpanna. Knäck i äggen och stek dem på hög värme tills kanterna blir krispiga och gulan fortfarande är rinnig. Ta upp äggen och häll av oljan så att cirka 2 msk är kvar i pannan."
       - title: "Fräs chili–vitlökspastan"
-        description: "Snabbt, under 1 minut, tills det doftar rejält."
+        description: "Fräs pastan snabbt, under 1 minut, tills den doftar rejält utan att vitlöken bränns."
       - title: "Tillsätt färsen"
         description: "Stek tills vätskan kokat bort och fettet börjar fräsa och ge färg."
       - title: "Lägg i bönor och sås"
@@ -66,5 +71,12 @@ stepGroups:
       - title: "I med basilikan"
         description: "Stek tills bladen sjunker ihop (1 minut)."
       - title: "Servera"
-        description: "Het jasminris + en ordentligt krispig stekt ägg på toppen."
+        description: "Servera färsen direkt med hett jasminris och ett krispigt stekt ägg på toppen."
+dietaryInfo:
+  vegetarian: false
+  vegan: false
+  glutenFree: false
+  dairyFree: true
+  nutFree: true
+  lowCarb: false
 ---

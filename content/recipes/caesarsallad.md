@@ -7,11 +7,12 @@ basePortions: 4
 estimatedTime: 35
 rating: 0
 description: |
-  En klassisk caesarsallad med hemlagad dressing av vitlök, äggula, sardeller och Dijon, krispig romaine, hemrostade krutonger och strössel av västerbottenost. Kycklingen grillas, skivas och snabbsteks för extra krispig yta. Bacon ger salt crunch och rökig djup — det som lyfter en bra caesare till den bästa.
+  En klassisk caesarsallad med hemlagad dressing av vitlök, äggula, sardeller
+  och dijonsenap, krispig romansallad, rostade krutonger, kyckling och bacon.
 ingredientGroups:
   - groupName: Krutonger
     ingredients:
-      - name: Vitlöksbröd (gärna ciabatta)
+      - name: Ljust bröd, gärna ciabatta
         amount: 300
         unit: g
       - name: Olivolja
@@ -33,7 +34,7 @@ ingredientGroups:
         unit: msk
   - groupName: Salladsblad
     ingredients:
-      - name: Romainsallad
+      - name: Romansallad
         amount: 2
         unit: st
   - groupName: Caesardressing
@@ -47,7 +48,7 @@ ingredientGroups:
       - name: Vitlöksklyftor
         amount: 2
         unit: st
-      - name: Dijonvinäger
+      - name: Dijonsenap
         amount: 1
         unit: msk
       - name: Citron
@@ -86,13 +87,13 @@ stepGroups:
     steps:
       - title: Stek bacon
         description: |
-          Lägg baconskivorna i en kall stekpanna och höj sedan värmen till medel. Stek långsamt 6–8 minuter tills baconet är krispigt och fettet rött ut. Lyft upp baconet på hushållspapper så det rinner av. Spara 1 msk av baconfettet i pannan.
-      - title: Grilla kycklingen
+          Lägg baconskivorna i en kall stekpanna och höj sedan värmen till medel. Stek långsamt 6–8 minuter tills baconet är krispigt och fettet smält ut. Lyft upp baconet på hushållspapper så det rinner av. Spara gärna 1 msk av baconfettet i pannan.
+      - title: Stek kycklingen
         description: |
-          Klä upp kycklingbrösten med salt och peppar. Hetta upp en grillpanna på hög värme med olivoljan. Lägg i kycklingen och grilla 5–6 minuter på varje sida tills den har fin färg och är genomstekt (65°C innertemperatur).
-      - title: Låt vila, skiva och stek igen
+          Salta och peppra kycklingbrösten. Hetta upp en stekpanna med olivolja och eventuellt baconfett. Stek kycklingen 5–6 minuter per sida tills den har fin färg och är genomstekt, ca 70°C innertemperatur.
+      - title: Låt vila och skiva
         description: |
-          Ta av pannan och låt kycklingen vila i 5 minuter under folie. Skär sedan i skivor på bredden. Hetta upp samma pannna med det sparade baconfettet och snabbstek kycklingskivorna 30–45 sekunder på hög värme — detta ger krispig, karamelliserad yta. Lägg direkt på hushållspapper så de behåller crunchen.
+          Låt kycklingen vila i 5 minuter under lös folie. Skär sedan i skivor strax före servering så att köttet behåller saftigheten.
   - groupName: Caesardressing
     steps:
       - title: Förbered dressingsbasen
@@ -105,13 +106,13 @@ stepGroups:
     steps:
       - title: Förbered salladsbladen
         description: |
-          Dela romaine och tvätta bladen noga. Torka torrt — våta blad tar inte upp dressingen lika bra. Dra av större blad till mindre, hanterbara bitar.
-      - title: Vend salladen
+          Dela romansalladen och tvätta bladen noga. Torka torrt, eftersom våta blad gör dressingen tunn. Riv större blad i mindre bitar.
+      - title: Vänd salladen
         description: |
-          Lägg romaine i en stor bunke. Häll över hälften av dressingen och vend försiktigt med tång så att varje blad täcks. Lägg salladen på ett fat eller tallrikar.
+          Lägg romansalladen i en stor bunke. Häll över hälften av dressingen och vänd försiktigt med tång så att bladen täcks. Lägg salladen på ett fat eller tallrikar.
       - title: Finish
         description: |
-          Fördela krutonger, de krispigt stekta kycklingskivorna och det frasiga baconet över salladen. Strö över parmesan och dra över ordentligt med svartpeppar. Servera omedelbart — en caesarsallad väntar ingen.
+          Fördela krutonger, skivad kyckling och frasigt bacon över salladen. Strö över parmesan och dra över ordentligt med svartpeppar. Servera omedelbart — en caesarsallad väntar ingen.
 dietaryInfo:
   vegetarian: false
   vegan: false
