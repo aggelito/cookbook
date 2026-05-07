@@ -7,4 +7,5 @@
 
 @plugin "daisyui" {
   themes: emerald --default;
+  exclude: radialprogress, properties;
 }
