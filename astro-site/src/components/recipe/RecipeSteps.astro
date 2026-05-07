@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from "astro:content";
+import StepBlock from "./StepBlock.astro";
+import t from "../../i18n";
+
+type Recipe = CollectionEntry<"recipes">;
+
+interface Props {
+  recipe: Recipe;
+}
+
+const { recipe } = Astro.props;
+---
+
+<div class="recipe-steps-section prose-h4:mb-0">
+  {
+    recipe.data.steps && recipe.data.steps.length > 0 && (
+      <>
+        <h2>{t("recipe.steps")}</h2>
+        {recipe.data.steps.map((step, index) => (
+          <StepBlock step={step} stepId={`step-${index}`} recipeId={recipe.id} index={index} />
+        ))}
+      </>
+    )
+  }
+
+  {
+    recipe.data.stepGroups && recipe.data.stepGroups.length > 0 && (
+      <>
+        {recipe.data.stepGroups.map((group, groupIndex) => (
+          <div>
+            <h3>{group.groupName}</h3>
+            {group.steps.map((step, stepIndex) => (
+              <StepBlock
+                step={step}
+                stepId={`step-group-${groupIndex}-${stepIndex}`}
+                recipeId={recipe.id}
+                index={stepIndex}
+              />
+            ))}
+          </div>
+        ))}
+      </>
+    )
+  }
+
+  <button
+    id="reset-steps-btn"
+    class="btn btn-outline"
+    data-recipe-id={recipe.id}
+    data-confirm-message={t("recipe.confirmResetSteps")}
+  >
+    {t("recipe.resetSteps")}
+  </button>
+</div>

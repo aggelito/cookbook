@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from "astro:content";
+import t from "../../i18n";
+
+type Recipe = CollectionEntry<"recipes">;
+
+interface Props {
+  recipe: Recipe;
+}
+
+const { recipe } = Astro.props;
+---
+
+<div class="recipe-overview-section">
+  <h1>{recipe.data.title}</h1>
+
+  {
+    recipe.data.heroImage && (
+      <img src={recipe.data.heroImage} alt={recipe.data.title} style="max-width: 400px;" />
+    )
+  }
+
+  <div class="flex items-center gap-2">
+    <strong>{t("recipe.portions")}</strong>
+    <div class="flex items-center gap-1">
+      <button
+        id="decrease-portions-btn"
+        class="btn btn-sm btn-circle btn-outline"
+        data-recipe-id={recipe.id}
+        data-base-portions={recipe.data.basePortions}
+      >
+        −
+      </button>
+      <input
+        type="number"
+        id="portions-input"
+        class="input input-sm input-bordered w-16 text-center"
+        min="1"
+        data-recipe-id={recipe.id}
+        data-base-portions={recipe.data.basePortions}
+        value={recipe.data.basePortions}
+      />
+      <button
+        id="increase-portions-btn"
+        class="btn btn-sm btn-circle btn-outline"
+        data-recipe-id={recipe.id}
+        data-base-portions={recipe.data.basePortions}
+      >
+        +
+      </button>
+      <button
+        id="base-portions-label"
+        class="text-sm text-base-content/60 hidden hover:underline cursor-pointer"
+        data-base-portions={recipe.data.basePortions}
+        type="button"
+      >
+        ({t("recipe.basePortions")}: {recipe.data.basePortions})
+      </button>
+    </div>
+  </div>
+  <div>
+    <strong>{t("recipe.estimatedTime")}</strong>
+    {recipe.data.estimatedTime} minutes
+  </div>
+
+  {
+    recipe.data.rating != null && (
+      <div>
+        <strong>{t("recipe.rating")}</strong>
+        {recipe.data.rating} {t("recipe.stars")}
+      </div>
+    )
+  }
+
+  <p>{recipe.data.description || t("recipe.noDescription")}</p>
+</div>

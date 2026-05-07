@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type Recipe = CollectionEntry<"recipes">;
+type Step = NonNullable<Recipe["data"]["steps"]>[number];
+
+interface Props {
+  step: Step;
+  stepId: string;
+  recipeId: string;
+  index: number;
+}
+
+const { step, stepId, recipeId, index } = Astro.props;
+---
+
+<div
+  class="recipe-step cursor-pointer transition-all duration-300 ease-in-out"
+  data-recipe-id={recipeId}
+  data-step-id={stepId}
+  data-type="step"
+  role="button"
+  tabindex="0"
+  aria-pressed="false"
+  style="margin-bottom: 1rem;"
+>
+  <h4>
+    {index + 1}. {step.title}
+  </h4>
+  <div set:html={step.description} />
+</div>

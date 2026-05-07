@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { capitalizeFirstLetter } from "../../utils";
+
+type Recipe = CollectionEntry<"recipes">;
+type Ingredient = NonNullable<Recipe["data"]["ingredients"]>[number];
+
+interface Props {
+  ingredient: Ingredient;
+  itemId: string;
+  recipeId: string;
+}
+
+const { ingredient, itemId, recipeId } = Astro.props;
+---
+
+<li>
+  <label class="cursor-pointer">
+    <input
+      type="checkbox"
+      class="checkbox checkbox-primary mr-1 recipe-checkbox"
+      data-recipe-id={recipeId}
+      data-item-id={itemId}
+      data-type="ingredient"
+    />
+    <span class="ingredient-name">{capitalizeFirstLetter(ingredient.name)}</span>
+    {
+      (ingredient.amount != null || ingredient.unit) && (
+        <>
+          {", "}
+          {ingredient.amount != null && (
+            <b class="ingredient-amount" data-original-amount={ingredient.amount}>
+              {ingredient.amount}
+            </b>
+          )}
+          {ingredient.amount != null && ingredient.unit && " "}
+          {ingredient.unit && <b class="ingredient-unit">{ingredient.unit}</b>}
+        </>
+      )
+    }
+  </label>
+</li>

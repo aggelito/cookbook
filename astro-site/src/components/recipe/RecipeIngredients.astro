@@ -1,0 +1,67 @@
+---
+import type { CollectionEntry } from "astro:content";
+import IngredientRow from "./IngredientRow.astro";
+import t from "../../i18n";
+
+type Recipe = CollectionEntry<"recipes">;
+
+interface Props {
+  recipe: Recipe;
+}
+
+const { recipe } = Astro.props;
+---
+
+<div class="recipe-ingredients-section prose-ul:list-none prose-ul:pl-0 prose-li:pl-0">
+  <h2>{t("recipe.ingredients")}</h2>
+
+  {
+    recipe.data.ingredients && recipe.data.ingredients.length > 0 && (
+      <ul>
+        {recipe.data.ingredients.map((ingredient, index) => (
+          <IngredientRow ingredient={ingredient} itemId={`ingredient-${index}`} recipeId={recipe.id} />
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    recipe.data.ingredientGroups && recipe.data.ingredientGroups.length > 0 && (
+      <>
+        {recipe.data.ingredientGroups.map((group, groupIndex) => (
+          <div>
+            <h4>{group.groupName}</h4>
+            <ul>
+              {group.ingredients.map((ingredient, ingredientIndex) => (
+                <IngredientRow
+                  ingredient={ingredient}
+                  itemId={`ingredient-group-${groupIndex}-${ingredientIndex}`}
+                  recipeId={recipe.id}
+                />
+              ))}
+            </ul>
+          </div>
+        ))}
+      </>
+    )
+  }
+
+  <div class="flex gap-2">
+    <button
+      id="reset-ingredients-btn"
+      class="btn btn-outline"
+      data-recipe-id={recipe.id}
+      data-confirm-message={t("recipe.confirmReset")}
+    >
+      {t("recipe.resetIngredients")}
+    </button>
+    <button
+      id="copy-shopping-list-btn"
+      class="btn btn-outline"
+      data-recipe-id={recipe.id}
+      data-copied-label={t("recipe.copied")}
+    >
+      {t("recipe.copyShoppingList")}
+    </button>
+  </div>
+</div>

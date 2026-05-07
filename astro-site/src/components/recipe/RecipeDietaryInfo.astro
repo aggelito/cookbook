@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+import t from "../../i18n";
+
+type Recipe = CollectionEntry<"recipes">;
+
+interface Props {
+  dietaryInfo: Recipe["data"]["dietaryInfo"];
+}
+
+const { dietaryInfo } = Astro.props;
+---
+
+<div class="dietary-info-section">
+  {
+    dietaryInfo && (
+      <>
+        <h2>{t("recipe.dietaryInfo")}</h2>
+        <ul>
+          <li>{t("recipe.vegetarian")} {dietaryInfo.vegetarian ? t("common.yes") : t("common.no")}</li>
+          <li>{t("recipe.vegan")} {dietaryInfo.vegan ? t("common.yes") : t("common.no")}</li>
+          <li>{t("recipe.glutenFree")} {dietaryInfo.glutenFree ? t("common.yes") : t("common.no")}</li>
+          <li>{t("recipe.dairyFree")} {dietaryInfo.dairyFree ? t("common.yes") : t("common.no")}</li>
+          <li>{t("recipe.nutFree")} {dietaryInfo.nutFree ? t("common.yes") : t("common.no")}</li>
+          <li>{t("recipe.lowCarb")} {dietaryInfo.lowCarb ? t("common.yes") : t("common.no")}</li>
+        </ul>
+      </>
+    )
+  }
+</div>
