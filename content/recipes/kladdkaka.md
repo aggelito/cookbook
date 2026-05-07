@@ -9,7 +9,6 @@ rating: 5
 description: >-
   En seg och chokladig kladdkaka som är enkel att röra ihop. Servera gärna med
   lättvispad grädde eller färska bär.
-heroImage: /uploads/kladdkaka.jpg
 ingredients:
   - name: Smör
     amount: 150

@@ -148,12 +148,6 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
       basePortions?: number;
     };
 
-    const searchInput = document.querySelector<HTMLInputElement>("#site-search");
-    const searchSection = document.querySelector<HTMLElement>("#search-section");
-    const searchResults = document.querySelector<HTMLUListElement>("#search-results");
-    const searchEmpty = document.querySelector<HTMLElement>("#search-empty");
-    const searchCount = document.querySelector<HTMLElement>("#search-count");
-    const recipeGrid = document.querySelector<HTMLElement>("#recipe-grid");
     let searchIndex: SearchItem[] | null = null;
 
     const normalize = (value: string) => value.toLocaleLowerCase("sv").trim();
@@ -177,6 +171,10 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
     };
 
     const renderResults = (items: SearchItem[]) => {
+      const searchResults = document.querySelector<HTMLUListElement>("#search-results");
+      const searchEmpty = document.querySelector<HTMLElement>("#search-empty");
+      const searchCount = document.querySelector<HTMLElement>("#search-count");
+
       if (!searchResults || !searchEmpty || !searchCount) return;
 
       searchResults.replaceChildren(
@@ -218,6 +216,10 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
     };
 
     const runSearch = async () => {
+      const searchInput = document.querySelector<HTMLInputElement>("#site-search");
+      const searchSection = document.querySelector<HTMLElement>("#search-section");
+      const recipeGrid = document.querySelector<HTMLElement>("#recipe-grid");
+
       if (!searchInput || !searchSection || !recipeGrid) return;
 
       const query = normalize(searchInput.value);
@@ -238,8 +240,18 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
       renderResults(matches);
     };
 
-    searchInput?.addEventListener("input", () => {
-      void runSearch();
-    });
+    const initializeSearch = () => {
+      const searchInput = document.querySelector<HTMLInputElement>("#site-search");
+      if (!searchInput) return;
+
+      const newSearchInput = searchInput.cloneNode(true) as HTMLInputElement;
+      searchInput.parentNode?.replaceChild(newSearchInput, searchInput);
+      newSearchInput.addEventListener("input", () => {
+        void runSearch();
+      });
+    };
+
+    initializeSearch();
+    document.addEventListener("astro:page-load", initializeSearch);
   </script>
 </BaseLayout>

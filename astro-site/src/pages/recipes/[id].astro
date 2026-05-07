@@ -113,11 +113,22 @@ const { recipe } = Astro.props;
                       data-item-id={`ingredient-${index}`}
                       data-type="ingredient"
                     />
-                    <span class="ingredient-name">{capitalizeFirstLetter(ingredient.name)}</span>,
-                    <b 
-                      class="ingredient-amount"
-                      data-original-amount={ingredient.amount}
-                    >{ingredient.amount}</b> <b class="ingredient-unit">{ingredient.unit}</b>
+                    <span class="ingredient-name">{capitalizeFirstLetter(ingredient.name)}</span>
+                    {
+                      (ingredient.amount != null || ingredient.unit) && (
+                        <>
+                          {", "}
+                          {ingredient.amount != null && (
+                            <b
+                              class="ingredient-amount"
+                              data-original-amount={ingredient.amount}
+                            >{ingredient.amount}</b>
+                          )}
+                          {ingredient.amount != null && ingredient.unit && " "}
+                          {ingredient.unit && <b class="ingredient-unit">{ingredient.unit}</b>}
+                        </>
+                      )
+                    }
                   </label>
                 </li>
               ))}
@@ -144,11 +155,22 @@ const { recipe } = Astro.props;
                             data-item-id={`ingredient-group-${groupIndex}-${ingredientIndex}`}
                             data-type="ingredient"
                           />
-                          <span class="ingredient-name">{capitalizeFirstLetter(ingredient.name)}</span>,
-                          <b 
-                            class="ingredient-amount"
-                            data-original-amount={ingredient.amount}
-                          >{ingredient.amount}</b> <b class="ingredient-unit">{ingredient.unit}</b>
+                          <span class="ingredient-name">{capitalizeFirstLetter(ingredient.name)}</span>
+                          {
+                            (ingredient.amount != null || ingredient.unit) && (
+                              <>
+                                {", "}
+                                {ingredient.amount != null && (
+                                  <b
+                                    class="ingredient-amount"
+                                    data-original-amount={ingredient.amount}
+                                  >{ingredient.amount}</b>
+                                )}
+                                {ingredient.amount != null && ingredient.unit && " "}
+                                {ingredient.unit && <b class="ingredient-unit">{ingredient.unit}</b>}
+                              </>
+                            )
+                          }
                         </label>
                       </li>
                     ))}
@@ -184,11 +206,14 @@ const { recipe } = Astro.props;
             {recipe.data.steps.map((step, index) => (
               <div
                 class="recipe-step cursor-pointer transition-all duration-300 ease-in-out"
-                data-recipe-id={recipe.id}
-                data-step-id={`step-${index}`}
-                data-type="step"
-                style="margin-bottom: 1rem;"
-              >
+                  data-recipe-id={recipe.id}
+                  data-step-id={`step-${index}`}
+                  data-type="step"
+                  role="button"
+                  tabindex="0"
+                  aria-pressed="false"
+                  style="margin-bottom: 1rem;"
+                >
                 <h4>
                   {index + 1}. {step.title}
                 </h4>
@@ -211,6 +236,9 @@ const { recipe } = Astro.props;
                     data-recipe-id={recipe.id}
                     data-step-id={`step-group-${groupIndex}-${stepIndex}`}
                     data-type="step"
+                    role="button"
+                    tabindex="0"
+                    aria-pressed="false"
                     style="margin-bottom: 1rem;"
                   >
                     <h4>
@@ -493,21 +521,32 @@ const { recipe } = Astro.props;
       // Set initial state from store
       if (isStepChecked(recipeId, stepId)) {
         newStepDiv.classList.add("line-through");
+        newStepDiv.setAttribute("aria-pressed", "true");
       }
 
-      // Add click listener
-      newStepDiv.addEventListener("click", () => {
+      const toggleStepState = () => {
         toggleStep(recipeId, stepId);
 
         // Toggle line-through class
         if (newStepDiv.classList.contains("line-through")) {
           newStepDiv.classList.remove("line-through");
+          newStepDiv.setAttribute("aria-pressed", "false");
         } else {
           newStepDiv.classList.add("line-through");
+          newStepDiv.setAttribute("aria-pressed", "true");
         }
         
         // Update reset steps button state
         updateResetStepsButtonState(recipeId);
+      };
+
+      // Add click and keyboard listeners
+      newStepDiv.addEventListener("click", toggleStepState);
+      newStepDiv.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggleStepState();
+        }
       });
     });
   }
@@ -537,11 +576,12 @@ const { recipe } = Astro.props;
               const nameEl = label.querySelector('.ingredient-name');
               const amountEl = label.querySelector('.ingredient-amount');
               const unitEl = label.querySelector('.ingredient-unit');
-              if (nameEl && amountEl && unitEl) {
+              if (nameEl) {
                 const name = nameEl.textContent?.trim() || "";
-                const amount = amountEl.textContent?.trim() || "";
-                const unit = unitEl.textContent?.trim() || "";
-                uncheckedIngredients.push(`${name} - ${amount} ${unit}`);
+                const amount = amountEl?.textContent?.trim() || "";
+                const unit = unitEl?.textContent?.trim() || "";
+                const quantity = [amount, unit].filter(Boolean).join(" ");
+                uncheckedIngredients.push(quantity ? `${name} - ${quantity}` : name);
               }
             }
           }
