@@ -1,6 +1,6 @@
 ---
 pubDate: "2026-02-22T11:35:56+01:00"
-updated: "2026-02-22T11:35:56+01:00"
+updated: "2026-07-02T13:34:50+02:00"
 
 title: Tonfiskpastasallad
 description: En enkel och krämig tonfiskpastasallad, perfekt för lunch, matlåda eller snabb middag.
@@ -14,12 +14,9 @@ ingredientGroups:
       - name: Pasta, gärna fusilli eller penne
         amount: 250
         unit: g
-      - name: Tonfisk i vatten
-        amount: 2
-        unit: burkar
-      - name: Ägg
-        amount: 2
-        unit: st
+      - name: Tonfisk i vatten, avrunnen
+        amount: 240
+        unit: g
       - name: Majonnäs
         amount: 3
         unit: msk
@@ -68,7 +65,7 @@ stepGroups:
       - title: Blanda såsen
         description: Blanda majonnäs, dijonsenap och citronjuice i en stor skål.
       - title: Tillsätt ingredienser
-        description: Låt tonfisken rinna av. Hacka ägg, smörgåsgurka, rödlök, selleri och kapris och blanda ner.
+        description: Låt tonfisken rinna av. Hacka smörgåsgurka, rödlök, selleri och kapris och blanda ner.
       - title: Rör ner parmesan
         description: Rör ner parmesan.
       - title: Vänd ner pastan
