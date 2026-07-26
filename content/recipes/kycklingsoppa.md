@@ -5,6 +5,9 @@ updated: "2026-04-19T17:51:47Z"
 title: Kycklingsoppa
 basePortions: 4
 estimatedTime: 30
+tags:
+  - "Kyckling"
+  - "Soppa"
 rating: 4.6
 description: >
   Kycklingsoppa med morötter, purjolök och potatis är mättande, snabblagad och värmande. Buljongen får god smak av buljongtärningar som också gör att soppan blir riktigt snabb att laga till.

@@ -7,6 +7,56 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
   const bTitle = b.data.title ?? b.id;
   return aTitle.localeCompare(bTitle, "sv");
 });
+
+const tags = [...new Set(recipes.flatMap((recipe) => recipe.data.tags))].sort((a, b) =>
+  a.localeCompare(b, "sv"),
+);
+
+const getSearchText = (recipe: (typeof recipes)[number]) => {
+  const ingredientText = [
+    ...(recipe.data.ingredients ?? []).map((ingredient) => ingredient.name),
+    ...(recipe.data.ingredientGroups ?? []).flatMap((group) =>
+      [group.groupName, ...group.ingredients.map((ingredient) => ingredient.name)],
+    ),
+  ];
+
+  const stepText = [
+    ...(recipe.data.steps ?? []).flatMap((step) => [step.title, step.description]),
+    ...(recipe.data.stepGroups ?? []).flatMap((group) => [
+      group.groupName,
+      ...group.steps.flatMap((step) => [step.title, step.description]),
+    ]),
+  ];
+
+  return [
+    recipe.data.title,
+    recipe.data.description,
+    ...recipe.data.tags,
+    ...ingredientText,
+    ...stepText,
+    recipe.data.estimatedTime,
+    recipe.data.rating,
+    recipe.data.basePortions,
+    recipe.id,
+  ]
+    .filter((value) => value != null && String(value).trim() !== "")
+    .map(String)
+    .join(" ")
+    .toLocaleLowerCase("sv");
+};
+
+const getDietaryFilters = (recipe: (typeof recipes)[number]) => {
+  const dietaryInfo = recipe.data.dietaryInfo;
+  if (!dietaryInfo) return "";
+
+  return [
+    dietaryInfo.vegetarian && "vegetarian",
+    dietaryInfo.vegan && "vegan",
+    dietaryInfo.glutenFree && "glutenFree",
+  ]
+    .filter(Boolean)
+    .join("|");
+};
 ---
 
 <BaseLayout title="Recept">
@@ -33,6 +83,7 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
           stroke-width="1.5"
           stroke="currentColor"
           class="h-5 w-5"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -43,7 +94,7 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
       </a>
     </header>
 
-    <div class="card mb-10 border border-base-300 bg-base-100 p-3 shadow-sm sm:p-4">
+    <form id="recipe-filters" class="card mb-8 border border-base-300 bg-base-100 p-4 shadow-sm sm:p-5">
       <label class="input input-lg w-full border-base-300 bg-base-200 shadow-none focus-within:border-primary focus-within:outline-none">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,36 +117,83 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
           class="grow"
           placeholder="Sök efter recept eller ingrediens"
           autocomplete="off"
-          aria-describedby="search-help"
+          aria-label="Sök recept"
         />
       </label>
-      <p id="search-help" class="px-2 pt-2 text-sm text-base-content/55">
-        Sök på namn, ingrediens eller tillagningstid.
-      </p>
+
+      <div class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <label class="form-control gap-1">
+          <span class="text-xs font-semibold uppercase tracking-wide text-base-content/55">Tagg</span>
+          <select id="tag-filter" class="select w-full border-base-300 bg-base-100" aria-label="Filtrera på tagg">
+            <option value="">Alla taggar</option>
+            {tags.map((tag) => <option value={tag}>{tag}</option>)}
+          </select>
+        </label>
+
+        <label class="form-control gap-1">
+          <span class="text-xs font-semibold uppercase tracking-wide text-base-content/55">Tid</span>
+          <select id="time-filter" class="select w-full border-base-300 bg-base-100" aria-label="Filtrera på tid">
+            <option value="">Alla tider</option>
+            <option value="30">Högst 30 min</option>
+            <option value="45">Högst 45 min</option>
+            <option value="60">Högst 60 min</option>
+            <option value="120">Högst 2 timmar</option>
+          </select>
+        </label>
+
+        <label class="form-control gap-1">
+          <span class="text-xs font-semibold uppercase tracking-wide text-base-content/55">Kost</span>
+          <select id="dietary-filter" class="select w-full border-base-300 bg-base-100" aria-label="Filtrera på kost">
+            <option value="">Alla kostval</option>
+            <option value="vegetarian">Vegetariskt</option>
+            <option value="vegan">Veganskt</option>
+            <option value="glutenFree">Glutenfritt</option>
+          </select>
+        </label>
+
+        <label class="form-control gap-1">
+          <span class="text-xs font-semibold uppercase tracking-wide text-base-content/55">Sortera</span>
+          <select id="sort-order" class="select w-full border-base-300 bg-base-100" aria-label="Sortera recept">
+            <option value="title">Namn A–Ö</option>
+            <option value="time">Kortast tid</option>
+            <option value="rating">Högst betyg</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="mt-4 flex min-h-8 items-center justify-between gap-4 border-t border-base-300 pt-3">
+        <p id="result-count" class="text-sm text-base-content/60" aria-live="polite">
+          Visar {recipes.length} recept
+        </p>
+        <button id="reset-filters" type="reset" class="btn btn-ghost btn-sm hidden text-base-content/65">
+          Rensa filter
+        </button>
+      </div>
+    </form>
+
+    <div id="filter-empty" class="mb-8 hidden rounded-box border border-base-300 bg-base-100 p-6 text-center">
+      <h2 class="text-lg font-semibold text-base-content">Inga recept matchar</h2>
+      <p class="mt-1 text-sm text-base-content/60">Prova att ändra sökningen eller rensa något filter.</p>
     </div>
-
-    <section id="search-section" class="mb-8 hidden" aria-live="polite">
-      <div class="mb-3 flex items-center justify-between gap-4">
-        <h2 class="text-xl font-semibold text-base-content">Sökresultat</h2>
-        <p id="search-count" class="text-sm text-base-content/60"></p>
-      </div>
-
-      <div id="search-empty" class="hidden rounded-box border border-base-300 bg-base-100 p-5 text-base-content/70">
-        Inga recept matchar sökningen.
-      </div>
-
-      <ul id="search-results" class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3"></ul>
-    </section>
 
     <ul id="recipe-grid" class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
       {
         recipes.map((recipe) => (
-          <li class="list-none">
+          <li
+            class="list-none"
+            data-recipe-card
+            data-title={(recipe.data.title ?? recipe.id).toLocaleLowerCase("sv")}
+            data-search={getSearchText(recipe)}
+            data-tags={recipe.data.tags.join("|")}
+            data-time={recipe.data.estimatedTime}
+            data-rating={recipe.data.rating ?? -1}
+            data-dietary={getDietaryFilters(recipe)}
+          >
             <a
               href={`/recipes/${recipe.id}`}
               class="group card h-full border border-base-300 bg-base-100 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/60 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-base-200"
             >
-              <div class="card-body gap-5 p-6">
+              <div class="card-body gap-4 p-6">
                 <div class="space-y-2">
                   <h2 class="text-xl font-semibold leading-snug tracking-tight text-base-content transition-colors group-hover:text-primary">
                     {recipe.data.title ?? recipe.id}
@@ -110,15 +208,17 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
                   }
                 </div>
 
+                <div class="flex flex-wrap gap-1.5">
+                  {recipe.data.tags.map((tag) => (
+                    <span class="badge badge-outline badge-sm text-base-content/60">{tag}</span>
+                  ))}
+                </div>
+
                 <div class="mt-auto flex flex-wrap gap-2 text-sm text-base-content/65">
-                  {
-                    recipe.data.estimatedTime != null && (
-                      <span class="badge badge-soft px-3 py-3">
-                        <span aria-hidden="true">⏱️</span>
-                        {recipe.data.estimatedTime} min
-                      </span>
-                    )
-                  }
+                  <span class="badge badge-soft px-3 py-3">
+                    <span aria-hidden="true">⏱️</span>
+                    {recipe.data.estimatedTime} min
+                  </span>
 
                   {
                     recipe.data.rating != null && (
@@ -138,121 +238,94 @@ const recipes = (await getCollection("recipes")).sort((a, b) => {
   </main>
 
   <script>
-    type SearchItem = {
-      type: string;
-      title: string;
-      description: string;
-      url: string;
-      content: string;
-      estimatedTime?: number;
-      rating?: number;
-      basePortions?: number;
-    };
-
-    let searchIndex: SearchItem[] | null = null;
-
     const normalize = (value: string) => value.toLocaleLowerCase("sv").trim();
 
-    const getSearchIndex = async (): Promise<SearchItem[]> => {
-      if (searchIndex) return searchIndex;
-
-      const response = await fetch("/search-index.json");
-      searchIndex = (await response.json()) as SearchItem[];
-      return searchIndex;
-    };
-
-    const formatMeta = (item: SearchItem) => {
-      const meta = [item.type === "recipe" ? "Recept" : item.type];
-
-      if (item.estimatedTime != null) meta.push(`${item.estimatedTime} min`);
-      if (item.basePortions != null) meta.push(`${item.basePortions} portioner`);
-      if (item.rating != null) meta.push(`${item.rating}/5`);
-
-      return meta.join(" · ");
-    };
-
-    const renderResults = (items: SearchItem[]) => {
-      const searchResults = document.querySelector<HTMLUListElement>("#search-results");
-      const searchEmpty = document.querySelector<HTMLElement>("#search-empty");
-      const searchCount = document.querySelector<HTMLElement>("#search-count");
-
-      if (!searchResults || !searchEmpty || !searchCount) return;
-
-      searchResults.replaceChildren(
-        ...items.map((item) => {
-          const listItem = document.createElement("li");
-          listItem.className = "list-none";
-
-          const link = document.createElement("a");
-          link.href = item.url;
-          link.className =
-            "group card h-full border border-base-300 bg-base-100 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/60 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-base-200";
-
-          const body = document.createElement("div");
-          body.className = "card-body gap-4 p-6";
-
-          const title = document.createElement("h3");
-          title.className = "text-xl font-semibold leading-snug tracking-tight text-base-content transition-colors group-hover:text-primary";
-          title.textContent = item.title;
-
-          const description = document.createElement("p");
-          description.className = "line-clamp-3 text-sm leading-6 text-base-content/65";
-          description.textContent = item.description || "Ingen beskrivning.";
-
-          const meta = document.createElement("p");
-          meta.className = "text-sm text-base-content/60";
-          meta.textContent = formatMeta(item);
-
-          body.append(title, description, meta);
-          link.append(body);
-          listItem.append(link);
-
-          return listItem;
-        }),
-      );
-
-      searchEmpty.classList.toggle("hidden", items.length > 0);
-      searchResults.classList.toggle("hidden", items.length === 0);
-      searchCount.textContent = `${items.length} träff${items.length === 1 ? "" : "ar"}`;
-    };
-
-    const runSearch = async () => {
+    const initializeFilters = () => {
+      const form = document.querySelector<HTMLFormElement>("#recipe-filters");
       const searchInput = document.querySelector<HTMLInputElement>("#site-search");
-      const searchSection = document.querySelector<HTMLElement>("#search-section");
-      const recipeGrid = document.querySelector<HTMLElement>("#recipe-grid");
+      const tagFilter = document.querySelector<HTMLSelectElement>("#tag-filter");
+      const timeFilter = document.querySelector<HTMLSelectElement>("#time-filter");
+      const dietaryFilter = document.querySelector<HTMLSelectElement>("#dietary-filter");
+      const sortOrder = document.querySelector<HTMLSelectElement>("#sort-order");
+      const resetButton = document.querySelector<HTMLButtonElement>("#reset-filters");
+      const resultCount = document.querySelector<HTMLElement>("#result-count");
+      const emptyState = document.querySelector<HTMLElement>("#filter-empty");
+      const recipeGrid = document.querySelector<HTMLUListElement>("#recipe-grid");
 
-      if (!searchInput || !searchSection || !recipeGrid) return;
+      if (
+        !form ||
+        !searchInput ||
+        !tagFilter ||
+        !timeFilter ||
+        !dietaryFilter ||
+        !sortOrder ||
+        !resetButton ||
+        !resultCount ||
+        !emptyState ||
+        !recipeGrid ||
+        form.dataset.initialized
+      ) {
+        return;
+      }
 
-      const query = normalize(searchInput.value);
-      const isSearching = query.length > 0;
+      form.dataset.initialized = "true";
+      const cards = Array.from(recipeGrid.querySelectorAll<HTMLElement>("[data-recipe-card]"));
 
-      searchSection.classList.toggle("hidden", !isSearching);
-      recipeGrid.classList.toggle("hidden", isSearching);
+      const applyFilters = () => {
+        const terms = normalize(searchInput.value).split(/\s+/).filter(Boolean);
+        const selectedTag = tagFilter.value;
+        const maxTime = timeFilter.value ? Number(timeFilter.value) : Number.POSITIVE_INFINITY;
+        const selectedDietary = dietaryFilter.value;
 
-      if (!isSearching) return;
+        const sortedCards = [...cards].sort((a, b) => {
+          if (sortOrder.value === "time") {
+            return Number(a.dataset.time) - Number(b.dataset.time);
+          }
 
-      const terms = query.split(/\s+/).filter(Boolean);
-      const items = await getSearchIndex();
-      const matches = items.filter((item) => {
-        const searchableText = normalize(item.content);
-        return terms.every((term) => searchableText.includes(term));
+          if (sortOrder.value === "rating") {
+            const ratingDifference = Number(b.dataset.rating) - Number(a.dataset.rating);
+            if (ratingDifference !== 0) return ratingDifference;
+          }
+
+          return (a.dataset.title ?? "").localeCompare(b.dataset.title ?? "", "sv");
+        });
+
+        let visibleCount = 0;
+        sortedCards.forEach((card) => {
+          const searchText = card.dataset.search ?? "";
+          const cardTags = (card.dataset.tags ?? "").split("|");
+          const dietary = (card.dataset.dietary ?? "").split("|");
+          const matches =
+            terms.every((term) => searchText.includes(term)) &&
+            (!selectedTag || cardTags.includes(selectedTag)) &&
+            Number(card.dataset.time) <= maxTime &&
+            (!selectedDietary || dietary.includes(selectedDietary));
+
+          card.hidden = !matches;
+          if (matches) visibleCount += 1;
+          recipeGrid.append(card);
+        });
+
+        const hasActiveFilters = Boolean(
+          searchInput.value || selectedTag || timeFilter.value || selectedDietary || sortOrder.value !== "title",
+        );
+        resultCount.textContent = `Visar ${visibleCount} av ${cards.length} recept`;
+        resetButton.classList.toggle("hidden", !hasActiveFilters);
+        emptyState.classList.toggle("hidden", visibleCount > 0);
+        recipeGrid.classList.toggle("hidden", visibleCount === 0);
+      };
+
+      form.addEventListener("input", applyFilters);
+      form.addEventListener("change", applyFilters);
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        applyFilters();
       });
-
-      renderResults(matches);
+      form.addEventListener("reset", () => window.setTimeout(applyFilters));
+      applyFilters();
     };
 
-    const initializeSearch = () => {
-      const searchInput = document.querySelector<HTMLInputElement>("#site-search");
-      if (!searchInput) return;
-
-      const newSearchInput = searchInput.cloneNode(true) as HTMLInputElement;
-      searchInput.parentNode?.replaceChild(newSearchInput, searchInput);
-      newSearchInput.addEventListener("input", () => {
-        void runSearch();
-      });
-    };
-
-    initializeSearch();
-    document.addEventListener("astro:page-load", initializeSearch);
+    initializeFilters();
+    document.addEventListener("astro:page-load", initializeFilters);
   </script>
 </BaseLayout>

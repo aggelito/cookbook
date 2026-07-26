@@ -5,6 +5,9 @@ updated: "2026-05-17T19:23:14+02:00"
 title: "Asiatisk köttfärssås"
 basePortions: 4
 estimatedTime: 30
+tags:
+  - "Asiatiskt"
+  - "Kött"
 rating: 4.3
 description: >
   Asiatisk-inspirerad köttfärssås med sambal oelek, fisksås, soja och lime.

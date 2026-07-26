@@ -5,6 +5,9 @@ updated: "2026-07-21T16:37:35+02:00"
 title: Shakshuka
 basePortions: 4
 estimatedTime: 40
+tags:
+  - "Mellanöstern"
+  - "Äggrätt"
 rating: 0
 description: >
   Ägg som får sjuda i en fyllig tomat- och paprikasås med spiskummin, chili och fetaost.

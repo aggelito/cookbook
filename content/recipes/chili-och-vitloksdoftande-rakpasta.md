@@ -5,6 +5,9 @@ updated: "2026-04-20T12:15:41+02:00"
 title: Chili- och vitlöksdoftande räkpasta
 basePortions: 4
 estimatedTime: 20
+tags:
+  - "Fisk & skaldjur"
+  - "Pasta"
 rating: 0
 description: |
   En snabb och fräsch pasta med sting, där räkorna får sällskap av chili, vitlök och en skvätt citron. Perfekt vardagslyx som går på under en halvtimme.

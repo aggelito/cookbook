@@ -5,6 +5,9 @@ updated: "2025-11-25T12:19:48+01:00"
 title: Raggmunkar med fläsk
 basePortions: 4
 estimatedTime: 45
+tags:
+  - "Kött"
+  - "Svenskt"
 rating: 5
 description: |
   Klassiska raggmunkar med krispigt fläsk.

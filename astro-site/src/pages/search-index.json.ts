@@ -6,6 +6,7 @@ type SearchItem = {
   description: string;
   url: string;
   content: string;
+  tags: string[];
   estimatedTime?: number;
   rating?: number;
   basePortions?: number;
@@ -42,6 +43,7 @@ export async function GET() {
     const content = joinText([
       title,
       description,
+      ...recipe.data.tags,
       ingredientText,
       stepText,
       recipe.data.estimatedTime,
@@ -56,6 +58,7 @@ export async function GET() {
       description,
       url: `/recipes/${recipe.id}`,
       content,
+      tags: recipe.data.tags,
       estimatedTime: recipe.data.estimatedTime,
       rating: recipe.data.rating,
       basePortions: recipe.data.basePortions,

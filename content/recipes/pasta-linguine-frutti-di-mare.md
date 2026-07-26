@@ -5,6 +5,10 @@ updated: "2026-05-25T17:44:27+02:00"
 title: "Pasta linguine Frutti di Mare"
 basePortions: 4
 estimatedTime: 40
+tags:
+  - "Fisk & skaldjur"
+  - "Italienskt"
+  - "Pasta"
 rating: 3.8
 description: >
   Klassisk italiensk fisk- och skaldjurspasta med blåmusslor, vitlök, tomat,

@@ -6,6 +6,10 @@ title: Tonfiskpastasallad
 description: En enkel och krämig tonfiskpastasallad, perfekt för lunch, matlåda eller snabb middag.
 basePortions: 3
 estimatedTime: 35
+tags:
+  - "Fisk & skaldjur"
+  - "Pasta"
+  - "Sallad"
 rating: 4
 
 ingredientGroups:

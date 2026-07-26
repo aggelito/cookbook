@@ -5,6 +5,9 @@ updated: "2026-04-22T17:00:19+02:00"
 title: Klassisk lasagne
 basePortions: 6
 estimatedTime: 90
+tags:
+  - "Italienskt"
+  - "Pasta"
 rating: 0
 description: |
   En klassisk lasagne med långkokt bolognese, krämig béchamel och tydliga lager

@@ -5,6 +5,9 @@ updated: "2025-11-15T21:14:41+01:00"
 title: "Krämiga misonudlar med klibbiga svampar"
 basePortions: 2
 estimatedTime: 30
+tags:
+  - "Asiatiskt"
+  - "Ris & nudlar"
 rating: 0
 description: |
   Silkeslen, krämig misobuljong gjord på tofu och grönsaksbuljong, toppad med klibbigt karamelliserad ostronskivling och marinerade ägg. Värmande, fylligt och enkelt.

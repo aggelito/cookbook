@@ -5,6 +5,9 @@ updated: "2026-05-08T17:38:44+02:00"
 title: Kyckling på potatisbädd i ugn
 basePortions: 4
 estimatedTime: 60
+tags:
+  - "Kyckling"
+  - "Vardagsmat"
 rating: 0
 description: >
   Krämig ugnskyckling med skivad potatis, lök och vitlök i botten. En lättlagad

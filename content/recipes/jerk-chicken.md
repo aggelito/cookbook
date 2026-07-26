@@ -5,6 +5,9 @@ updated: "2026-04-19T18:18:16Z"
 title: Jamaicansk jerkkyckling i ugn
 basePortions: 4
 estimatedTime: 150
+tags:
+  - "Karibiskt"
+  - "Kyckling"
 rating: 5
 description: >
   Jerkkyckling med het, kryddig marinad och långsam tillagning i ugn. Kycklingen

@@ -5,6 +5,9 @@ updated: "2025-11-15T21:14:41+01:00"
 title: Kimchi-mayo bowl med ris, ägg & grönsaker
 basePortions: 2
 estimatedTime: 15
+tags:
+  - "Asiatiskt"
+  - "Ris & nudlar"
 rating: 4
 description: >
   Snabb och mättande bowl med ris, krispiga grönsaker, ägg och kimchi-mayo.

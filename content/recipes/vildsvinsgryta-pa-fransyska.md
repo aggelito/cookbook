@@ -5,6 +5,10 @@ updated: "2025-11-12T19:33:50+01:00"
 title: Vildsvinsgryta på fransyska
 basePortions: 6
 estimatedTime: 180
+tags:
+  - "Gryta"
+  - "Svenskt"
+  - "Vilt"
 rating: 5
 description: >-
   Klassisk och mustig gryta på vildsvinsfransyska som långsamt sjuder ihop med

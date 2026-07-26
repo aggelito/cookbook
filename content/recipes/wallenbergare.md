@@ -5,6 +5,9 @@ updated: "2026-04-20T18:07:56+02:00"
 title: Klassiska Wallenbergare
 basePortions: 4
 estimatedTime: 45
+tags:
+  - "Kött"
+  - "Svenskt"
 rating: 5
 description: >-
   En svensk lyxklassiker. Wallenbergare är luftiga färsbiffar gjorda på finmalen

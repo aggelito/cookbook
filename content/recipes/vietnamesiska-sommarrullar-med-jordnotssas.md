@@ -5,6 +5,10 @@ updated: "2026-06-14T18:41:55+02:00"
 title: "Vietnamesiska sommarrullar med jordnötssås"
 basePortions: 4
 estimatedTime: 20
+tags:
+  - "Fisk & skaldjur"
+  - "Förrätt"
+  - "Vietnamesiskt"
 rating: 4.5
 description: >
   Fräscha vietnamesiska sommarrullar med räkor, glasnudlar, krispiga grönsaker,

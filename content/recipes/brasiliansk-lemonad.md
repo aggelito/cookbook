@@ -5,6 +5,9 @@ updated: "2026-06-04T13:04:45+02:00"
 title: Brasiliansk lemonad
 basePortions: 4
 estimatedTime: 10
+tags:
+  - "Brasilianskt"
+  - "Dryck"
 rating: 0
 description: >-
   Krämig och frisk brasiliansk lemonad på lime, kallt vatten och sötad

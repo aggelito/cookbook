@@ -5,6 +5,10 @@ updated: "2026-04-22T17:07:36+02:00"
 title: Salsicciapasta i tomatsås
 basePortions: 4
 estimatedTime: 35
+tags:
+  - "Italienskt"
+  - "Kött"
+  - "Pasta"
 rating: 0
 description: |
   En mustig och rustik italiensk pastarätt med smulad salsiccia, tomatsås,

@@ -5,6 +5,10 @@ updated: "2025-11-23T13:04:06+01:00"
 title: Klassisk pasta bolognese
 basePortions: 4
 estimatedTime: 120
+tags:
+  - "Italienskt"
+  - "Kött"
+  - "Pasta"
 rating: 0
 description: |
   En klassisk italiensk köttfärssås som får puttra länge och bli riktigt mustig. Serveras med spaghetti och är perfekt som söndagsmiddag eller när du vill laga extra mycket och fylla frysen.

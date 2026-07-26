@@ -5,6 +5,10 @@ updated: "2026-07-21T16:31:26+02:00"
 title: Kimchi fried rice med rimmat fläsk
 basePortions: 2
 estimatedTime: 25
+tags:
+  - "Koreanskt"
+  - "Kött"
+  - "Ris & nudlar"
 rating: 0
 description: >
   Snabbstekt ris med syrlig kimchi, krispigt rimmat fläsk och gochujang.

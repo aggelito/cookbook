@@ -5,6 +5,10 @@ updated: "2025-11-19T08:15:00+01:00"
 title: "Pad Krapao"
 basePortions: 3
 estimatedTime: 30
+tags:
+  - "Kött"
+  - "Ris & nudlar"
+  - "Thailändskt"
 rating: 4
 description: >
   Thailändsk färswok med chili, vitlök, basilika och krispigt stekt ägg.

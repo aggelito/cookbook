@@ -5,6 +5,9 @@ updated: "2025-11-16T17:59:20+01:00"
 title: Krämig pasta med ostronskivling
 basePortions: 4
 estimatedTime: 25
+tags:
+  - "Italienskt"
+  - "Pasta"
 rating: 0
 description: |
   En snabb och krämig vegetarisk pasta med ostronskivling som får härlig umami från soja. Perfekt vardagsmiddag på 20-25 minuter.

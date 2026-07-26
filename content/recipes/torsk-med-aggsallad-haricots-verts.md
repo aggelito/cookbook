@@ -5,6 +5,9 @@ updated: "2025-11-18T16:26:50+01:00"
 title: Torsk med äggsallad & haricots verts
 basePortions: 4
 estimatedTime: 40
+tags:
+  - "Fisk & skaldjur"
+  - "Sallad"
 rating: 4
 description: En god och fräsch torskrätt med krämig äggsallad och krispiga haricots verts. Perfekt för en lättare middag.
 ingredientGroups:

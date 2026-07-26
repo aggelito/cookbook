@@ -5,6 +5,9 @@ updated: "2026-04-22T18:05:30+02:00"
 title: Caesarsallad
 basePortions: 4
 estimatedTime: 35
+tags:
+  - "Kyckling"
+  - "Sallad"
 rating: 0
 description: |
   En klassisk caesarsallad med hemlagad dressing av vitlök, äggula, sardeller

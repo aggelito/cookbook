@@ -5,6 +5,9 @@ updated: "2025-11-15T21:14:41+01:00"
 title: Fish tacos med krispig torsk, mangosalsa & kimchi-mayo
 basePortions: 4
 estimatedTime: 40
+tags:
+  - "Fisk & skaldjur"
+  - "Mexikanskt"
 rating: 4.5
 description: >
   Fish tacos med krispig panerad torsk, frisk mangosalsa och krämig kimchi-mayo.

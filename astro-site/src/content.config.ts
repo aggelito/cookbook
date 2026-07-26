@@ -11,6 +11,7 @@ const recipes = defineCollection({
     basePortions: z.number(),
     estimatedTime: z.number(),
     rating: z.number().min(0).max(5).optional(),
+    tags: z.array(z.string()).default([]),
     description: z.string().optional(),
     heroImage: z.string().optional(),
     ingredients: z.array(z.object({

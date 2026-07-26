@@ -5,6 +5,10 @@ updated: "2026-04-20T09:38:38+02:00"
 title: Boeuf Bourguignon
 basePortions: 6
 estimatedTime: 180
+tags:
+  - "Franskt"
+  - "Gryta"
+  - "Kött"
 rating: 5
 description: >
   En klassisk fransk mustig köttgryta från Bourgogne, långkokt i rödvin tills köttet är gaffelmört.

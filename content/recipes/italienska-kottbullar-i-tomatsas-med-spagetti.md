@@ -5,6 +5,10 @@ updated: "2026-05-31T19:00:52+02:00"
 title: Italienska köttbullar i tomatsås med spagetti
 basePortions: 4
 estimatedTime: 60
+tags:
+  - "Italienskt"
+  - "Kött"
+  - "Pasta"
 rating: 0
 description: |
   Saftiga italienska köttbullar som får sjuda klart i en enkel tomatsås med

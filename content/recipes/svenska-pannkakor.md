@@ -5,6 +5,9 @@ updated: "2025-11-10T22:41:59+01:00"
 title: Svenska pannkakor
 basePortions: 4
 estimatedTime: 30
+tags:
+  - "Fika"
+  - "Svenskt"
 rating: 4
 description: >
   Tunna svenska pannkakor med mild sötma och frasiga kanter. Servera med sylt,

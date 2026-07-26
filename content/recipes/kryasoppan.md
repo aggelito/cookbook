@@ -5,6 +5,9 @@ updated: "2026-05-07T19:20:00+02:00"
 title: Kryasoppan
 basePortions: 4
 estimatedTime: 40
+tags:
+  - "Kyckling"
+  - "Soppa"
 rating: 4.8
 description: >
   En värmande och kryddig kycklingsoppa med grönsaker, tomat, örter och pasta.

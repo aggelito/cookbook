@@ -5,6 +5,9 @@ updated: "2026-05-13T16:48:41+02:00"
 title: Skånsk äggakaka
 basePortions: 4
 estimatedTime: 40
+tags:
+  - "Kött"
+  - "Svenskt"
 rating: 0
 description: >
   Klassisk skånsk äggakaka med rimmat fläsk och stekta äpplen. Välj om du vill

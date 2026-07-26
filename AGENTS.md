@@ -33,6 +33,8 @@ newer is required.
   `stepGroups` when the recipe has distinct components.
 - Keep numeric fields such as `basePortions`, `estimatedTime`, ingredient `amount`, and
   `rating` as YAML numbers rather than quoted strings.
+- Add 2–3 curated Swedish `tags` that describe cuisine or dish type. Do not duplicate time or
+  dietary metadata as tags; those have dedicated fields and filters.
 - Add `heroImage` only when a suitable, correctly referenced image is available.
 
 ### Swedish ingredient style

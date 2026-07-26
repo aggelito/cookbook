@@ -5,6 +5,10 @@ updated: "2025-11-12T19:33:50+01:00"
 title: Klassisk kladdkaka
 basePortions: 8
 estimatedTime: 40
+tags:
+  - "Bakning"
+  - "Fika"
+  - "Svenskt"
 rating: 5
 description: >-
   En seg och chokladig kladdkaka som är enkel att röra ihop. Servera gärna med

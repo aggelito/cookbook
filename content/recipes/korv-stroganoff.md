@@ -5,6 +5,10 @@ updated: "2025-12-09T14:31:43+01:00"
 title: Korv stroganoff
 basePortions: 4
 estimatedTime: 30
+tags:
+  - "Kött"
+  - "Svenskt"
+  - "Vardagsmat"
 rating: 4
 description: >
   Klassisk korv stroganoff med falukorv, lök och krämig tomatsås. Servera med ris.

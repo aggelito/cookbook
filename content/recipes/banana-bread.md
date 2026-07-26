@@ -5,6 +5,9 @@ updated: "2026-05-30T10:51:24+02:00"
 title: Banana bread
 basePortions: 12
 estimatedTime: 90
+tags:
+  - "Bakning"
+  - "Fika"
 rating: 4.5
 description: >-
   Saftigt banana bread med mogna bananer, vanilj och en skivad banan på toppen.

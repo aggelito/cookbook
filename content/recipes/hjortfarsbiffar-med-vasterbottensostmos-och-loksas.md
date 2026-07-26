@@ -5,6 +5,9 @@ updated: "2026-05-13T13:34:03+02:00"
 title: Hjortfärsbiffar med västerbottensostmos och löksås
 basePortions: 4
 estimatedTime: 60
+tags:
+  - "Svenskt"
+  - "Vilt"
 rating: 0
 description: >
   Saftiga hjortfärsbiffar med krämigt potatismos smaksatt med västerbottensost

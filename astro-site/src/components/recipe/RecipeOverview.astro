@@ -31,6 +31,9 @@ const { recipe } = Astro.props;
               </span>
             )
           }
+          {recipe.data.tags.map((tag) => (
+            <span class="badge badge-outline px-3 py-3 text-base-content/60">{tag}</span>
+          ))}
         </div>
 
         <div>
