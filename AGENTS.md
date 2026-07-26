@@ -19,7 +19,7 @@
 - `astro-site/src/assets/app.css` — Tailwind CSS and DaisyUI setup.
 - `astro-site/` — npm package and all Astro commands.
 
-The site uses Astro 6, strict TypeScript, Tailwind CSS 4, and DaisyUI 5. Node.js 22.12 or
+The site uses Astro 7, strict TypeScript, Tailwind CSS 4, and DaisyUI 5. Node.js 22.12 or
 newer is required.
 
 ## Recipe files
