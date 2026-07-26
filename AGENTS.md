@@ -1,141 +1,103 @@
-# LLM Behavior
-## General
-- Be fast and concise.  
-- Only explain when needed — prefer short, clear answers.  
-- Never repeat the prompt or previous messages.  
+# Cookbook agent instructions
 
-## Context use
-- Open or read only files directly related to the task.  
-- Skip large or irrelevant folders (node_modules, dist, build, .git, logs, etc.).  
-- Summarize or infer instead of scanning whole projects when possible.  
+## Working style
 
-## Code edits
-- Show only changed lines or minimal context, not whole large files.  
-- Combine related edits into one response.  
+- Keep responses concise and focused on the result.
+- Inspect the files needed to understand and verify the task. Avoid generated or dependency
+  directories such as `node_modules/`, `dist/`, `.git/`, and logs.
+- Preserve unrelated work in the working tree. Do not revert or overwrite changes you did not
+  make.
+- Prefer small, focused edits that follow the surrounding code and content.
+- Correctness comes before speed or token savings.
 
-## Reasoning
-- Think carefully but keep visible output short (a few sentences or bullet points).  
-- Don't show internal reasoning unless the user asks for step-by-step detail.  
+## Repository layout
 
-## Searching
-- Use narrow, specific searches.  
-- Avoid broad "search the whole repo" unless necessary.  
+- `content/recipes/` — Swedish recipe Markdown files.
+- `astro-site/src/content.config.ts` — recipe collection and frontmatter schema.
+- `astro-site/src/components/` — Astro UI components.
+- `astro-site/src/pages/` — pages, RSS, and search index.
+- `astro-site/src/assets/app.css` — Tailwind CSS and DaisyUI setup.
+- `astro-site/` — npm package and all Astro commands.
 
-## Output
-- Focus on the final code or result.  
-- Keep explanations under a few sentences.  
-- Skip repetition, fluff, and extra commentary.  
+The site uses Astro 6, strict TypeScript, Tailwind CSS 4, and DaisyUI 5. Node.js 22.12 or
+newer is required.
 
-## Quality vs. cost
-- Always keep correctness first.  
-- Save tokens by being concise, not by skipping important info.  
+## Recipe files
 
-# Cookbook Project - LLM Instructions
+- Create recipes in `content/recipes/` as Markdown files with YAML frontmatter.
+- Use lowercase kebab-case filenames, for example `kottbullar-med-graddsas.md`.
+- Write titles, descriptions, ingredient names, and steps in Swedish.
+- Follow the current schema in `astro-site/src/content.config.ts`; do not rely only on an
+  existing recipe because the schema may have changed.
+- Use `ingredients` and `steps` for a single-part recipe. Use `ingredientGroups` and
+  `stepGroups` when the recipe has distinct components.
+- Keep numeric fields such as `basePortions`, `estimatedTime`, ingredient `amount`, and
+  `rating` as YAML numbers rather than quoted strings.
+- Add `heroImage` only when a suitable, correctly referenced image is available.
 
-## Recipe Creation Guidelines
+### Swedish ingredient style
 
-### File Location
-- **ALL recipes MUST be created in**: `content/recipes/`
-- **File format**: Markdown (`.md`)
-- **Filename**: Use lowercase with hyphens (e.g., `pannkakor.md`, `kottbullar-med-graddsas.md`)
+Use familiar Swedish grocery-store terms and standard abbreviations:
 
-### Schema Reference
-- Recipes follow the schema defined in `astro-site/src/content.config.ts`
-- Review that file for the complete field structure and available options
-- Each recipe is a Markdown file with YAML frontmatter
-- If possible and able to do it correctly, add heroImage
+- weight: `g`, `kg`
+- volume: `ml`, `dl`, `l`
+- spoons: `msk`, `tsk`, `krm`
+- count and other measures: `st`, `nypa`, `klyfta`
 
-### Language and Measurements
-- **Language**: ALL recipe content MUST be in Swedish
-- **Measurements**: Use standard Swedish units:
-  - **Weight**: gram (g), kilogram (kg)
-  - **Volume**: milliliter (ml), deciliter (dl), liter (l)
-  - **Spoons**: matsked (msk/tablespoon), tesked (tsk/teaspoon), kryddmått (krm)
-  - **Other**: nypa (pinch), st/styck (pieces), klyfta (clove)
+Keep preparation details in the steps unless they are needed to identify or measure an
+ingredient.
 
-### Ingredient Naming
-- **Use Swedish grocery store terminology** that shoppers recognize at ICA, Coop, Willys, etc.
-- **Avoid overly technical or uncommon terms** - use what Swedish home cooks would find in stores
-- **Avoid details if not necessary** - in ingredients lists, avoid specifying how it should be prepared, unless necessary
+### Required chef review
 
-### Notes
-- For complex recipes with multiple components, use `ingredientGroups` and `stepGroups` instead of simple `ingredients` and `steps`
-- Review existing recipes in `content/recipes/` for examples
+After creating or editing a recipe, review it as a cook and fix concrete problems before
+finishing. Check:
 
-## Code Style Guidelines
+- taste balance and seasoning
+- ingredient quantities relative to `basePortions`
+- cooking temperatures, technique, and step order
+- practical total time relative to `estimatedTime`
+- Swedish ingredient names, units, and measurements
+- dietary flags against the actual ingredients
+- whether the instructions are complete and cookable
 
-### TypeScript & Astro Configuration
-- Uses Astro v5.16+ with strict TypeScript config (`astro/tsconfigs/strict`)
-- Extend types via `.astro/types.d.ts` (auto-generated)
-- No linting tools configured - keep code clean and type-safe manually
-- Prefer explicit types over `any`
+## Code and UI
 
-### Imports
-- Group imports by order: 3rd-party > Astro modules > local imports
-- Keep each file under ~100 lines of actual code when possible
-- For recipe content, keep YAML frontmatter first, then HTML
+- Follow the strict Astro TypeScript configuration. Avoid `any` unless there is a documented
+  reason for it.
+- Use 2-space indentation and follow the surrounding file's quote and import style.
+- Prefer focused components over arbitrary file-size limits.
+- Use semantic HTML and preserve keyboard and screen-reader accessibility.
+- Reuse DaisyUI components and the existing emerald theme where they fit. Tailwind utilities
+  are fine for layout and adjustments; do not force a DaisyUI component where plain semantic
+  HTML is clearer.
+- DaisyUI is already configured in `astro-site/src/assets/app.css`; do not add a CDN import.
+- Keep user-facing interface text in Swedish.
 
-### Formatting
-- Use 2-space indentation (no tabs)
-- Max line length ~100 characters for prose
-- Recipe step descriptions should be concise but clear
+## Verification
 
-### Naming Conventions
-- Files: kebab-case (`my-recipe.md`)
-- Collections: lowercase singular (`recipes` in content.config.ts)
-- Fields: camelCase within schema objects
-
-## Build/Deploy Commands
+Run commands from the repository root unless stated otherwise.
 
 ```bash
-# Development server
-cd astro-site && npm run dev
+# Install locked dependencies when needed
+npm --prefix astro-site ci
 
-# Production build
-npm run build
+# Required after recipe, schema, component, page, style, or configuration changes
+npm --prefix astro-site run build
 
-# Preview production build locally
-npm run preview
+# Local development
+npm --prefix astro-site run dev
 
-# Astro CLI (for schema validation, etc.)
-npm run astro [command]
+# Preview a completed production build
+npm --prefix astro-site run preview
 ```
 
-## Testing Notes
+There is no separate test or lint script. The production build is the main validation gate and
+checks the Astro content schema and TypeScript compilation. For UI changes, also inspect the
+relevant page at desktop and mobile widths when browser tooling is available.
 
-No test framework is configured in this project. The Astro site uses static content from Markdown files without runtime tests.
+Before finishing:
 
-- Content validation happens at build time via TypeScript schemas
-- Recipes are validated against `content.config.ts` Zod schemas
-- Run `npm run build` to catch schema/validation errors early
-
-## UI Components - DaisyUI
-
-- **ALWAYS use DaisyUI components** where possible (buttons, cards, navbars, etc.)
-- Example pattern: `<button class="btn btn-primary bg-emerald-600 hover:bg-emerald-700">`
-- DaisyUI is installed via npm (`daisyui@5.4.7`) - DO NOT add CDN link since it's already configured
-- Add DaisyUI in layout if needed, check `astro-site/src/layouts/BaseLayout.astro`
-- Use Tailwind + DaisyUI together for consistent, accessible UI
-
-## Quality Control - UI Patterns
-
-- Prefer DaisyUI components over raw HTML classes
-- Use consistent color schemes (emerald/green for primary actions)
-- Ensure responsive design with proper spacing and padding
-
-## Recipe Chef Review
-
-Whenever an AI agent creates or edits a recipe in `content/recipes/*.md`, it MUST review
-the recipe as a chef before finishing.
-
-The review must check:
-- Taste balance and seasoning
-- Reasonable ingredient amounts and portion size
-- Cooking technique and order of steps
-- Accurate Swedish grocery-store ingredient names
-- Swedish units and clear measurements
-- Estimated time and practical feasibility
-- Clear, cookable instructions
-
-The agent must fix concrete recipe issues found during this review before the final
-response.
+1. Review `git diff` for accidental or unrelated changes.
+2. Run the relevant verification above.
+3. Report what changed and the actual verification result.
+4. Do not claim a deployment succeeded without checking the workflow or deployed site.
