@@ -2,6 +2,36 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod'
 
+const recipeTag = z.enum([
+  'Asiatiskt',
+  'Bakning',
+  'Brasilianskt',
+  'Dryck',
+  'Fika',
+  'Fisk & skaldjur',
+  'Franskt',
+  'Förrätt',
+  'Grekiskt',
+  'Gryta',
+  'Italienskt',
+  'Karibiskt',
+  'Koreanskt',
+  'Kyckling',
+  'Kött',
+  'Mellanöstern',
+  'Mexikanskt',
+  'Pasta',
+  'Ris & nudlar',
+  'Sallad',
+  'Soppa',
+  'Svenskt',
+  'Thailändskt',
+  'Vardagsmat',
+  'Vietnamesiskt',
+  'Vilt',
+  'Äggrätt',
+]);
+
 const recipes = defineCollection({
   loader: glob({ pattern: '**/*.md', base: '../content/recipes' }),
   schema: z.object({
@@ -11,7 +41,11 @@ const recipes = defineCollection({
     basePortions: z.number(),
     estimatedTime: z.number(),
     rating: z.number().min(0).max(5).optional(),
-    tags: z.array(z.string()).default([]),
+    tags: z
+      .array(recipeTag)
+      .min(2)
+      .max(3)
+      .refine((tags) => new Set(tags).size === tags.length, 'Tags must be unique'),
     description: z.string().optional(),
     heroImage: z.string().optional(),
     ingredients: z.array(z.object({
