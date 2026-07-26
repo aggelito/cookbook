@@ -67,10 +67,12 @@ finishing. Check:
 - Use 2-space indentation and follow the surrounding file's quote and import style.
 - Prefer focused components over arbitrary file-size limits.
 - Use semantic HTML and preserve keyboard and screen-reader accessibility.
-- Reuse DaisyUI components and the existing emerald theme where they fit. Tailwind utilities
-  are fine for layout and adjustments; do not force a DaisyUI component where plain semantic
-  HTML is clearer.
-- DaisyUI is already configured in `astro-site/src/assets/app.css`; do not add a CDN import.
+- Reuse DaisyUI components and the custom `cookbook` theme where they fit. Use semantic theme
+  classes such as `primary`, `base-*`, `success`, and `warning` instead of hardcoded color values
+  or palette-specific Tailwind classes in markup. Tailwind utilities are fine for layout and
+  adjustments; do not force a DaisyUI component where plain semantic HTML is clearer.
+- Define palette, radii, borders, and depth centrally in `astro-site/src/assets/app.css`.
+  DaisyUI is already configured there; do not add a CDN import.
 - Keep user-facing interface text in Swedish.
 
 ## Verification

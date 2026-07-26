@@ -1,11 +1,56 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
-} */
-
 @plugin "daisyui" {
-  themes: emerald --default;
+  themes: cookbook --default;
   exclude: radialprogress, properties;
+}
+
+@plugin "daisyui/theme" {
+  name: "cookbook";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97% 0.006 80);
+  --color-base-300: oklch(91% 0.01 80);
+  --color-base-content: oklch(28% 0.03 260);
+
+  --color-primary: oklch(55% 0.15 160);
+  --color-primary-content: oklch(98% 0.01 160);
+  --color-secondary: oklch(62% 0.08 235);
+  --color-secondary-content: oklch(98% 0.01 235);
+  --color-accent: oklch(72% 0.14 75);
+  --color-accent-content: oklch(30% 0.07 55);
+  --color-neutral: oklch(32% 0.025 260);
+  --color-neutral-content: oklch(97% 0.005 260);
+
+  --color-info: oklch(70% 0.12 235);
+  --color-info-content: oklch(28% 0.07 235);
+  --color-success: oklch(61% 0.15 160);
+  --color-success-content: oklch(20% 0.05 160);
+  --color-warning: oklch(84% 0.15 82);
+  --color-warning-content: oklch(34% 0.09 55);
+  --color-error: oklch(65% 0.2 25);
+  --color-error-content: oklch(98% 0.01 25);
+
+  --radius-selector: 1rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@layer base {
+  body {
+    background-image: radial-gradient(
+      circle at top left,
+      color-mix(in oklab, var(--color-primary) 10%, transparent),
+      transparent 30rem
+    );
+  }
 }

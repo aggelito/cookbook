@@ -15,7 +15,7 @@ const { step, stepId, recipeId, index } = Astro.props;
 ---
 
 <div
-  class="recipe-step group card cursor-pointer border border-base-300 bg-base-100 shadow-sm transition-all duration-300 ease-in-out hover:border-emerald-500 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-base-200"
+  class="recipe-step group card cursor-pointer border border-base-300 bg-base-100 shadow-sm transition-all duration-200 hover:border-primary/60 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-base-200"
   data-recipe-id={recipeId}
   data-step-id={stepId}
   data-type="step"
@@ -23,14 +23,14 @@ const { step, stepId, recipeId, index } = Astro.props;
   tabindex="0"
   aria-pressed="false"
 >
-  <div class="card-body gap-3 p-5">
-    <div class="flex items-baseline gap-3">
-      <span class="shrink-0 text-lg font-bold text-emerald-700">
-        {index + 1}.
+  <div class="card-body gap-3 p-4 sm:p-5">
+    <div class="flex items-start gap-3 sm:gap-4">
+      <span class="badge badge-soft badge-primary h-8 w-8 shrink-0 rounded-full p-0 text-sm font-bold transition-colors group-hover:badge-primary">
+        {index + 1}
       </span>
       <div class="min-w-0 flex-1">
-        <h4 class="m-0 text-lg font-semibold leading-snug text-base-content">{step.title}</h4>
-        <div class="mt-2 leading-7 text-base-content/75" set:html={step.description} />
+        <h3 class="m-0 text-lg font-semibold leading-snug text-base-content">{step.title}</h3>
+        <div class="mt-2 leading-7 text-base-content/65" set:html={step.description} />
       </div>
     </div>
   </div>

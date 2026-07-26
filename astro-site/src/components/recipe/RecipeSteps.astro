@@ -15,9 +15,9 @@ const { recipe } = Astro.props;
 <section class="recipe-steps-section">
   {
     recipe.data.steps && recipe.data.steps.length > 0 && (
-      <div class="space-y-4">
+      <div class="space-y-3">
         <div>
-          <h2 class="m-0 text-3xl font-semibold text-base-content">{t("recipe.steps")}</h2>
+          <h2 class="m-0 text-3xl font-bold tracking-tight text-base-content">{t("recipe.steps")}</h2>
         </div>
         {recipe.data.steps.map((step, index) => (
           <StepBlock step={step} stepId={`step-${index}`} recipeId={recipe.id} index={index} />
@@ -28,9 +28,9 @@ const { recipe } = Astro.props;
 
   {
     recipe.data.stepGroups && recipe.data.stepGroups.length > 0 && (
-      <div class="space-y-6">
+      <div class="space-y-5">
         <div>
-          <h2 class="m-0 text-3xl font-semibold text-base-content">{t("recipe.steps")}</h2>
+          <h2 class="m-0 text-3xl font-bold tracking-tight text-base-content">{t("recipe.steps")}</h2>
         </div>
         {recipe.data.stepGroups.map((group, groupIndex) => (
           <section class="space-y-4">
@@ -51,7 +51,7 @@ const { recipe } = Astro.props;
 
   <button
     id="reset-steps-btn"
-    class="btn btn-outline mt-5"
+    class="btn btn-ghost mt-4 text-base-content/60"
     data-recipe-id={recipe.id}
     data-confirm-message={t("recipe.confirmResetSteps")}
   >

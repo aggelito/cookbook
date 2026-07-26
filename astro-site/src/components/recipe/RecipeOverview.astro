@@ -12,20 +12,20 @@ const { recipe } = Astro.props;
 ---
 
 <section class="recipe-overview-section card overflow-hidden border border-base-300 bg-base-100 shadow-sm">
-  <div class="grid gap-0 lg:grid-cols-[1.4fr_0.9fr]">
-    <div class="card-body gap-6 p-6 sm:p-8">
+  <div class:list={["grid gap-0", { "lg:grid-cols-[1.4fr_0.9fr]": recipe.data.heroImage }]}>
+    <div class="card-body gap-7 p-6 sm:p-8 lg:p-10">
       <div class="space-y-4">
         <div class="flex flex-wrap gap-2">
-          <span class="badge badge-outline gap-1 py-3 text-base-content/75">
+          <span class="badge badge-soft badge-primary px-3 py-3">
             <span aria-hidden="true">⏱</span>
             {recipe.data.estimatedTime} min
           </span>
-          <span class="badge badge-outline gap-1 py-3 text-base-content/75">
+          <span class="badge badge-soft px-3 py-3 text-base-content/70">
             {recipe.data.basePortions} portioner
           </span>
           {
             recipe.data.rating != null && (
-              <span class="badge badge-outline gap-1 py-3 text-base-content/75">
+              <span class="badge badge-soft badge-warning px-3 py-3">
                 <span aria-hidden="true">★</span>
                 {recipe.data.rating}/5
               </span>
@@ -34,10 +34,10 @@ const { recipe } = Astro.props;
         </div>
 
         <div>
-          <h1 class="m-0 text-4xl font-semibold tracking-tight text-base-content sm:text-5xl">
+          <h1 class="m-0 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-base-content sm:text-5xl">
             {recipe.data.title}
           </h1>
-          <p class="mt-4 max-w-2xl text-lg leading-8 text-base-content/75">
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-base-content/65">
             {recipe.data.description || t("recipe.noDescription")}
           </p>
         </div>
@@ -51,7 +51,7 @@ const { recipe } = Astro.props;
           <div class="join">
             <button
               id="decrease-portions-btn"
-              class="btn btn-outline join-item"
+              class="btn btn-outline join-item min-h-11"
               data-recipe-id={recipe.id}
               data-base-portions={recipe.data.basePortions}
               aria-label="Minska portioner"
@@ -61,7 +61,7 @@ const { recipe } = Astro.props;
             <input
               type="number"
               id="portions-input"
-              class="input input-bordered join-item w-20 text-center font-semibold"
+              class="input input-bordered join-item h-11 w-20 text-center font-semibold tabular-nums"
               min="1"
               data-recipe-id={recipe.id}
               data-base-portions={recipe.data.basePortions}
@@ -70,7 +70,7 @@ const { recipe } = Astro.props;
             />
             <button
               id="increase-portions-btn"
-              class="btn btn-outline join-item"
+              class="btn btn-outline join-item min-h-11"
               data-recipe-id={recipe.id}
               data-base-portions={recipe.data.basePortions}
               aria-label="Öka portioner"
