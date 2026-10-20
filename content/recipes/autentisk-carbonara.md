@@ -1,6 +1,6 @@
 ---
 pubDate: "2026-10-20T17:56:09+02:00"
-updated: "2026-10-20T18:11:28+02:00"
+updated: "2026-10-20T20:10:50+02:00"
 
 title: Autentisk carbonara
 basePortions: 4
@@ -38,6 +38,12 @@ ingredients:
   - name: Svartpeppar, nymald, till servering
     amount: 1
     unit: tsk
+  - name: Pastavatten, till pannan
+    amount: 0.5
+    unit: dl
+  - name: Pastavatten, till såsen
+    amount: 1
+    unit: dl
   - name: Salt
     unit: till pastavattnet
 steps:
@@ -52,10 +58,10 @@ steps:
       Använd färska ägg. Vispa äggulorna och det hela ägget med pecorinon och pepparn till såsen, till en tjock smet. Spara de fyra äggvitorna till en annan rätt.
   - title: Koka pastan
     description: |
-      Koka pastan al dente. Spara minst 1,5 dl pastavatten innan du häller av.
+      Koka pastan al dente. Spara pastavattnet till pannan och till såsen innan du häller av.
   - title: Emulgera såsen
     description: |
-      Ta pannan från värmen. Är fettet mycket hett, vänta en halv minut och rör ner en skvätt pastavatten så att det svalnar lite. Vänd ner pastan i fettet. Häll i äggsmeten och blanda snabbt och kraftigt, gärna med tång. Späd med pastavatten, en matsked i taget, tills såsen är blank och krämig och täcker pastan. Den ska tjockna, inte bli äggröra. Ser den tunn ut kan du ställa pannan på lägsta värme i några sekunder under ständig omrörning. Stäng av direkt om det börjar stelna i klimpar.
+      Ta pannan från värmen. Är fettet mycket hett, vänta en halv minut och rör ner pastavattnet till pannan så att det svalnar lite. Vänd ner pastan i fettet. Häll i äggsmeten och blanda snabbt och kraftigt, gärna med tång. Späd med pastavattnet till såsen, lite i taget, tills såsen är blank och krämig och täcker pastan. Den ska tjockna, inte bli äggröra. Ser den tunn ut kan du ställa pannan på lägsta värme i några sekunder under ständig omrörning. Stäng av direkt om det börjar stelna i klimpar.
   - title: Servera
     description: |
       Vänd ner guancialen. Smaka av. Rätten ska vara salt och pepprig av osten och pepparn, inte av extra salt. Servera genast med resten av pecorinon och pepparn. Den tjocknar om den får stå.
