@@ -1,6 +1,6 @@
 ---
 pubDate: "2026-10-20T17:56:09+02:00"
-updated: "2026-10-20T17:56:09+02:00"
+updated: "2026-10-20T18:11:28+02:00"
 
 title: Autentisk carbonara
 basePortions: 4
@@ -14,7 +14,7 @@ description: |
   Romersk carbonara med guanciale, ägg, pecorino romano och rikligt med svartpeppar.
   Ingen grädde, ingen vitlök och ingen parmesan. Krämigheten kommer av ägg, ost och pastavatten.
 ingredients:
-  - name: Spaghetti, rigatoni eller tonnarelli
+  - name: Spaghetti, rigatoni eller tonnarelli, okokt
     amount: 400
     unit: g
   - name: Guanciale (lufttorkat griskind)
