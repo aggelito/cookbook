@@ -3,6 +3,7 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod'
 
 const recipeTag = z.enum([
+  'Amerikanskt',
   'Asiatiskt',
   'Bakning',
   'Brasilianskt',
